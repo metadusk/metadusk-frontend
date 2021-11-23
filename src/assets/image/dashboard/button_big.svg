@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="620px" height="134px" viewBox="0 0 620 134" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>切片</title>
+    <defs>
+        <polygon id="path-1" points="53.2483007 0 620 0 620 96.1802443 576.004268 134 0 134 0 38.7299864"></polygon>
+        <filter x="-1.6%" y="-6.0%" width="103.2%" height="114.9%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0.209122368   0 0 0 0 0   0 0 0 0 0.185250952  0 0 0 0.676748422 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <linearGradient x1="-18.6057492%" y1="49.0762949%" x2="100%" y2="51.043502%" id="linearGradient-3">
+            <stop stop-color="#FFE8FF" offset="0%"></stop>
+            <stop stop-color="#FFCDFD" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="最终版" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="dashboard_none" transform="translate(-976.000000, -2474.000000)">
+            <g id="矩形" transform="translate(976.000000, 2474.000000)">
+                <g>
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <path stroke="#CA1BC7" stroke-width="5" d="M617.5,2.5 L617.5,95.0325691 L575.077428,131.5 L2.5,131.5 L2.5,40.0029715 L54.0613273,2.5 L617.5,2.5 Z" stroke-linejoin="square" fill="#FFFFFF" fill-rule="evenodd"></path>
+                </g>
+                <polygon fill="url(#linearGradient-3)" points="69.7532263 18 599.304878 18 599.304878 88.9622534 558.196907 116.865854 20 116.865854 20 46.5751729"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

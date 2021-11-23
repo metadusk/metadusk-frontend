@@ -1,0 +1,198 @@
+.helmet-nft-claim-modal {
+  background: rgba(0, 0, 0, 0.92);
+  .ant-modal{
+    width: auto!important;
+    .ant-modal-close{
+      color: #ffffff;
+    }
+  }
+  .ant-modal-body{
+    padding: 0;
+  }
+  .ant-modal-content {
+    background: transparent;
+    .helmet-nft-modal-view{
+      width: 760px;
+      height: 50vh;
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      .view-header{
+        height: 60px;
+        background: linear-gradient(134deg, #7B0565 0%, #4A003C 100%);
+        text-align: center;
+        line-height: 60px;
+        font-size: 24px;
+        font-family: FutureMillennium;
+        color: #FFFFFF;
+        letter-spacing: 1px;
+        border-radius: 6px 6px 0 0;
+        text-shadow: -3px 1px 0px #FF2023;
+      }
+      .view-box{
+        flex: 1;
+        background: linear-gradient(134deg, #7B0565 0%, #4A003C 100%);
+        padding: 10px;
+        overflow: hidden;
+        display: flex;
+        justify-content: space-around;
+        border-radius: 0 0 6px 6px;
+        .helmet-dusk{
+          height: 100%;
+          max-height: 100%;
+        }
+        .view-box-info{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          .price{
+            font-size: 18px;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #FFFFFF;
+            line-height: 25px;
+            letter-spacing: 1px;
+            span{
+              font-size: 30px;
+              font-family: FutureMillennium;
+              color: #FFFFFF;
+              line-height: 35px;
+              letter-spacing: 2px;
+              text-shadow: -3px 1px 0px #FF2023;
+            }
+          }
+          .confirm-btn{
+            width: 310px;
+            height: 67px;
+            background-image: url("../../../assets/image/nft-modal/button_claim.png");
+            background-size: 100% 100%;
+            font-size: 30px;
+            font-family: FutureMillennium;
+            color: #96008B;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 23px 0 47px 0;
+            cursor: pointer;
+          }
+          .tip{
+            font-size: 12px;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #FFFFFF;
+            line-height: 17px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 2048px) {
+
+  .helmet-nft-claim-modal {
+    .ant-modal{
+      .ant-modal-close{
+        .ant-modal-close-x{
+          transform: scale(2);
+        }
+      }
+    }
+    .ant-modal-content {
+      .helmet-nft-modal-view{
+        width: 1540px;
+        border-radius: 12px;
+        .view-header{
+          height: 120px;
+          line-height: 120px;
+          font-size: 48px;
+          letter-spacing: 2px;
+        }
+        .view-box{
+          padding: 20px;
+          .view-box-info{
+
+            .price{
+              font-size: 36px;
+              line-height: 50px;
+              letter-spacing: 2px;
+              span{
+                font-size: 60px;
+                line-height: 70px;
+                letter-spacing: 4px;
+                text-shadow: -6px 2px 0px #FF2023;
+              }
+            }
+            .confirm-btn{
+              width: 620px;
+              height: 134px;
+              font-size: 60px;
+              margin: 46px 0 94px 0;
+            }
+            .tip{
+              font-size: 24px;
+              line-height: 34px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 800px) {
+  .helmet-nft-claim-modal {
+    .ant-modal-content {
+      .helmet-nft-modal-view {
+        width: 80vw;
+        height: 50vh;
+      }
+    }
+  }
+}
+@media (max-width: 800px) {
+  .helmet-nft-claim-modal {
+    .ant-modal-content {
+      .helmet-nft-modal-view {
+        width: 90vw;
+        height: auto;
+        .view-header{
+          height: 50px;
+          line-height: 50px;
+          font-size: 18px;
+        }
+        .view-box{
+          flex-direction: column;
+          padding: 5px;
+          .helmet-dusk{
+            height: auto;
+            width: 50%;
+            margin: auto;
+          }
+          .view-box-info{
+            .price{
+              font-size: 16px;
+              span{
+                font-size: 20px;
+                line-height: 20px;
+                text-shadow: -2px 1px 0px #FF2023;
+              }
+              margin: 10px 0 0 0;
+            }
+            .confirm-btn{
+              width: 200px;
+              height: 40px;
+              font-size: 20px;
+              margin: 20px 0;
+            }
+            .tip{
+              font-size: 10px;
+              line-height: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

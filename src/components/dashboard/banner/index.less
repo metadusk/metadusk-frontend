@@ -1,0 +1,402 @@
+.dashboard-banner {
+  width: 100%;
+  height: 720px;
+  min-width: 1140px;
+  background: url("../../../assets/image/dashboard/bg_pc@2x.png") no-repeat;
+  background-size: 100% 100%;
+  &_content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 152px;
+    margin: 0 auto;
+    width: 1080px;
+  }
+  &_content_left {
+    position: relative;
+    margin-right: 48px;
+    width: 452px;
+    height: 520px;
+    background: url('../../../assets/image/dashboard/zhanshitong_pc@2x.png') no-repeat;
+    background-size: 100% 100%;
+    img {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 198px;
+      height: 285px;
+    }
+  }
+  &_content_right {
+    h3 {
+      margin-bottom: 0;
+      font-size: 20px;
+      font-family: FutureMillennium;
+      color: #F6A4F2;
+      line-height: 24px;
+      text-align: center;
+    }
+    .line {
+      margin-bottom: 24px;
+      width: 100%;
+      height: 26px;
+    }
+    .get_nft_one {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 34px;
+      p {
+        position: relative;
+        padding: 7px 36px 7px 82px;
+        margin-bottom: 0;
+        width: 376px;
+        font-size: 18px;
+        font-family: PingFang-SC-Medium, PingFang-SC;
+        font-weight: 500;
+        color: #FFF;
+        line-height: 25px;
+        background: rgba(158, 23, 233, 0.5);
+        clip-path: polygon(98% 0, 100% 27%, 97% 100%, 0 99%, 1% 0);
+        span {
+          position: absolute;
+          left: -8px;
+          top: -7px;
+          width: 68px;
+          height: 46px;
+          line-height: 46px;
+          font-size: 24px;
+          font-family: FutureMillennium;
+          color: #FFF;
+          text-align: center;
+          background: url('../../../assets/image/dashboard/step@2x.png') no-repeat;
+          background-size: 100% 100%;
+        }
+      }
+      a {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 45px;
+        padding: 4px 10px;
+        min-width: 90px;
+        height: 40px;
+        line-height: 40px;
+        color: #96008B;
+        font-size: 18px;
+        font-family: PingFang-SC-Bold, PingFang-SC;
+        font-weight: 500;
+        text-align: center;
+        background: url('../../../assets/image/dashboard/button@2x.png') no-repeat;
+        background-size: 100% 100%;
+      }
+    }
+    .justine_dusk {
+      position: relative;
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: -14px;
+        right: -18px;
+        width: 106px;
+        height: 0;
+        border-bottom: 26px solid #c069f9;
+        border-left: 2px solid transparent;
+        border-right: 11px solid transparent;
+        transform: rotate(-2deg);
+      }
+    }
+    .token_address {
+      position: absolute;
+      left: -6px;
+      top: -48px;
+      display: flex;
+      flex-direction: column;
+      padding: 0 12px 0 16px;
+      width: 348px;
+      height: 54px;
+      background: #FF83FA;
+      span {
+        position: relative;
+        &:nth-child(1) {
+          font-size: 20px;
+          font-family: FutureMillennium;
+          color: #FFF;
+          line-height: 22px;
+          letter-spacing: 1px;
+        }
+        &:nth-child(2) {
+          margin-top: 4px;
+          font-size: 12px;
+          font-family: FutureMillennium;
+          color: #FFF;
+          line-height: 14px;
+        }
+      }
+      &::before {
+        content: '';
+        position: absolute;
+        left: 6px;
+        top: -7px;
+        width: 348px;
+        height: 54px;
+        background: #842DF9;
+      }
+    }
+    .justine_dusk_title {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      top: -162px;
+      right: 0;
+      margin-bottom: 0;
+      width: 236px;
+      height: 126px;
+      background: #FF0000;
+      transform: rotate(11deg);
+      span {
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        &:nth-child(1) {
+          height: 60px;
+          line-height: 60px;
+          font-size: 25px;
+          font-family: FutureMillennium;
+          color: #FFF;
+          letter-spacing: 1px;
+        }
+        &:nth-child(2) {
+          height: 46px;
+          line-height: 46px;
+          font-size: 22px;
+          font-family: BlocExtCondC;
+          color: #000;
+          letter-spacing: 1px;
+          background: #fff;
+        }
+      }
+    }
+    .describe {
+      padding: 30px 20px 36px 12px;
+      margin-top: 212px;
+      width: 426px;
+      min-height: 168px;
+      background: #1C0946;
+      span {
+        display: inline-block;
+        font-size: 14px;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #FFF;
+        line-height: 20px;
+        text-indent: 2em;
+      }
+    }
+  }
+}
+@media (max-width: 747px) {
+  .dashboard-banner {
+    width: 100%;
+    min-width: 100%;
+    height: 700px;
+    background: url("../../../assets/image/dashboard/bg_h5@2x.png") no-repeat;
+    background-size: 100% 100%;
+    &_content {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      padding-top: 72px;
+      margin: 0 auto;
+      width: 100%;
+    }
+     &_content_left {
+      position: relative;
+      margin-right: 0;
+      width: 266px;
+      height: 305px;
+      background: url('../../../assets/image/dashboard/zhanshitong_pc@2x.png') no-repeat;
+      background-size: 100% 100%;
+      img {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 116px;
+        height: 166px;
+      }
+    }
+     &_content_right {
+      h3 {
+        margin: 20px auto 0;
+        font-size: 16px;
+        font-family: FutureMillennium;
+        color: #F6A4F2;
+        line-height: 20px;
+        text-align: center;
+      }
+      .line {
+        margin-bottom: 24px;
+        width: 100%;
+        height: 26px;
+      }
+      .get_nft_one {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 18px;
+        p {
+          position: relative;
+          padding: 7px 14px 7px 68px;
+          margin-bottom: 0;
+          width: 252px;
+          font-size: 12px;
+          font-family: PingFang-SC-Medium, PingFang-SC;
+          font-weight: 500;
+          color: #FFF;
+          line-height: 22px;
+          background: rgba(158, 23, 233, 0.5);
+          clip-path: polygon(98% 0, 100% 27%, 97% 100%, 0 99%, 1% 0);
+          span {
+            position: absolute;
+            left: -8px;
+            top: -7px;
+            width: 68px;
+            height: 46px;
+            line-height: 46px;
+            font-size: 20px;
+            font-family: FutureMillennium;
+            color: #FFF;
+            text-align: center;
+            background: url('../../../assets/image/dashboard/step@2x.png') no-repeat;
+            background-size: 100% 100%;
+          }
+        }
+        a {
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-left: 10px;
+          padding: 4px 8px;
+          min-width: 82px;
+          height: 36px;
+          line-height: 36px;
+          color: #96008B;
+          font-size: 12px;
+          font-family: PingFang-SC-Bold, PingFang-SC;
+          font-weight: 500;
+          text-align: center;
+          background: url('../../../assets/image/dashboard/button@2x.png') no-repeat;
+          background-size: 100% 100%;
+        }
+      }
+      .justine_dusk {
+        position: relative;
+        &:after {
+          content: '';
+          position: absolute;
+          bottom: -14px;
+          right: -16px;
+          width: 106px;
+          height: 0;
+          border-bottom: 26px solid #c069f9;
+          border-left: 2px solid transparent;
+          border-right: 11px solid transparent;
+          transform: rotate(-2deg);
+        }
+      }
+      .token_address {
+        position: absolute;
+        left: -6px;
+        top: -30px;
+        display: flex;
+        flex-direction: column;
+        padding: 0 12px 0 16px;
+        width: 278px;
+        height: 40px;
+        background: #FF83FA;
+        span {
+          position: relative;
+          &:nth-child(1) {
+            font-size: 16px;
+            font-family: FutureMillennium;
+            color: #FFF;
+            line-height: 20px;
+            letter-spacing: 1px;
+          }
+          &:nth-child(2) {
+            font-size: 12px;
+            font-family: FutureMillennium;
+            color: #FFF;
+            line-height: 14px;
+            transform: scale(0.9);
+            transform-origin: left;
+          }
+        }
+        &::before {
+          content: '';
+          position: absolute;
+          left: 6px;
+          top: -7px;
+          width: 278px;
+          height: 40px;
+          background: #842DF9;
+        }
+      }
+      .justine_dusk_title {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        top: -108px;
+        right: 0;
+        margin-bottom: 0;
+        width: 150px;
+        height: 86px;
+        background: #FF0000;
+        transform: rotate(12deg);
+        span {
+          display: inline-block;
+          width: 100%;
+          text-align: center;
+          &:nth-child(1) {
+            height: 40px;
+            line-height: 40px;
+            font-size: 18px;
+            font-family: FutureMillennium;
+            color: #FFF;
+            letter-spacing: 1px;
+          }
+          &:nth-child(2) {
+            height: 32px;
+            line-height: 32px;
+            font-size: 14px;
+            font-family: BlocExtCondC;
+            color: #000;
+            letter-spacing: 1px;
+            background: #fff;
+          }
+        }
+      }
+      .describe {
+        padding: 26px 16px 24px 12px;
+        margin-top: 126px;
+        width: 340px;
+        min-height: 128px;
+        background: #1C0946;
+        span {
+          display: inline-block;
+          font-size: 12px;
+          font-family: PingFangSC-Regular, PingFang SC;
+          font-weight: 400;
+          color: #FFF;
+          line-height: 18px;
+          text-indent: 2em;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 359px) {}
