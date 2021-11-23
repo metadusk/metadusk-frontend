@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="74px" height="72px" viewBox="0 0 74 72" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>切片</title>
+    <defs>
+        <circle id="path-1" cx="38" cy="36" r="36"></circle>
+        <filter x="-6.9%" y="-5.6%" width="113.9%" height="113.9%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0.209122368   0 0 0 0 0   0 0 0 0 0.185250952  0 0 0 0.676748422 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <linearGradient x1="-18.6057492%" y1="18.285703%" x2="100%" y2="85.8273788%" id="linearGradient-3">
+            <stop stop-color="#FFE8FF" offset="0%"></stop>
+            <stop stop-color="#FFCDFD" offset="100%"></stop>
+        </linearGradient>
+        <path d="M49,40.2 L49,18 L27,18 L27,25.4 L41.6666667,25.4 L41.6666667,32.8 L34.3333333,32.8 L34.3333333,40.2 L49,40.2 Z M41.6666667,55 L41.6666667,47.6 L34.3333333,47.6 L34.3333333,55 L41.6666667,55 Z" id="path-4"></path>
+        <filter x="-2.3%" y="-1.4%" width="109.1%" height="105.4%" filterUnits="objectBoundingBox" id="filter-5">
+            <feOffset dx="1" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feColorMatrix values="0 0 0 0 0.517647059   0 0 0 0 0.176470588   0 0 0 0 0.976470588  0 0 0 1 0" type="matrix" in="shadowOffsetOuter1"></feColorMatrix>
+        </filter>
+        <filter x="-2.3%" y="-1.4%" width="109.1%" height="105.4%" filterUnits="objectBoundingBox" id="filter-6">
+            <feOffset dx="1" dy="1" in="SourceAlpha" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0.219607843   0 0 0 0 0   0 0 0 0 0.207843137  0 0 0 1 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="最终版" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="dashboard_duck" transform="translate(-2460.000000, -53.000000)">
+            <g id="touxiang备份" transform="translate(2460.000000, 53.000000)">
+                <g id="椭圆形">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <circle stroke="#CA1BC7" stroke-width="4" stroke-linejoin="square" fill="#FFFFFF" fill-rule="evenodd" cx="38" cy="36" r="34"></circle>
+                </g>
+                <circle id="椭圆形" fill="url(#linearGradient-3)" cx="38" cy="36" r="30"></circle>
+                <g id="?" fill-rule="nonzero">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-5)" xlink:href="#path-4"></use>
+                    <use fill="#F6A4F2" xlink:href="#path-4"></use>
+                    <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-4"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

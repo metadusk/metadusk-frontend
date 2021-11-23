@@ -1,0 +1,133 @@
+.get-dusk{
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../../../assets/image/home/bg5.png");
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  .get-dusk-main{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .banner-light{
+    margin: 80px 0 66px 0;
+  }
+  .cards-list{
+    display: flex;
+    flex-wrap: wrap;
+
+    align-items: center;
+    justify-content: center;
+    .card-item{
+      margin: 0 75px;
+      transition: all 200ms;
+      img{
+        width: 190px;
+        height: 230px;
+      }
+      p{
+        font-size: 21px;
+        font-family: FutureMillenniumBlack;
+        line-height: 24px;
+        text-align: center;
+        margin-top: 32px;
+        color: #ADADAD;
+      }
+      &:hover{
+        p{
+          color: #FFEC00;
+        }
+      }
+      &:hover{
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+@media (min-width: 2048px) {
+  .get-dusk{
+    .banner-light{
+      margin: 160px 0 132px 0;
+    }
+    .cards-list{
+      .card-item{
+        margin: 0 150px;
+        img{
+          width: 380px;
+          height: 460px;
+        }
+        p{
+          font-size: 42px;
+          line-height: 48px;
+          margin-top: 64px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 750px) {
+  .get-dusk {
+    .banner-light {
+      width: 424.8px;
+      height: 70.4px;
+      font-size: 44px;
+    }
+    .cards-list{
+      .card-item {
+        margin: 0 45px;
+      }
+    }
+  }
+}
+
+@media (max-width: 750px) and (min-width: 512px) {
+  .get-dusk {
+    .banner-light {
+      width: 424.8px;
+      height: 70.4px;
+      font-size: 44px;
+      margin-bottom: 30px;
+    }
+    .cards-list{
+      align-items: center;
+      justify-content: center;
+      .card-item {
+        margin: 0 15px;
+      }
+    }
+  }
+}
+
+@media (max-width: 512px) {
+  .get-dusk {
+    .banner-light {
+      width: 90vw;
+      height: calc(90vw * 0.16);
+      font-size: calc(90vw * 0.1);
+      margin: 80px 0 10px;
+    }
+    .cards-list{
+      width: 100vw;
+      margin: auto;
+      align-items: center;
+      justify-content: center;
+      .card-item {
+        margin: 0 15px;
+        img{
+          width: calc(50vw - 60px);
+          height: auto;
+        }
+        p{
+          font-size: 16px;
+          margin-top: 16px;
+        }
+      }
+    }
+  }
+}
