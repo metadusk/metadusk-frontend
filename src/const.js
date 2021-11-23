@@ -1,1 +1,0 @@
-export const DUSK_CLAIM_STATUS = 'DUSK_CLAIM_STATUS'
