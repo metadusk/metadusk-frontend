@@ -20,7 +20,6 @@ const DashBoardListData = ({
   const [tabFlag, setTabFlag] = useState('dush')
   const [listData, setListData] = useState([])
   const [equipDataNum, setEquipDataNum] = useState([])
-  const [mintData, setMintData] = useState([1])
 
   useMemo(() => {
     const map = {}
