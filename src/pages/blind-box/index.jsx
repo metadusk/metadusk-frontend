@@ -4,6 +4,7 @@ import Header from "../../components/header";
 import LightningImg from '../../assets/image/blind-box/lightning.png'
 import UnknownImg from '../../assets/image/blind-box/unknown.png'
 import cs from "classnames";
+import BlindBoxNft from "../../components/blind-box/nft";
 
 export default function BlindBox(){
   const [status, setStatus] = useState('static')
@@ -28,6 +29,7 @@ export default function BlindBox(){
             <div><img src={LightningImg} alt=""/></div>
             <div><img src={UnknownImg} alt=""/></div>
             <div><img src={UnknownImg} alt=""/></div>
+            <BlindBoxNft isShow={status === 'active active2 active3'}/>
           </div>
         </div>
       </div>
