@@ -2,8 +2,10 @@ import React, { useMemo, useState} from 'react'
 import cs from 'classnames'
 import { useWeb3React } from "@web3-react/core"
 import { FormattedMessage, injectIntl } from 'react-intl'
-import DefaultPng from '../../../assets/image/dashboard/no_Dusk_pc@2x.png'
+import JustineDus from '../../../assets/image/dashboard/JustineDus@2x.png'
+import Dusk from '../../../assets/image/dashboard/Dusk@2x.png'
 import Footer from "../../footer"
+import { Link } from 'react-router-dom'
 import { getIPFSJson, getIPFSFile } from '../../../utils/ipfs'
 import './index.less'
 import Other from "../tabs/other";
@@ -16,6 +18,7 @@ const DashBoardListData = ({
   const { active, account, chainId } = useWeb3React()
   const [tabFlag, setTabFlag] = useState('dush')
   const [listData, setListData] = useState([])
+  const [mintData, setMintData] = useState([])
   useMemo(() => {
     const map = {}
     const filterList = []
@@ -211,12 +214,60 @@ const DashBoardListData = ({
             </p>
           )
         )}
-        {tabFlag === 'casting' && (
-          <p className='no_data'>
-            Coming Soon
-            {/* <FormattedMessage id='dashboard13' /> */}
-          </p>
-        )}
+        {tabFlag === 'casting' && mintData.length ? (
+          <div className='dashboard-list_data_JustineDus'>
+            <div className='dusk_upgrade'>
+              <img className='dusk_png' src={Dusk} />
+              <p className='lightning'></p>
+              <img className='dusk_png' src={JustineDus} />
+            </div>
+            <div className='dusk_equipment'>
+              <p className='naked_duck'>
+                <img src={Dusk} />
+                <span className='dusk_equipment_number'>
+                  X<i>1</i>
+                </span>
+              </p>
+            </div>
+            <div className='dusk_equipment dusk_equipment_box'>
+              <p className='naked_duck naked_duck_equipment_1'>
+                <img src={Dusk} />
+                <span className='dusk_equipment_number'>
+                  X<i>1</i>
+                </span>
+              </p>
+              <p className='naked_duck naked_duck_equipment_2'>
+                <img src={Dusk} />
+                <span className='dusk_equipment_number'>
+                  X<i>1</i>
+                </span>
+              </p>
+              <p className='naked_duck naked_duck_equipment_3'>
+                <img src={Dusk} />
+                {/* <span className='dusk_equipment_number'>
+                  X<i>1</i>
+                </span> */}
+                <Link to='/lbp' className='no_dusk_equipment'>
+                  <FormattedMessage id='dashboard2' />
+                </Link>
+              </p>
+              <p className='naked_duck naked_duck_equipment_4'>
+                <img src={Dusk} />
+                <span className='dusk_equipment_number'>
+                  X<i>1</i>
+                </span>
+              </p>
+              <a className='mint_btn'>
+                <FormattedMessage id='dashboard14' />
+              </a>
+            </div>
+          </div>
+        ) : tabFlag === 'casting' && (
+            <p className='no_data'>
+              Coming Soon
+              {/* <FormattedMessage id='dashboard13' /> */}
+            </p>
+          )}
         <div style={{display: tabFlag === 'other' ? 'block' : 'none'}}>
           <Other />
         </div>

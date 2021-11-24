@@ -72,7 +72,7 @@
       }
   }
   &_data {
-    padding-top: 66px;
+    padding: 66px 0 100px;
     width: 100%;
     min-height: 720px;
     background: url('../../../assets/image/dashboard/data_bg_pc@2x.png') no-repeat;
@@ -302,6 +302,157 @@
       }
     }
   }
+   &_data_JustineDus {
+    .dusk_upgrade {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 46px;
+      width: 100%;
+    }
+    .dusk_png {
+      width: 196px;
+      height: 284px;
+      &:first-child {
+        margin-right: 134px;
+      }
+    }
+    .lightning {
+      position: absolute;
+      margin-bottom: 0;
+      width: 214px;
+      height: 164px;
+      background-image: url('../../../assets/image/dashboard/lightning@2x.png');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      animation: opacityAnimation 1s linear 0s infinite alternate;
+      -webkit-animation: opacityAnimation 1s linear 0s infinite alternate;
+      -moz-animation: opacityAnimation 1s linear 0s infinite alternate;
+    }
+    @keyframes opacityAnimation
+      {
+        0% { opacity: 0 }
+        50% { opacity: .8 }
+        100% { opacity: 0 }
+      }
+    @-webkit-keyframes opacityAnimation {
+        0% { opacity: 0 }
+        50% { opacity: .8 }
+        100% { opacity: 0 }
+    }
+    @-moz-keyframes opacityAnimation {
+        0% { opacity: 0 }
+        50% { opacity: .8 }
+        100% { opacity: 0 }
+    }
+    .dusk_equipment {
+      margin: 0 auto;
+      width: 440px;
+      text-align: center;
+    }
+    .dusk_equipment_box {
+      .naked_duck {
+        &:nth-child(2n - 1) {
+          margin-right: 26px;
+        }
+      }
+    }
+    .naked_duck {
+      position: relative;
+      display: inline-block;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      width: 206px;
+      height: 88px;
+      border-radius: 4px;
+      border: 3px solid transparent;
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      background-size: cover;
+      background-image: linear-gradient(#390039, #390039), linear-gradient(135deg, rgba(81, 13, 84, 1), rgba(156, 82, 148, 1), rgba(148, 78, 143, 1));
+      vertical-align: top;
+      img {
+        position: absolute;
+        left: -3px;
+        top: -3px;
+        width: 90px;
+        height: 88px;
+        vertical-align: sub;
+      }
+      .dusk_equipment_number {
+        display: inline-block;
+        padding-left: 88px;
+        width: 100%;
+        height: 100%;
+        font-size: 34px;
+        font-weight: 700;
+        color: #FFF;
+        line-height: 82px;
+        text-align: center;
+        vertical-align: top;
+        text-shadow: #842DF9 2px 0 0, #842DF9 0 2px 0, #842DF9 -2px 0 0, #842DF9 0 -2px 0;
+        i {
+          font-style: normal;
+          font-weight: normal;
+          font-family: FredokaOne-Regular;
+        }
+      }
+      .no_dusk_equipment {
+        display: inline-block;
+        padding: 0 10px;
+        margin: 18px 0 0 90px;
+        min-width: 80px;
+        height: 40px;
+        font-size: 18px;
+        font-family: PingFangSC-Semibold, PingFang SC;
+        font-weight: 500;
+        color: #96008B;
+        line-height: 40px;
+        text-align: center;
+        background: url('../../../assets/image/dashboard/button@2x.png') no-repeat;
+        background-size: 100% 100%;
+        &:hover {
+          color: #96008B;
+        }
+      }
+    }
+    .naked_duck_equipment_1 {
+      background: linear-gradient(220deg, #6C2A66 0%, #4A003C 100%, #000000 100%);
+      border: 3px solid #760080;
+    }
+    .naked_duck_equipment_2 {
+      background: linear-gradient(38deg, #290422 0%, #4A003C 100%);
+      border: 3px solid #760080;
+    }
+    .naked_duck_equipment_3 {
+      background: linear-gradient(220deg, #DBB580 0%, #0055A6 0%, #001023 100%);
+      border: 3px solid #00419B;
+    }
+    .naked_duck_equipment_4 {
+      background: linear-gradient(220deg, #8C5406 0%, #2B1E00 100%);
+      border: 3px solid #906100;
+    }
+    .mint_btn {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 0 10px;
+      min-width: 310px;
+      height: 66px;
+      font-size: 30px;
+      font-family: PingFangSC-Semibold, PingFang SC;
+      font-weight: 600;
+      color: #96008B;
+      line-height: 66px;
+      text-align: center;
+      background: url('../../../assets/image/dashboard/button_big.svg') no-repeat;
+      background-size: 100% 100%;
+      &:hover {
+        color: #96008B;
+      }
+    }
+  }
   .page-footer{
     position: relative;
     bottom: 98px;
@@ -477,6 +628,162 @@
         font-style: normal;
         font-weight: normal;
         font-family: FredokaOne-Regular;
+      }
+    }
+  }
+   &_data_JustineDus {
+    .dusk_upgrade {
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin-bottom: 46px;
+      width: 100%;
+    }
+    .dusk_png {
+      width: 196px;
+      height: 284px;
+      &:first-child {
+        margin-right: 0;
+      }
+    }
+    .lightning {
+      position: relative;
+      margin-bottom: 0;
+      width: 214px;
+      height: 164px;
+      background-image: url('../../../assets/image/dashboard/lightning@2x.png');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      animation: opacityAnimation 1s linear 0s infinite alternate;
+      -webkit-animation: opacityAnimation 1s linear 0s infinite alternate;
+      -moz-animation: opacityAnimation 1s linear 0s infinite alternate;
+      transform: rotate(90deg);
+    }
+    @keyframes opacityAnimation
+      {
+        0% { opacity: 0 }
+        50% { opacity: .8 }
+        100% { opacity: 0 }
+      }
+    @-webkit-keyframes opacityAnimation {
+        0% { opacity: 0 }
+        50% { opacity: .8 }
+        100% { opacity: 0 }
+    }
+    @-moz-keyframes opacityAnimation {
+        0% { opacity: 0 }
+        50% { opacity: .8 }
+        100% { opacity: 0 }
+    }
+    .dusk_equipment {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin: 0 auto;
+      width: 100%;
+      text-align: center;
+    }
+    .dusk_equipment_box {
+      .naked_duck {
+        &:nth-child(2n - 1) {
+          margin-right: 0;
+        }
+      }
+    }
+    .naked_duck {
+      position: relative;
+      display: inline-block;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      width: 206px;
+      height: 88px;
+      border-radius: 4px;
+      border: 3px solid transparent;
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      background-size: cover;
+      background-image: linear-gradient(#390039, #390039), linear-gradient(135deg, rgba(81, 13, 84, 1), rgba(156, 82, 148, 1), rgba(148, 78, 143, 1));
+      vertical-align: top;
+      img {
+        position: absolute;
+        left: -3px;
+        top: -3px;
+        width: 90px;
+        height: 88px;
+        vertical-align: sub;
+      }
+      .dusk_equipment_number {
+        display: inline-block;
+        padding-left: 88px;
+        width: 100%;
+        height: 100%;
+        font-size: 34px;
+        font-weight: 700;
+        color: #FFF;
+        line-height: 82px;
+        text-align: center;
+        vertical-align: top;
+        text-shadow: #842DF9 2px 0 0, #842DF9 0 2px 0, #842DF9 -2px 0 0, #842DF9 0 -2px 0;
+        i {
+          font-style: normal;
+          font-weight: normal;
+          font-family: FredokaOne-Regular;
+        }
+      }
+      .no_dusk_equipment {
+        display: inline-block;
+        padding: 0 10px;
+        margin: 18px 0 0 90px;
+        min-width: 80px;
+        height: 40px;
+        font-size: 18px;
+        font-family: PingFangSC-Semibold, PingFang SC;
+        font-weight: 500;
+        color: #96008B;
+        line-height: 40px;
+        text-align: center;
+        background: url('../../../assets/image/dashboard/button@2x.png') no-repeat;
+        background-size: 100% 100%;
+        &:hover {
+          color: #96008B;
+        }
+      }
+    }
+    .naked_duck_equipment_1 {
+      background: linear-gradient(220deg, #6C2A66 0%, #4A003C 100%, #000000 100%);
+      border: 3px solid #760080;
+    }
+    .naked_duck_equipment_2 {
+      background: linear-gradient(38deg, #290422 0%, #4A003C 100%);
+      border: 3px solid #760080;
+    }
+    .naked_duck_equipment_3 {
+      background: linear-gradient(220deg, #DBB580 0%, #0055A6 0%, #001023 100%);
+      border: 3px solid #00419B;
+    }
+    .naked_duck_equipment_4 {
+      background: linear-gradient(220deg, #8C5406 0%, #2B1E00 100%);
+      border: 3px solid #906100;
+    }
+    .mint_btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 0 10px;
+      min-width: 220px;
+      width: 220px;
+      height: 66px;
+      font-size: 26px;
+      font-family: PingFangSC-Semibold, PingFang SC;
+      font-weight: 600;
+      color: #96008B;
+      line-height: 66px;
+      text-align: center;
+      background: url('../../../assets/image/dashboard/button_big.svg') no-repeat;
+      background-size: 100% 100%;
+      &:hover {
+        color: #96008B;
       }
     }
   }
