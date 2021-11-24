@@ -9,6 +9,7 @@ import { ChainId } from "../../web3/address"
 import { Contract } from "ethers-multicall-x"
 import { mainContext } from '../../reducer'
 import ERC721Abi from "../../web3/abi/ERC721.json"
+import ERC1155Abi from "../../web3/abi/ERC1155.json"
 import { DUSK_CLAIM_STATUS } from '../../const'
 import DashBoardBanner from "../../components/dashboard/banner"
 import ListData from '../../components/dashboard/listData'
@@ -18,6 +19,11 @@ import axios from 'axios'
 const ERC721Data = {
   address: '0xeDfbf15775a2E42E03d059Fb98DA6e92284de7be',
   abi: ERC721Abi
+}
+
+const ERC1155Data = {
+  address: '0xEdA0B4dB9704EF54058E2E30Fb112eB2b4bF6D7E',
+  abi: ERC1155Abi
 }
 
 export const getTokenURI = (tokenId) => {
@@ -55,7 +61,6 @@ const DashBoard = () => {
             if (dusks[i].tokenURI && dusks[i].tokenURI.indexOf('ipfs') !== -1) {
               dusks[i].tokenURI = dusks[i].tokenURI.replace('ipfs://', '')
             }
-            console.log(dusks[i].tokenURI)
             if (dusks[i].tokenURI) {
               await getIPFSJson(dusks[i].tokenURI).then(res => {
                 dusks[i].content = res.data
@@ -70,7 +75,7 @@ const DashBoard = () => {
       })
   }
 
-  const getEquipData = (address) => {
+  const getEquipDataIpfs = (address) => {
     axios({
       method: 'post',
       url: 'https://graph.metadusk.io/bsc/subgraphs/name/metadusk/dusk',
@@ -112,20 +117,38 @@ const DashBoard = () => {
                 ''
               )
             }
-            console.log(userEquipments[i].tokenURI)
             if (userEquipments[i].tokenURI) {
               await getIPFSJson(userEquipments[i].tokenURI).then((res) => {
                 userEquipments[i].content = res.data
               })
             }
           }
-          console.log(userEquipments, 'userEquipments')
           setEquipData(userEquipments)
         }
       })
       .catch((e) => {
         console.log(e)
       })
+  }
+
+  const getEquipData = () => {
+    const filterEquipData = []
+    const multicall = getOnlyMultiCallProvider(ChainId.BSC)
+    const contract = new Contract(ERC1155Data.address, ERC1155Data.abi)
+    multicall.all([contract.balanceOf(account, 1), contract.balanceOf(account, 2), contract.balanceOf(account, 3), contract.balanceOf(account, 4), contract.uri(1)]).then(data => {
+      data = processResult(data)
+      const tokenURI = data[4].toString()
+      data = data.splice(0, 3)
+      data = ['0', '0', '0', '0']
+      Promise.all([getIPFSJson(tokenURI + '/1.json'), getIPFSJson(tokenURI + '/2.json'), getIPFSJson(tokenURI + '/3.json'), getIPFSJson(tokenURI + '/4.json')])
+      .then(res => {
+        for (let i = 0; i < res.length; i++) {
+          res[i].data.count = data[i]
+          filterEquipData.push(res[i].data)
+        }
+        setEquipData(filterEquipData)
+      })
+    })
   }
 
   const getShowNftData = () => {
@@ -158,7 +181,8 @@ const DashBoard = () => {
     if(account){
       getListData(account)
       getShowNftData()
-      // getEquipData(account)
+      // getEquipDataIpfs(account)
+      getEquipData()
     }
   }, [active, account, state.duskClaimStatus])
 
