@@ -2,8 +2,11 @@ import React, { useMemo, useState} from 'react'
 import cs from 'classnames'
 import { useWeb3React } from "@web3-react/core"
 import { FormattedMessage, injectIntl } from 'react-intl'
-import DefaultPng from '../../../assets/image/dashboard/no_Dusk_pc@2x.png'
+import JustineDus from '../../../assets/image/dashboard/JustineDus@2x.png'
+import Dusk from '../../../assets/image/dashboard/Dusk@2x.png'
+import DuskMint from '../../../assets/image/dashboard/Dusk_Mint@2x.png'
 import Footer from "../../footer"
+import { Link } from 'react-router-dom'
 import { getIPFSJson, getIPFSFile } from '../../../utils/ipfs'
 import './index.less'
 import Other from "../tabs/other";
@@ -16,6 +19,8 @@ const DashBoardListData = ({
   const { active, account, chainId } = useWeb3React()
   const [tabFlag, setTabFlag] = useState('dush')
   const [listData, setListData] = useState([])
+  const [equipDataNum, setEquipDataNum] = useState([])
+
   useMemo(() => {
     const map = {}
     const filterList = []
@@ -30,6 +35,14 @@ const DashBoardListData = ({
     }
     setListData(filterList)
   }, [_listData])
+
+  useMemo(() => {
+    let count = 0
+    for (let i = 0; i < equipData.length; i++) {
+      count = count + (equipData[i].count - 0)
+    }
+    setEquipDataNum(count)
+  }, [equipData])
   return (
     <div className='dashboard-list'>
       <div className='dashboard-list_tab'>
@@ -112,96 +125,30 @@ const DashBoardListData = ({
           )
         )}
 
-        {tabFlag === 'equip' && equipData.length ? (
+        {tabFlag === 'equip' && equipData.length && equipDataNum > 0 ? (
           <div className='content_center'>
-            <div className='wedding_dress dush'>
-              <img
-                src={
-                  require(`../../../assets/image/dashboard/WeddingDress@2x.png`)
-                    .default
-                }
-              />
-              <p className='content'>
-                <p className='text_transform'>
-                  <span className='title'>
-                    <FormattedMessage id='dashboard12' />
-                  </span>
-                  <span className='describe'>
-                    元宇宙公元 1024 年,
-                    在特斯拉星云中的一个富饶的行星上孵化出一个神奇物种,
-                    该物种是一种能够直立行走的扁嘴动物, 这种动物基因不够稳定,
-                    变异极其频繁, 不出时年就衍生出来数十万种奇异种族,
-                    有的智慧超群, 有的性格暴力,有的酷爱时尚,有的……
-                  </span>
-                </p>
-              </p>
-            </div>
-            <div className='dush wedding_veil'>
-              <img
-                src={
-                  require(`../../../assets/image/dashboard/WeddingDress@2x.png`)
-                    .default
-                }
-              />
-              <p className='content'>
-                <p className='text_transform'>
-                  <span className='title'>
-                    <FormattedMessage id='dashboard12' />
-                  </span>
-                  <span className='describe'>
-                    元宇宙公元 1024 年,
-                    在特斯拉星云中的一个富饶的行星上孵化出一个神奇物种,
-                    该物种是一种能够直立行走的扁嘴动物, 这种动物基因不够稳定,
-                    变异极其频繁, 不出时年就衍生出来数十万种奇异种族,
-                    有的智慧超群, 有的性格暴力,有的酷爱时尚,有的……
-                  </span>
-                </p>
-              </p>
-            </div>
-            <div className='grab dush'>
-              <img
-                src={
-                  require(`../../../assets/image/dashboard/WeddingDress@2x.png`)
-                    .default
-                }
-              />
-              <p className='content'>
-                <p className='text_transform'>
-                  <span className='title'>
-                    <FormattedMessage id='dashboard12' />
-                  </span>
-                  <span className='describe'>
-                    元宇宙公元 1024 年,
-                    在特斯拉星云中的一个富饶的行星上孵化出一个神奇物种,
-                    该物种是一种能够直立行走的扁嘴动物, 这种动物基因不够稳定,
-                    变异极其频繁, 不出时年就衍生出来数十万种奇异种族,
-                    有的智慧超群, 有的性格暴力,有的酷爱时尚,有的……
-                  </span>
-                </p>
-              </p>
-            </div>
-            <div className='cigarette dush'>
-              <img
-                src={
-                  require(`../../../assets/image/dashboard/WeddingDress@2x.png`)
-                    .default
-                }
-              />
-              <p className='content'>
-                <p className='text_transform'>
-                  <span className='title'>
-                    <FormattedMessage id='dashboard12' />
-                  </span>
-                  <span className='describe'>
-                    元宇宙公元 1024 年,
-                    在特斯拉星云中的一个富饶的行星上孵化出一个神奇物种,
-                    该物种是一种能够直立行走的扁嘴动物, 这种动物基因不够稳定,
-                    变异极其频繁, 不出时年就衍生出来数十万种奇异种族,
-                    有的智慧超群, 有的性格暴力,有的酷爱时尚,有的……
-                  </span>
-                </p>
-              </p>
-            </div>
+            {equipData.map((item, index) => {
+              if (item.count > 0) {
+                return (
+                  <div className={cs(item.name.replace(' ', '_'), 'dush')} key={index}>
+                    <img
+                      src={getIPFSFile(item.photo)}
+                    />
+                    <div className='content'>
+                      <p className='text_transform'>
+                        <span className='title'>
+                          {item.name}
+                          {/* <FormattedMessage id='dashboard12' /> */}
+                        </span>
+                        <span className='describe'>
+                          {item.introduction}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                )
+              }
+            })}
           </div>
         ) : (
           tabFlag === 'equip' && (
@@ -211,12 +158,54 @@ const DashBoardListData = ({
             </p>
           )
         )}
-        {tabFlag === 'casting' && (
-          <p className='no_data'>
-            Coming Soon
-            {/* <FormattedMessage id='dashboard13' /> */}
-          </p>
-        )}
+        {tabFlag === 'casting' && listData.length && equipData.length ? (
+          <div className='dashboard-list_data_JustineDus'>
+            <div className='dusk_upgrade'>
+              <img className='dusk_png' src={Dusk} />
+              <p className='lightning'></p>
+              <img className='dusk_png' src={JustineDus} />
+            </div>
+            <div className='dusk_equipment'>
+              <p className='naked_duck'>
+                <img src={DuskMint} />
+                <span className='dusk_equipment_number'>
+                  X<i>{listData[0].count }</i>
+                </span>
+              </p>
+            </div>
+            <div className='dusk_equipment dusk_equipment_box'>
+              {
+                equipData.map((item, index) => {
+                  return (
+                    <p className={cs(item.name.replace(' ', '_'), 'naked_duck')} key={index}>
+                      <img src={getIPFSFile(item.photo)} />
+                      
+                      {
+                        item.count > 0 ? (
+                          <span className='dusk_equipment_number'>
+                            X<i>{item.count}</i>
+                          </span>
+                        ) : (
+                              <Link to='/lbp' className='no_dusk_equipment'>
+                                <FormattedMessage id='dashboard2' />
+                              </Link>
+                        )
+                      }
+                    </p>
+                  )
+                })
+              }
+              <a className='mint_btn'>
+                <FormattedMessage id='dashboard14' />
+              </a>
+            </div>
+          </div>
+        ) : tabFlag === 'casting' && (
+            <p className='no_data'>
+              Coming Soon
+              {/* <FormattedMessage id='dashboard13' /> */}
+            </p>
+          )}
         <div style={{display: tabFlag === 'other' ? 'block' : 'none'}}>
           <Other />
         </div>
