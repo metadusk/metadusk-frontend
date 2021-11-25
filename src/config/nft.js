@@ -7,6 +7,7 @@ import WeddingVeilBG from "../assets/image/home/exhibits/wedding_veil_bg.png";
 import WeddingVeil from "../assets/image/home/exhibits/wedding_veil.png";
 import CigaretteBG from "../assets/image/home/exhibits/cigarette_bg.png";
 import Cigarette from "../assets/image/home/exhibits/cigarette.png";
+import {getIPFSFile} from "../utils/ipfs";
 
 export const exhibitsList = [
   {
@@ -43,3 +44,10 @@ export const exhibitsList = [
     id: '1'
   }
 ]
+
+// Preloading
+for (let i = 0; i < exhibitsList.length; i++) {
+  const Img = new Image()
+  Img.src = getIPFSFile(exhibitsList[i].image)
+  Img.onload = function (){}
+}

@@ -55,6 +55,7 @@ export default function BlindBox() {
   const isEnd = !openLoading && pageData.end < now
   const isComing = !openLoading && pageData.begin > now
   const [claimId, setClaimId] = useState('')
+  const [quick, setQuick] = useState(false)
 
   const getData = () => {
     setLoadLoading(true)
@@ -89,6 +90,7 @@ export default function BlindBox() {
       data = processResult(data)
       if (Number(data) > 0) {
         setClaimId(data[0])
+        setClaimLoading(false)
         setTimeout(() => {
           setStatus('claimed')
         }, 100)
@@ -112,6 +114,9 @@ export default function BlindBox() {
       })
       .on('transactionHash', () => {
         setStatus('open')
+        setTimeout(()=>{
+          setQuick(true)
+        }, 2000)
       })
       .on('receipt', (_, receipt) => {
         setStatus('claiming')
@@ -133,7 +138,6 @@ export default function BlindBox() {
       })
       .on('receipt', (_, receipt) => {
         getClaimData()
-        setClaimLoading(false)
       })
       .on('error', (err, receipt) => {
         setClaimLoading(false)
@@ -143,7 +147,7 @@ export default function BlindBox() {
     <div className="blind-box">
       <Header />
       <div className="blind-box-main">
-        <div className={cs('box-view', statusClassMap[status])} onClick={() => {status === 'claiming' && onClaim()}}>
+        <div className={cs('box-view', statusClassMap[status], quick && status === 'open' && 'quick')} onClick={() => {status === 'claiming' && onClaim()}}>
           <div className="box">
             <div></div>
             <div></div>
