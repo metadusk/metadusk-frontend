@@ -278,8 +278,16 @@
       &.static {
         animation: pulseH5 3s infinite linear forwards;
       }
-      &.active.active2{
-        animation: scale1H5 1s infinite linear forwards;
+      &.active{
+        &.active2{
+          animation: scale1H5 1s infinite linear forwards;
+        }
+        .box {
+          animation-name: none;
+        }
+        &.active3 {
+          animation-name: none;
+        }
       }
     }
   }

@@ -15,6 +15,11 @@ import {Contract} from "ethers-multicall-x";
 import {useNow} from "../../hooks";
 import {LoadingOutlined} from "@ant-design/icons";
 
+const booleanType = {
+  'true': true,
+  'false': false
+}
+
 export const Lottery = {
   address: '0x692994b183B467965D81398d4dAc60fE465897f6',
   abi: LotteryAbi
@@ -24,6 +29,7 @@ const Item1155 = {
   address: '0xEdA0B4dB9704EF54058E2E30Fb112eB2b4bF6D7E',
   abi: Item1155Abi
 }
+const multicall = getOnlyMultiCallProvider(ChainId.BSC)
 
 const statusClassMap = {
   'static': 'static',
@@ -42,11 +48,13 @@ export default function BlindBox() {
   const [openLoading, setOpenLoading] = useState(false)
   const [pageData, setPageData] = useState({
     begin: 0,
-    end: 0,
+    end: 4099254920,
     betCost: '2',//price,gwei
     needClaim: false
   })
-  const [claimId, setClaimId] = useState(0)
+  const isEnd = !openLoading && pageData.end < now
+  const isComing = !openLoading && pageData.begin > now
+  const [claimId, setClaimId] = useState('')
 
   const getData = () => {
     setLoadLoading(true)
@@ -58,10 +66,13 @@ export default function BlindBox() {
       contract.betCost(),
       contract.needClaim(account),
     ]
-    multicall.all(calls).then(data => {
+    multicall.all(calls).then(async data => {
       data = processResult(data)
       const [begin, end, betCost, needClaim] = data
       setPageData({begin, end, betCost, needClaim})
+      if (booleanType[needClaim]){
+        setStatus('claiming')
+      }
       setLoadLoading(false)
     })
   }
@@ -72,18 +83,15 @@ export default function BlindBox() {
     }
   }, [account])
 
-  const getNftData = (tokenId) => {
-
-  }
-
   const getClaimData = () => {
-    const multicall = getOnlyMultiCallProvider(ChainId.BSC)
     const contract = new Contract(Lottery.address, Lottery.abi)
     multicall.all([contract.lastClaimIds(account)]).then(data => {
       data = processResult(data)
-      setClaimId(data[0])
       if (Number(data) > 0) {
-        setStatus('claiming')
+        setClaimId(data[0])
+        setTimeout(() => {
+          setStatus('claimed')
+        }, 100)
       } else {
         getClaimData()
       }
@@ -91,9 +99,10 @@ export default function BlindBox() {
   }
 
   const onOpen = () => {
-    if (openLoading){
+    if (openLoading || isComing || isEnd){
       return
     }
+    setStatus('static')
     setOpenLoading(true)
     const contract = getContract(library, Lottery.abi, Lottery.address)
     contract.methods.bet()
@@ -142,7 +151,7 @@ export default function BlindBox() {
             <div><img src={LightningImg} alt=""/></div>
             <div><img src={UnknownImg} alt=""/></div>
             <div><img src={UnknownImg} alt=""/></div>
-            <BlindBoxNft isShow={status === 'active active2 active3'}/>
+            <BlindBoxNft isShow={status === 'claimed'} claimId={claimId}/>
           </div>
         </div>
       </div>
@@ -153,9 +162,9 @@ export default function BlindBox() {
               {claimLoading && <LoadingOutlined />}
               Claim
           </div>) :
-          (<div className={cs({'lottery-btn': true, 'disabled': loadLoading})} onClick={onOpen}>
+          (<div className={cs({'lottery-btn': true, 'disabled': loadLoading || isEnd || isComing})} onClick={onOpen}>
             {openLoading && <LoadingOutlined />}
-            Open
+              {isEnd ? 'End' : isComing ? 'Coming' : status === 'claimed' ? 'Keep opening' : 'Open'}
           </div>)
       }
     </div>

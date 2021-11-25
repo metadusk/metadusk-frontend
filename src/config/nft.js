@@ -14,25 +14,32 @@ export const exhibitsList = [
     frame: GunBg,
     effect: GunEffect,
     nft: Gun,
-    tokenURI: 'Qmbp7sKahsAwFskP1mZ7b6pzY39r9oGuCRsiNUNxiF54Ev'
+    image: 'Qmbp7sKahsAwFskP1mZ7b6pzY39r9oGuCRsiNUNxiF54Ev',
+    tokenURI: 'QmcdoXaLUvtFtTjvpZBePtDDz83ju2Y5LWoCqzNPHYmE5d',
+    id: '2'
   },
   {
     title: 'Wedding Dress',
     frame: WeddingDressBG,
     nft: WeddingDress,
-    tokenURI: 'QmdAWwTtMPfhcZHGhvpTrC8XFXAhxLheaTrVyzjboDUDCY'
-
+    image: 'QmdAWwTtMPfhcZHGhvpTrC8XFXAhxLheaTrVyzjboDUDCY',
+    tokenURI: 'QmcdoXaLUvtFtTjvpZBePtDDz83ju2Y5LWoCqzNPHYmE5d',
+    id: '3'
   },
   {
     title: 'Wedding Veil',
     frame: WeddingVeilBG,
     nft: WeddingVeil,
-    tokenURI: 'Qmezsirv8Qhz5BaSSScUjXkwzs6C26iQVHV1LMJrkK2A5S'
+    image: 'Qmezsirv8Qhz5BaSSScUjXkwzs6C26iQVHV1LMJrkK2A5S',
+    tokenURI: 'QmcdoXaLUvtFtTjvpZBePtDDz83ju2Y5LWoCqzNPHYmE5d',
+    id: '3'
   },
   {
     title: 'Cigarette',
     frame: CigaretteBG,
     nft: Cigarette,
-    tokenURI: 'QmWqvu5NnFjZupEh412pU8peP5XyMRNpxgEAmTBiwbDzsS'
+    image: 'QmWqvu5NnFjZupEh412pU8peP5XyMRNpxgEAmTBiwbDzsS',
+    tokenURI: 'QmcdoXaLUvtFtTjvpZBePtDDz83ju2Y5LWoCqzNPHYmE5d',
+    id: '1'
   }
 ]
