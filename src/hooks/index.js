@@ -1,4 +1,4 @@
-import {useMemo, useState} from "react";
+import {useEffect, useMemo, useRef, useState} from "react";
 import {useWeb3React} from "@web3-react/core";
 import {getContract} from "../web3";
 import {formatAmount} from "../utils/format";
@@ -26,4 +26,15 @@ export const useBalance = (
     }
   }, [account, active, blockHeight, address])
   return balance
+}
+
+export const useNow = () => {
+  const [now, setNow] = useState(() => ~~(new Date().getTime()/1000))
+  useEffect(() => {
+    const timeout = setTimeout(()=>{
+      setNow(~~(new Date().getTime()/1000))
+    }, 1000)
+    return () => clearTimeout(timeout)
+  }, [now]);
+  return now
 }

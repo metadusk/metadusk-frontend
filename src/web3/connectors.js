@@ -142,7 +142,6 @@ export const useConnectWallet = () => {
         })
 
         window.ethereum.on('message', message => {
-          console.log('message', message)
         })
       }
     })
