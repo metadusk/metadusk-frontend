@@ -141,9 +141,9 @@ export default function BlindBox() {
   }
   return (
     <div className="blind-box">
-      <Header/>
+      <Header />
       <div className="blind-box-main">
-        <div className={cs('box-view', statusClassMap[status])}>
+        <div className={cs('box-view', statusClassMap[status])} onClick={() => {status === 'claiming' && onClaim()}}>
           <div className="box">
             <div></div>
             <div></div>
@@ -151,7 +151,7 @@ export default function BlindBox() {
             <div><img src={LightningImg} alt=""/></div>
             <div><img src={UnknownImg} alt=""/></div>
             <div><img src={UnknownImg} alt=""/></div>
-            <BlindBoxNft isShow={status === 'claimed'} claimId={claimId}/>
+            <BlindBoxNft status={status} claimId={claimId}/>
           </div>
         </div>
       </div>

@@ -64,6 +64,51 @@
     }
   }
 }
+.blind-box-s {
+  width: 150px!important;
+  height: 150px!important;
+  min-width: 150px!important;
+  min-height: 150px!important;
+  transform-style: preserve-3d;
+  animation: spin 5.5s linear infinite;
+  font-size: 30px;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  top: 20px;
+  border: 0!important;
+  //transform: translate(-50% , -40%);
+  //transform: rotateY(0deg);
+  &>div:nth-child(1){transform: translateZ(0.5px);}
+  &>div:nth-child(2){transform: translateZ(1px)}
+  &>div:nth-child(3){transform: translateZ(1.5px)}
+  &>div:nth-child(4){transform: translateZ(2px)}
+  &>div:nth-child(5){transform: translateZ(2.5px)}
+  &>div:nth-child(6){transform: translateZ(3px)}
+  &>div:nth-child(7){transform: translateZ(3.5px)}
+  &>div:nth-child(8){transform: translateZ(4px)}
+  &>div:nth-child(9){transform: translateZ(4.5px)}
+  &>div:nth-child(10){transform: translateZ(5px)}
+  &>div:nth-child(11){transform: translateZ(5.5px)}
+  &>div:nth-child(12){transform: translateZ(6px)}
+  &>div:nth-child(13){transform: translateZ(6.5px)}
+  &>div:nth-child(14){transform: translateZ(7px)}
+  &>div:nth-child(15){transform: translateZ(7.5px)}
+  &>div:nth-child(16){transform: translateZ(8px)}
+  &>div:nth-child(17){transform: translateZ(8.5px)}
+  &>div:nth-child(18){transform: translateZ(9px)}
+  &>div:nth-child(19){transform: translateZ(9.5px)}
+  &>div:nth-child(20){transform: translateZ(10px);}
+  &>div {
+    background-image: url("../../../assets/image/blind-box/unknown2.png");
+    height: 100%;
+    width: 100%;
+    transform: translateZ(1px);
+    position: absolute;
+    top: 0;
+    background-size: 100% 100%;
+  }
+}
 @media (max-width: 650px) {
   .blind-box-c{
     &.show{

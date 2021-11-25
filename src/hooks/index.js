@@ -30,7 +30,7 @@ export const useBalance = (
 
 export const useNow = () => {
   const [now, setNow] = useState(() => ~~(new Date().getTime()/1000))
-  useEffect(() => {
+  useMemo(() => {
     const timeout = setTimeout(()=>{
       setNow(~~(new Date().getTime()/1000))
     }, 1000)
