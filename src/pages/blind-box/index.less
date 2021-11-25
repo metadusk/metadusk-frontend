@@ -34,11 +34,16 @@
   0% {
     transform: rotateX(-10deg) rotateY(0deg)
   }
-  50% {
-    transform: rotateX(-10deg) rotateY(180deg)
-  }
   100% {
     transform: rotateX(-10deg) rotateY(360deg)
+  }
+}
+@keyframes rotate3d2 {
+  0% {
+    transform: rotateX(-10deg) rotateY(0deg)
+  }
+  100% {
+    transform: rotateX(-10deg) rotateY(100000deg)
   }
 }
 @keyframes scale1 {
@@ -127,7 +132,12 @@
     &.active{
       .box{
         //transform: rotateX(-10deg) rotateY(0deg);
-        animation: rotate3d 1s infinite linear forwards;
+        animation: rotate3d 2s infinite ease-in forwards;
+      }
+      &.quick{
+        .box{
+          animation: rotate3d 1s infinite linear forwards;
+        }
       }
       &.active2{
         cursor: pointer;

@@ -3,6 +3,7 @@ import {exhibitsList} from "../../../config/nft";
 import './index.less'
 import cs from "classnames";
 import {createDiv} from "../../claim-modal/westarter";
+import {getIPFSFile} from "../../../utils/ipfs";
 
 export default function BlindBoxNft({status, claimId}) {
   const data_ = exhibitsList.filter(item => item.id === claimId)
@@ -24,7 +25,7 @@ export default function BlindBoxNft({status, claimId}) {
     })}>
       <div>
         {data.effect && <img src={data.effect} alt="" className="blind-box-c-effect"/>}
-        <img src={data.nft} alt="" className="blind-box-c-nft"/>
+        <img src={getIPFSFile(data.image)} alt="" className="blind-box-c-nft"/>
       </div>
     </div>
   )
