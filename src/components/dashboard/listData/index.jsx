@@ -129,24 +129,28 @@ const DashBoardListData = ({
           <div className='content_center'>
             {equipData.map((item, index) => {
               if (item.count > 0) {
-                return (
-                  <div className={cs(item.name.replace(' ', '_'), 'dush')} key={index}>
-                    <img
-                      src={getIPFSFile(item.photo)}
-                    />
-                    <div className='content'>
-                      <p className='text_transform'>
+                const card_list = []
+                for(let i = 0; i < item.count; i++){
+                  card_list.push((
+                    <div className={cs(item.name.replace(' ', '_'), 'dush')} key={index + '' + i}>
+                      <img
+                        src={getIPFSFile(item.photo)}
+                      />
+                      <div className='content'>
+                        <p className='text_transform'>
                         <span className='title'>
                           {item.name}
                           {/* <FormattedMessage id='dashboard12' /> */}
                         </span>
-                        <span className='describe'>
+                          <span className='describe'>
                           {item.introduction}
                         </span>
-                      </p>
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                )
+                  ))
+                }
+                return card_list
               }
             })}
           </div>
@@ -159,47 +163,51 @@ const DashBoardListData = ({
           )
         )}
         {tabFlag === 'casting' && listData.length && equipData.length ? (
-          <div className='dashboard-list_data_JustineDus'>
-            <div className='dusk_upgrade'>
-              <img className='dusk_png' src={Dusk} />
-              <p className='lightning'></p>
-              <img className='dusk_png' src={JustineDus} />
-            </div>
-            <div className='dusk_equipment'>
-              <p className='naked_duck'>
-                <img src={DuskMint} />
-                <span className='dusk_equipment_number'>
-                  X<i>{listData[0].count }</i>
-                </span>
-              </p>
-            </div>
-            <div className='dusk_equipment dusk_equipment_box'>
-              {
-                equipData.map((item, index) => {
-                  return (
-                    <p className={cs(item.name.replace(' ', '_'), 'naked_duck')} key={index}>
-                      <img src={getIPFSFile(item.photo)} />
-                      
-                      {
-                        item.count > 0 ? (
-                          <span className='dusk_equipment_number'>
-                            X<i>{item.count}</i>
-                          </span>
-                        ) : (
-                              <Link to='/lbp' className='no_dusk_equipment'>
-                                <FormattedMessage id='dashboard2' />
-                              </Link>
-                        )
-                      }
-                    </p>
-                  )
-                })
-              }
-              <a className='mint_btn'>
-                <FormattedMessage id='dashboard14' />
-              </a>
-            </div>
-          </div>
+          // <div className='dashboard-list_data_JustineDus'>
+          //   <div className='dusk_upgrade'>
+          //     <img className='dusk_png' src={Dusk} />
+          //     <p className='lightning'></p>
+          //     <img className='dusk_png' src={JustineDus} />
+          //   </div>
+          //   <div className='dusk_equipment'>
+          //     <p className='naked_duck'>
+          //       <img src={DuskMint} />
+          //       <span className='dusk_equipment_number'>
+          //         X<i>{listData[0].count }</i>
+          //       </span>
+          //     </p>
+          //   </div>
+          //   <div className='dusk_equipment dusk_equipment_box'>
+          //     {
+          //       equipData.map((item, index) => {
+          //         return (
+          //           <p className={cs(item.name.replace(' ', '_'), 'naked_duck')} key={index}>
+          //             <img src={getIPFSFile(item.photo)} />
+          //
+          //             {
+          //               item.count > 0 ? (
+          //                 <span className='dusk_equipment_number'>
+          //                   X<i>{item.count}</i>
+          //                 </span>
+          //               ) : (
+          //                     <Link to='/lbp' className='no_dusk_equipment'>
+          //                       <FormattedMessage id='dashboard2' />
+          //                     </Link>
+          //               )
+          //             }
+          //           </p>
+          //         )
+          //       })
+          //     }
+          //     <a className='mint_btn'>
+          //       <FormattedMessage id='dashboard14' />
+          //     </a>
+          //   </div>
+          // </div>
+          <p className='no_data'>
+            Coming Soon
+            {/* <FormattedMessage id='dashboard13' /> */}
+          </p>
         ) : tabFlag === 'casting' && (
             <p className='no_data'>
               Coming Soon

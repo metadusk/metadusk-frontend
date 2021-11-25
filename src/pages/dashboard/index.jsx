@@ -138,8 +138,8 @@ const DashBoard = () => {
     multicall.all([contract.balanceOf(account, 1), contract.balanceOf(account, 2), contract.balanceOf(account, 3), contract.balanceOf(account, 4), contract.uri(1)]).then(data => {
       data = processResult(data)
       const tokenURI = data[4].toString()
-      data = data.splice(0, 3)
-      data = ['0', '0', '0', '0']
+      data = data.splice(0, 4)
+      // data = ['0', '0', '0', '0']
       Promise.all([getIPFSJson(tokenURI + '/1.json'), getIPFSJson(tokenURI + '/2.json'), getIPFSJson(tokenURI + '/3.json'), getIPFSJson(tokenURI + '/4.json')])
       .then(res => {
         for (let i = 0; i < res.length; i++) {
