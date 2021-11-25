@@ -25,7 +25,7 @@ export default function App() {
         <Route path="/dashboard" exact>
           <Dashboard />
         </Route>
-        <Route path="/lbp" exact>
+        <Route path="/auction" exact>
           <LBP />
         </Route>
         <Route path="/aboutUs" exact>

@@ -24,7 +24,7 @@ import {mainContext} from "../../reducer";
 export const navList = [
   {
     name: "Auction",
-    route: "/lbp",
+    route: "/auction",
   },
   {
     name: 'Dashboard',

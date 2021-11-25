@@ -88,7 +88,7 @@ const DashBoardBanner = (props) => {
                   <span>2</span>
                   <FormattedMessage id='dashboard1' />
                 </p>
-                <Link to='/lbp'>
+                <Link to='/auction'>
                   <FormattedMessage id='dashboard2' />
                 </Link>
               </div>
