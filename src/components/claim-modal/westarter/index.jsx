@@ -25,7 +25,7 @@ export const WARBadge = {
   tokenURI: 'QmeysNksZt918bNbATm7RbYGq5RET8jp1iVTeYKtr4MpBv'
 }
 
-function createDiv(n) {
+export function createDiv(n) {
   const list = []
   for (let i = 0; i < n; i++) {
     list.push(<div key={i}/>)
