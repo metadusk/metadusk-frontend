@@ -79,7 +79,7 @@ const LBPContent = () => {
   }, [blockHeight]);
   return (
     <div className="lbp-content">
-      <div className="lbp-content-title">LBP</div>
+      <div className="lbp-content-title">Auction</div>
       <div className="lbp-content-info">
         <div className="lbp-content-info-lt"></div>
         <div className="lbp-content-info-rt">
