@@ -17,7 +17,7 @@ const EN = {
   dashboard15: '',
   dashboard16: 'Other',
   lbp: "Current Price",
-  lbp1: "You could only buy 1 Dusk at a time. If you want to get more Dusk, you could ",
+  lbp1: "You could only buy 1 Dusk at a time. If you want to get more Dusk, you could repeat the auction.",
   lbp2:
     "The LBP auction price will be automatically adjusted according to market demand. If the final price is less than the amount of BNB you invested, the remaining BNB will be automatically returned to your wallet.",
 };
