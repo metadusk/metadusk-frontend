@@ -99,7 +99,7 @@ const LBPContent = () => {
             </div>
           </div>
           <div className="lbp-content-info-rt-button" onClick={() => confirm()}>
-            CONFIRM
+            BUY
           </div>
           <div className="lbp-content-info-rt-tips tips-first">
             <FormattedMessage id="lbp1" />
