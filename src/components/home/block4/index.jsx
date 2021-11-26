@@ -1,42 +1,11 @@
 import React from "react";
 import './index.less'
 import cx from 'classnames'
-import GunBg from '../../../assets/image/home/exhibits/gun_bg.png'
-import Gun from '../../../assets/image/home/exhibits/gun.png'
-import GunEffect from '../../../assets/image/home/exhibits/bolid.png'
-import WeddingDress from '../../../assets/image/home/exhibits/wedding_dress.png'
-import WeddingDressBG from '../../../assets/image/home/exhibits/wedding_dress_bg.png'
-import WeddingVeil from '../../../assets/image/home/exhibits/wedding_veil.png'
-import WeddingVeilBG from '../../../assets/image/home/exhibits/wedding_veil_bg.png'
-import Cigarette from '../../../assets/image/home/exhibits/cigarette.png'
-import CigaretteBG from '../../../assets/image/home/exhibits/cigarette_bg.png'
 import ArrowIcon from '../../../assets/image/home/arrow_left.svg'
 import Swiper from 'swiper'
+import {exhibitsList} from "../../../config/nft";
 
-const exhibitsList = [
-  {
-    title: 'Gun',
-    frame: GunBg,
-    effect: GunEffect,
-    nft: Gun
-  },
-  {
-    title: 'Wedding Dress',
-    frame: WeddingDressBG,
-    nft: WeddingDress
 
-  },
-  {
-    title: 'Wedding Veil',
-    frame: WeddingVeilBG,
-    nft: WeddingVeil
-  },
-  {
-    title: 'Cigarette',
-    frame: CigaretteBG,
-    nft: Cigarette
-  }
-]
 
 export default class Block4 extends React.Component{
   state = {

@@ -54,7 +54,51 @@ const avatarMap = {
   }
 }
 
-export default function Header(props) {
+
+
+const ConnectWall = ({account, showNetwork, setShowNetwork, chainId, setShowMenu, setShowConnectWallet}) => (
+  <React.Fragment>
+    {
+      account &&
+      <div className={cs({"wallet-network": true, 'show': showNetwork})} onClick={() => setShowNetwork(!showNetwork)}>
+        <span>{networksNameMap[chainId]}</span>
+        <img src={DropDownSvg} alt=""/>
+        <div className="network-select">
+          {
+            superNetworks.map((cId) => <div key={cId}  className={cs({
+              'network-select-item': true,
+              'active': chainId === cId
+            })} onClick={() => {changeNetwork(cId);setShowMenu(false)}}>{networksNameMap[cId]}</div>)
+          }
+        </div>
+      </div>
+    }
+    <div className="connect-wallet-btn"
+         onClick={() => {setShowConnectWallet(true);setShowMenu(false)}}>{account ? formatAddress(account) : 'Connect Wallet'}</div>
+  </React.Fragment>
+)
+
+const Nav = ({cl, history}) => (
+  <ul className={cs("nav", cl)}>
+    {navList.map((item, index) => (
+      <li key={index}>
+        <Link
+          to={item.route}
+          className={cx({
+            active:
+              history.location.pathname &&
+              history.location.pathname.indexOf(item.route) === 0,
+            "nav-item": true,
+          })}
+        >
+          {item.name}
+        </Link>
+      </li>
+    ))}
+  </ul>
+)
+
+export default function Header() {
 
   const { dispatch, state } = useContext(mainContext)
   const history = useHistory()
@@ -112,63 +156,22 @@ export default function Header(props) {
     return avatarMap[avatar] ? avatarMap[avatar].avatar : DefaultAvatar
   }
 
-  const ConnectWall = () => (
-    <React.Fragment>
-      {
-        account &&
-        <div className={cs({"wallet-network": true, 'show': showNetwork})} onClick={() => setShowNetwork(!showNetwork)}>
-          <span>{networksNameMap[chainId]}</span>
-          <img src={DropDownSvg} alt=""/>
-          <div className="network-select">
-            {
-              superNetworks.map((cId) => <div key={cId}  className={cs({
-                'network-select-item': true,
-                'active': chainId === cId
-              })} onClick={() => {changeNetwork(cId);setShowMenu(false)}}>{networksNameMap[cId]}</div>)
-            }
-          </div>
-        </div>
-      }
-      <div className="connect-wallet-btn"
-           onClick={() => {setShowConnectWallet(true);setShowMenu(false)}}>{account ? formatAddress(account) : 'Connect Wallet'}</div>
-    </React.Fragment>
-  )
-
-  const Nav = ({cl}) => (
-    <ul className={cs("nav", cl)}>
-      {navList.map((item, index) => (
-        <li key={index}>
-          <Link
-            to={item.route}
-            className={cx({
-              active:
-                history.location.pathname &&
-                history.location.pathname.indexOf(item.route) === 0,
-              "nav-item": true,
-            })}
-          >
-            {item.name}
-          </Link>
-        </li>
-      ))}
-    </ul>
-  )
 
   return (
     <div className="header">
       <Link to='/'>
         <img className="logo" src={Logo} />
       </Link>
-      <Nav cl="nav-pc"/>
+      <Nav cl="nav-pc" history={history}/>
       <div className="nv-d"/>
       <div className="gift-view" onClick={() => setWestarterNftModal(true)} />
-      <ConnectWall />
+      <ConnectWall account={account} showNetwork={showNetwork} setShowNetwork={setShowNetwork} chainId={chainId} setShowMenu={setShowMenu} setShowConnectWallet={setShowConnectWallet}/>
       <div className="header-avatar">
         <div className={cs({'more': true, 'show': showMenu})}>
           <img src={MoreSvg} alt="" onClick={() => setShowMenu(!showMenu)}/>
           <div className="connect-wall-menu-h5">
-            <ConnectWall />
-            <Nav cl="nav-h5"/>
+            <ConnectWall account={account} showNetwork={showNetwork} setShowNetwork={setShowNetwork} chainId={chainId} setShowMenu={setShowMenu} setShowConnectWallet={setShowConnectWallet}/>
+            <Nav cl="nav-h5" history={history}/>
           </div>
         </div>
         <NavLink to="/dashboard" className={cs({'avatar-box': true, active: history.location.pathname &&
