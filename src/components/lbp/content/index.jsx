@@ -50,7 +50,7 @@ const LBPContent = () => {
       );
       setMaxPrice(
         fromWei(currentPrice)
-          .times(1.5)
+          .times(1.2)
           .toFixed(4, 0)
           .toString()
       );
