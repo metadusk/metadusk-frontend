@@ -14,7 +14,7 @@ import { fromWei, toWei, numToWei } from "../../../utils/format";
 import DuskLbpAbi from "../../../web3/abi/LBP.json";
 import "./index.less";
 const DuskLBPList = {
-  address: "0x68aeF7CD322C729b66B8f58a00B427444aFE68aC",
+  address: "0x11Aa37C18CbB280cF45Ebb4A8e9694a055474793",
   abi: DuskLbpAbi,
 };
 
@@ -23,16 +23,15 @@ const LBPContent = () => {
   const [currentPrice, setCurrentPrice] = useState(0);
   const [paused, setPaused] = useState(false);
   const [priceCut, setPriceCut] = useState(0);
-  const [priceIncrement, setPriceIncrement] = useState(0); 
+  const [priceIncrement, setPriceIncrement] = useState(0);
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
   const { blockHeight } = useContext(VarContext);
-  const pageStatus = window.localStorage.getItem("pageStatus");
   const getDuskInfo = () => {
     const multicall = getOnlyMultiCallProvider(ChainId.BSC);
     const lbpInfoContract = new Contract(DuskLBPList.address, DuskLBPList.abi);
     const multicallList = [
-      lbpInfoContract.calCurrentPrice(),
+      lbpInfoContract.currentPrice(),
       lbpInfoContract.paused(),
       lbpInfoContract.priceCut(),
       lbpInfoContract.priceIncrement(),
@@ -40,22 +39,25 @@ const LBPContent = () => {
     multicall.all(multicallList).then((data) => {
       data = processResult(data);
       const [currentPrice, paused, priceCut, priceIncrement] = data;
-      console.log(currentPrice)
       setCurrentPrice(fromWei(currentPrice).toString());
       setPaused(paused);
       setPriceCut(fromWei(priceCut).toString());
       setPriceIncrement(fromWei(priceIncrement).toString());
-      setMinPrice(fromWei(currentPrice).toString());
+      setMinPrice(
+        fromWei(currentPrice)
+          .toFixed(4)
+          .toString()
+      );
       setMaxPrice(
         fromWei(currentPrice)
-          .times(1.1)
+          .times(1.5)
           .toFixed(4, 0)
           .toString()
       );
     });
   };
   const confirm = () => {
-    if (!account || !pageStatus) {
+    if (!account) {
       return;
     }
     // return;
@@ -79,7 +81,7 @@ const LBPContent = () => {
   }, [blockHeight]);
   return (
     <div className="lbp-content">
-      <div className="lbp-content-title">LBP</div>
+      <div className="lbp-content-title">Auction</div>
       <div className="lbp-content-info">
         <div className="lbp-content-info-lt"></div>
         <div className="lbp-content-info-rt">
@@ -89,19 +91,15 @@ const LBPContent = () => {
             </span>
             <div className="value">
               <span className="type">MIN</span>
-              <span className="volume">
-                {pageStatus ? minPrice : "--"}&nbsp;BNB
-              </span>
+              <span className="volume">{minPrice}&nbsp;BNB</span>
             </div>
             <div className="value">
               <span className="type">MAX</span>
-              <span className="volume">
-                {pageStatus ? maxPrice : "--"}&nbsp;BNB
-              </span>
+              <span className="volume">{maxPrice}&nbsp;BNB</span>
             </div>
           </div>
           <div className="lbp-content-info-rt-button" onClick={() => confirm()}>
-            {pageStatus ? "CONFIRM" : "Coming Soon"}
+            BUY
           </div>
           <div className="lbp-content-info-rt-tips tips-first">
             <FormattedMessage id="lbp1" />
