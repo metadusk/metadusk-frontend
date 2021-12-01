@@ -1,3 +1,6 @@
+import NFTHelperAbi from './abi/NFTHelper.json'
+import ERC721Abi from "./abi/ERC721.json";
+import ERC1155Abi from "./abi/ERC1155.json";
 export const ChainId = {
   ETH: 1,
   BSC: 56,
@@ -34,5 +37,21 @@ export const getScanName = (chainId) => {
   return SCAN_NAME[chainId]
 }
 
+export const NFTHelper = {
+  address: '0x4B9B1c34A83c6D814AB4a909eae95F4f218606F9',
+  abi: NFTHelperAbi
+}
+
+// 721
+export const NFTDusk = {
+  address: '0xeDfbf15775a2E42E03d059Fb98DA6e92284de7be',
+  abi: ERC721Abi
+}
+
+// 1155
+export const NFTDuskKit = {
+  address: '0xEdA0B4dB9704EF54058E2E30Fb112eB2b4bF6D7E',
+  abi: ERC1155Abi
+}
 
 

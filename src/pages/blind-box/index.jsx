@@ -9,7 +9,6 @@ import {getContract, useActiveWeb3React} from "../../web3";
 import {ChainId} from "../../web3/address";
 import {changeNetwork} from "../../web3/connectors";
 import LotteryAbi from '../../web3/abi/Lottery.json'
-import Item1155Abi from '../../web3/abi/Item1155.json'
 import {getOnlyMultiCallProvider, processResult} from "../../web3/multicall";
 import {Contract} from "ethers-multicall-x";
 import {useNow} from "../../hooks";
@@ -25,10 +24,6 @@ export const Lottery = {
   abi: LotteryAbi
 }
 
-const Item1155 = {
-  address: '0xEdA0B4dB9704EF54058E2E30Fb112eB2b4bF6D7E',
-  abi: Item1155Abi
-}
 const multicall = getOnlyMultiCallProvider(ChainId.BSC)
 
 const statusClassMap = {
