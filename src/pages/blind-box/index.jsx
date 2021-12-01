@@ -19,7 +19,7 @@ const booleanType = {
   'false': false
 }
 
-export const Lottery = {
+const Lottery = {
   address: '0x692994b183B467965D81398d4dAc60fE465897f6',
   abi: LotteryAbi
 }

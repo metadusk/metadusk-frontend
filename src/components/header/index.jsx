@@ -14,7 +14,6 @@ import BaseAvatar from "../../assets/image/avatar/base_dusk.png";
 import JustineAvatar from "../../assets/image/avatar/justine_dusk.png";
 import { changeNetwork } from "../../web3/connectors";
 import WestarterNFTModal from "../claim-modal/westarter";
-import HelmetNFTModal from "../claim-modal/helmet";
 import MoreSvg from '../../assets/image/svg/more.svg'
 import {mainContext} from "../../reducer";
 import {getOnlyMultiCallProvider, processResult} from "../../web3/multicall";
@@ -106,7 +105,6 @@ export default function Header() {
   const [showNetwork, setShowNetwork] = useState(false)
   const {account, chainId} = useWeb3React()
   const [westarterNftModal, setWestarterNftModal] = useState(false)
-  const [helmetNftModal, setHelmetNftModal] = useState(false)
   const [showMenu, setShowMenu] = useState(false)
   const [avatar, setAvatar] = useState('')
 
@@ -169,7 +167,6 @@ export default function Header() {
         visible={westarterNftModal}
         setVisible={setWestarterNftModal}
       />
-      <HelmetNFTModal setVisible={setHelmetNftModal} visible={helmetNftModal} />
     </div>
   );
 }

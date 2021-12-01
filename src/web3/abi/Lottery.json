@@ -111,6 +111,16 @@
         "internalType": "address",
         "name": "item1155_",
         "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "duskNft_",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "comNft_",
+        "type": "address"
       }
     ],
     "name": "__Lottery_init",
@@ -128,6 +138,16 @@
       {
         "internalType": "address",
         "name": "item1155_",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "duskNft_",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "comNft_",
         "type": "address"
       }
     ],
@@ -199,6 +219,58 @@
       }
     ],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "comNft",
+    "outputs": [
+      {
+        "internalType": "contract iDuskNFT",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "compose",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "address_",
+        "type": "address"
+      }
+    ],
+    "name": "composeEnable",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "duskNft",
+    "outputs": [
+      {
+        "internalType": "contract iDuskNFT",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -381,6 +453,40 @@
     "type": "function"
   },
   {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bytes",
+        "name": "",
+        "type": "bytes"
+      }
+    ],
+    "name": "onERC721Received",
+    "outputs": [
+      {
+        "internalType": "bytes4",
+        "name": "",
+        "type": "bytes4"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
     "inputs": [],
     "name": "redeemTime",
     "outputs": [
@@ -409,6 +515,32 @@
       }
     ],
     "name": "setBetCost",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "comNft_",
+        "type": "address"
+      }
+    ],
+    "name": "setComNft",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "duskNft_",
+        "type": "address"
+      }
+    ],
+    "name": "setDuskNft",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -505,6 +637,37 @@
       }
     ],
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address payable",
+        "name": "_dst",
+        "type": "address"
+      }
+    ],
+    "name": "withdrawETH",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_token",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_dst",
+        "type": "address"
+      }
+    ],
+    "name": "withdrawTokens",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   }
 ]

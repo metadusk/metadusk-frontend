@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom'
 import { getIPFSJson, getIPFSFile } from '../../../utils/ipfs'
 import './index.less'
 import Other from "../tabs/other";
+import Mint from "../tabs/mint";
 
 const DashBoardListData = ({
   listData: _listData,
@@ -162,58 +163,7 @@ const DashBoardListData = ({
             </p>
           )
         )}
-        {tabFlag === 'casting' && listData.length && equipData.length ? (
-          // <div className='dashboard-list_data_JustineDus'>
-          //   <div className='dusk_upgrade'>
-          //     <img className='dusk_png' src={Dusk} />
-          //     <p className='lightning'></p>
-          //     <img className='dusk_png' src={JustineDus} />
-          //   </div>
-          //   <div className='dusk_equipment'>
-          //     <p className='naked_duck'>
-          //       <img src={DuskMint} />
-          //       <span className='dusk_equipment_number'>
-          //         X<i>{listData[0].count }</i>
-          //       </span>
-          //     </p>
-          //   </div>
-          //   <div className='dusk_equipment dusk_equipment_box'>
-          //     {
-          //       equipData.map((item, index) => {
-          //         return (
-          //           <p className={cs(item.name.replace(' ', '_'), 'naked_duck')} key={index}>
-          //             <img src={getIPFSFile(item.photo)} />
-          //
-          //             {
-          //               item.count > 0 ? (
-          //                 <span className='dusk_equipment_number'>
-          //                   X<i>{item.count}</i>
-          //                 </span>
-          //               ) : (
-          //                     <Link to='/lbp' className='no_dusk_equipment'>
-          //                       <FormattedMessage id='dashboard2' />
-          //                     </Link>
-          //               )
-          //             }
-          //           </p>
-          //         )
-          //       })
-          //     }
-          //     <a className='mint_btn'>
-          //       <FormattedMessage id='dashboard14' />
-          //     </a>
-          //   </div>
-          // </div>
-          <p className='no_data'>
-            Coming Soon
-            {/* <FormattedMessage id='dashboard13' /> */}
-          </p>
-        ) : tabFlag === 'casting' && (
-            <p className='no_data'>
-              Coming Soon
-              {/* <FormattedMessage id='dashboard13' /> */}
-            </p>
-          )}
+        {tabFlag === 'casting' && (<Mint equipData={equipData} listData={listData}/>)}
         <div style={{display: tabFlag === 'other' ? 'block' : 'none'}}>
           <Other />
         </div>

@@ -33,7 +33,7 @@ export const exhibitsList = [
     nft: WeddingVeil,
     image: 'Qmezsirv8Qhz5BaSSScUjXkwzs6C26iQVHV1LMJrkK2A5S',
     tokenURI: 'QmcdoXaLUvtFtTjvpZBePtDDz83ju2Y5LWoCqzNPHYmE5d',
-    id: '3'
+    id: '4'
   },
   {
     title: 'Cigarette',
