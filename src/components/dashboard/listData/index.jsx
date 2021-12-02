@@ -157,8 +157,8 @@ const DashBoardListData = ({
         ) : (
           tabFlag === 'equip' && (
             <p className='no_data'>
-              Coming Soon
-              {/* <FormattedMessage id='dashboard13' /> */}
+              {/*Coming Soon*/}
+               <FormattedMessage id='dashboard13' /> 
             </p>
           )
         )}
