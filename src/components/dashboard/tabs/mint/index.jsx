@@ -62,9 +62,9 @@ export default function Mint({listData, equipData}) {
       return
     }
     setMintLoading(true)
-    let contractAddress = NFTDusk
-    if (!isApprovedDuskKit){
-      contractAddress = NFTDuskKit
+    let contractAddress =  NFTDuskKit
+    if (!isApprovedDusk){
+      contractAddress = NFTDusk
     }
     const contract = getContract(library, contractAddress.abi, contractAddress.address)
     contract.methods
