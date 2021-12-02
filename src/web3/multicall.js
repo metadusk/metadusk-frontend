@@ -6,7 +6,7 @@ import {ChainId, getRpcUrl} from './address'
 export const getMultiCallProvider = (provider, chainId) => {
   setMulticallAddress(ChainId.HECO, '0xc9a9F768ebD123A00B52e7A0E590df2e9E998707')
   setMulticallAddress(ChainId.MATIC, '0x11ce4B23bD875D7F5C6a31084f55fDe1e9A87507')
-  setMulticallAddress(ChainId.LOCALHOST, '0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441')
+  setMulticallAddress(ChainId.LOCALHOST, '0xae11C5B5f29A6a25e955F0CB8ddCc416f522AF5C')
   return new Provider(provider, chainId)
 }
 
