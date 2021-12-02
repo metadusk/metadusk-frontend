@@ -20,7 +20,7 @@ const booleanType = {
 }
 
 const Lottery = {
-  address: '0x692994b183B467965D81398d4dAc60fE465897f6',
+  address: '0xd732fD147A559fD427123A2055A1941359BB97be',
   abi: LotteryAbi
 }
 
@@ -44,11 +44,18 @@ export default function BlindBox() {
   const [pageData, setPageData] = useState({
     begin: 0,
     end: 4099254920,
-    betCost: '2',//price,gwei
+    betCost: '250000000000000000',//price,gwei
     needClaim: false
   })
   const isEnd = !openLoading && pageData.end < now
   const isComing = !openLoading && pageData.begin > now
+  const countdown = () => {
+    const time = pageData.begin - now
+    const hh = Math.floor(time / 3600)
+    const mm = Math.floor((time % 3600)/60)
+    const ss = Math.floor((time % 60))
+    return `${hh}h/${mm}m/${ss}s`
+  }
   const [claimId, setClaimId] = useState('')
   const [quick, setQuick] = useState(false)
 
@@ -163,7 +170,7 @@ export default function BlindBox() {
           </div>) :
           (<div className={cs({'lottery-btn': true, 'disabled': loadLoading || isEnd || isComing})} onClick={onOpen}>
             {openLoading && <LoadingOutlined />}
-              {isEnd ? 'End' : isComing ? 'Coming' : status === 'claimed' ? 'Keep opening' : 'Open'}
+              {isEnd ? 'End' : isComing ? 'Coming ' + countdown() : status === 'claimed' ? 'Keep opening' : 'Open'}
           </div>)
       }
       <div className="blind-box-desc">
