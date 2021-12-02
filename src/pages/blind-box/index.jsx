@@ -162,7 +162,7 @@ export default function BlindBox() {
         </div>
       </div>
       {
-        chainId !== ChainId.BSC ?
+        chainId !== ChainId.BSC && chainId !== ChainId.LOCALHOST ?
           (<div className="lottery-btn" onClick={() => changeNetwork(ChainId.BSC)}>Switch to BSC</div>) :
           status === 'claiming' ? (<div className={cs({'lottery-btn': true, 'disabled': loadLoading, active: !claimLoading})} onClick={onClaim}>
               {claimLoading && <LoadingOutlined />}
