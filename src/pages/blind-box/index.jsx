@@ -19,7 +19,7 @@ const booleanType = {
   'false': false
 }
 
-export const Lottery = {
+const Lottery = {
   address: '0x692994b183B467965D81398d4dAc60fE465897f6',
   abi: LotteryAbi
 }
@@ -166,6 +166,12 @@ export default function BlindBox() {
               {isEnd ? 'End' : isComing ? 'Coming' : status === 'claimed' ? 'Keep opening' : 'Open'}
           </div>)
       }
+      <div className="blind-box-desc">
+        <p><strong>Tips:</strong></p>
+        <p>1. 0.25 BNB/BOX</p>
+        <p>2. 2 steps included: Open and Claim</p>
+        <p>3. Your equipments will be showed on Dashboard.</p>
+      </div>
     </div>
   )
 }

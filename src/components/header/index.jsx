@@ -31,6 +31,10 @@ export const navList = [
     route: '/dashboard',
   },
   {
+    name: 'Blind Box',
+    route: '/blindBox',
+  },
+  {
     name: 'About us',
     route: '/aboutUs',
   }
