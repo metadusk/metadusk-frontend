@@ -43,7 +43,7 @@ const DashBoardBanner = (props) => {
                   speed={15}
                   showSubscript
                   start={true}
-                  text={banner_data.content.introduction}
+                  text={banner_data.content.introduction || banner_data.content.story}
                 />
               </p>
             </div>

@@ -84,7 +84,7 @@ export default function NFTClaimModal({visible, setVisible}) {
         // getNft()
         dispatch({
           type: DUSK_CLAIM_STATUS,
-          duskClaimStatus: true
+          duskClaimStatus: Math.random()
         })
         message.success('success')
       })

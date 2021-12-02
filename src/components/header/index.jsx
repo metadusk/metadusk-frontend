@@ -8,7 +8,7 @@ import {Link, NavLink, useHistory} from "react-router-dom";
 import cx from 'classnames'
 import DropDownSvg from '../../assets/image/svg/drop_down.svg'
 import cs from "classnames";
-import {ChainId, NFTDusk, NFTHelper} from "../../web3/address";
+import {ChainId, NFTDusk, NFTHelper, NFTJustineDusk} from "../../web3/address";
 import DefaultAvatar from "../../assets/image/avatar/default_dusk.png";
 import BaseAvatar from "../../assets/image/avatar/base_dusk.png";
 import JustineAvatar from "../../assets/image/avatar/justine_dusk.png";
@@ -111,16 +111,12 @@ export default function Header() {
   const getNFTData = () => {
     const multicall = getOnlyMultiCallProvider(ChainId.BSC)
     const contract = new Contract(NFTHelper.address, NFTHelper.abi)
-    multicall.all([contract.getAll(NFTDusk.address, account)]).then(async data_ => {
-      const [[ids, urls]] = processResult(data_)
-      for (let i = 0; i < ids.length; i++) {
-        if (urls[i] === avatarMap.justineDusk.ipfs){
-          setAvatar('justineDusk')
-          return
-        }
-        if (urls[i] === avatarMap.baseDusk.ipfs){
-          setAvatar('baseDusk')
-        }
+    multicall.all([contract.getAll(NFTDusk.address, account), contract.getAll(NFTJustineDusk.address, account)]).then(async data_ => {
+      const data = processResult(data_)
+      if (data[1].length > 0) {
+        setAvatar('justineDusk')
+      } else if (data[0].length > 0) {
+        setAvatar('baseDusk')
       }
     })
   }
@@ -135,7 +131,6 @@ export default function Header() {
   const getAvatar = () => {
     return avatarMap[avatar] ? avatarMap[avatar].avatar : DefaultAvatar
   }
-
 
   return (
     <div className="header">

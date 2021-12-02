@@ -45,7 +45,7 @@ export const NFTHelper = {
 
 // 721
 export const NFTDusk = {
-  address: '0xeDfbf15775a2E42E03d059Fb98DA6e92284de7be',
+  address: '0x3eB30B5323EB3d421047a49625D89495B42E8115',//'0xeDfbf15775a2E42E03d059Fb98DA6e92284de7be',
   abi: ERC721Abi
 }
 
@@ -58,4 +58,7 @@ export const Lottery = {
   address: '0x692994b183B467965D81398d4dAc60fE465897f6',
   abi: LotteryAbi
 }
-
+export const NFTJustineDusk = {
+  address: '0x86EFF87137C2453Ccc1A6c961eFbfcf467134780',
+  abi: ERC721Abi
+}

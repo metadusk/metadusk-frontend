@@ -4,14 +4,13 @@ import { injectIntl } from 'react-intl'
 import Header from "../../components/header";
 import { getOnlyMultiCallProvider, processResult } from "../../web3/multicall"
 import { getIPFSJson } from '../../utils/ipfs'
-import {ChainId, Lottery, NFTDusk, NFTDuskKit, NFTHelper} from "../../web3/address"
+import {ChainId, Lottery, NFTDusk, NFTDuskKit, NFTHelper, NFTJustineDusk} from "../../web3/address"
 import { Contract } from "ethers-multicall-x"
 import { mainContext } from '../../reducer'
 import DashBoardBanner from "../../components/dashboard/banner"
 import ListData from '../../components/dashboard/listData'
 import './index.less'
 import {exhibitsList} from "../../config/nft";
-import {strToBool} from "../../utils";
 
 export const getTokenURI = (tokenId) => {
   const multicall = getOnlyMultiCallProvider(ChainId.BSC)
@@ -29,20 +28,26 @@ const DashBoard = () => {
   const getListData = () => {
     const multicall = getOnlyMultiCallProvider(ChainId.BSC)
     const contract = new Contract(NFTHelper.address, NFTHelper.abi)
-    multicall.all([contract.getAll(NFTDusk.address, account)]).then(async data_ => {
-      const [[ids, urls]] = processResult(data_)
-      // console.log(ids, urls)
+    multicall.all([contract.getAll(NFTDusk.address, account), contract.getAll(NFTJustineDusk.address, account)]).then(async data_ => {
+      const data = processResult(data_)
+      console.log(data)
       const dusks = []
-      for (let i = 0; i < ids.length; i++) {
-        const duskItem = {
-          tokenURI: urls[i],
-          tokenId: ids[i],
+
+      for (let i = 0; i < data.length; i++) {
+        const [ids, urls] = data[i]
+        console.log(data[i], ids, urls)
+        for (let i = 0; i < ids.length; i++) {
+          const duskItem = {
+            tokenURI: urls[i],
+            tokenId: ids[i],
+          }
+          await getIPFSJson(duskItem.tokenURI).then(res => {
+            duskItem.content = res.data
+            dusks.push(duskItem)
+          })
         }
-        await getIPFSJson(duskItem.tokenURI).then(res => {
-          duskItem.content = res.data
-          dusks.push(duskItem)
-        })
       }
+      console.log(dusks)
       setListData(dusks)
       setShowNftData(dusks[0])
     })
@@ -53,19 +58,15 @@ const DashBoard = () => {
     const multicall = getOnlyMultiCallProvider(ChainId.BSC)
     const contract = new Contract(NFTDuskKit.address, NFTDuskKit.abi)
     const balanceOfCalls = []
-    const approveAllCalls = []
 
     for (let i = 0; i < exhibitsList.length; i++) {
       balanceOfCalls.push(contract.balanceOf(account, exhibitsList[i].id))
-      approveAllCalls.push(contract.isApprovedForAll(account, Lottery.address))
     }
 
-    multicall.all([contract.uri(1), ...balanceOfCalls, ...approveAllCalls]).then(data => {
+    multicall.all([contract.uri(1), ...balanceOfCalls]).then(data => {
       data = processResult(data)
       const tokenURI = data.splice(0, 1)[0].toString()
       const balanceList = data.splice(0, balanceOfCalls.length)
-      const approveForAllList = data.splice(0, approveAllCalls.length)
-
       const ipfsRequest = exhibitsList.reduce((l, i) => {
         l.push(getIPFSJson(`${tokenURI}/${i.id}.json`))
         return l
@@ -74,10 +75,7 @@ const DashBoard = () => {
       .then(res => {
         for (let i = 0; i < res.length; i++) {
           res[i].data.count = balanceList[i]
-          filterEquipData.push({
-            ...res[i].data,
-            isApprovalForAll: strToBool(approveForAllList[i])
-          })
+          filterEquipData.push(res[i].data)
         }
         setEquipData(filterEquipData)
       })

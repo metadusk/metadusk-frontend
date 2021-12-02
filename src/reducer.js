@@ -14,7 +14,7 @@ const reducer = (state, action) => {
 
 const ContextProvider = (props) => {
   const [state, dispatch] = useReducer(reducer, {
-    duskClaimStatus: false
+    duskClaimStatus: 0
   })
   return (
     <mainContext.Provider value={{ state, dispatch }}>

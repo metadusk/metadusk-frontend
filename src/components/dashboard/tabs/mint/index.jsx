@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from "react";
+import React, {useContext, useMemo, useState} from "react";
 import Dusk from "../../../../assets/image/dashboard/Dusk@2x.png";
 import JustineDus from "../../../../assets/image/dashboard/JustineDus@2x.png";
 import DuskMint from "../../../../assets/image/dashboard/Dusk_Mint@2x.png";
@@ -9,13 +9,24 @@ import {FormattedMessage} from "react-intl";
 import './index.less'
 import {getContract, useActiveWeb3React} from "../../../../web3";
 import ButtonM from "../../../button-m";
-import {ChainId, Lottery} from "../../../../web3/address";
+import {ChainId, Lottery, NFTDusk, NFTDuskKit} from "../../../../web3/address";
 import {LoadingOutlined} from "@ant-design/icons";
+import {getOnlyMultiCallProvider, processResult} from "../../../../web3/multicall";
+import {Contract} from "ethers-multicall-x";
+import {strToBool} from "../../../../utils";
+import {message} from "antd";
+import JustineDuskNFTClaimModal from "../../../claim-modal/JustineDuskClaim";
+import {DUSK_CLAIM_STATUS} from "../../../../const";
+import {mainContext} from "../../../../reducer";
 
 
 export default function Mint({listData, equipData}) {
   const {account, library} = useActiveWeb3React()
   const [mintLoading, setMintLoading] = useState(false)
+  const [isApprovedDusk, setIsApprovedDusk] = useState(false)
+  const [isApprovedDuskKit, setIsApprovedDuskKit] = useState(false)
+  const { dispatch, state } = useContext(mainContext)
+  const [showClaimModal, setShowClaimModal] = useState(false)
   const canMint = () => {
     if (listData.length === 0) {
       return false
@@ -27,6 +38,49 @@ export default function Mint({listData, equipData}) {
     }
     return true
   }
+  const canMint_ = canMint()
+
+  const getData = () => {
+    const multicall = getOnlyMultiCallProvider(ChainId.BSC)
+    const contractDuskKit = new Contract(NFTDuskKit.address, NFTDuskKit.abi)
+    const contractDusk = new Contract(NFTDusk.address, NFTDusk.abi)
+    // const contractLottery = new Contract(Lottery.address, Lottery.abi)
+    multicall.all([
+      contractDusk.isApprovedForAll(account, Lottery.address),
+      contractDuskKit.isApprovedForAll(account, Lottery.address),
+      // contractLottery.needClaim(account),
+    ]).then(data => {
+      data = processResult(data)
+      setIsApprovedDusk(strToBool(data[0]))
+      setIsApprovedDuskKit(strToBool(data[1]))
+      // setShowClaimModal(strToBool(data[2]))
+    })
+  }
+  const onApprovedDusk = () => {
+    if (mintLoading){
+      return
+    }
+    setMintLoading(true)
+    let contractAddress = NFTDusk
+    if (!isApprovedDuskKit){
+      contractAddress = NFTDuskKit
+    }
+    const contract = getContract(library, contractAddress.abi, contractAddress.address)
+    contract.methods
+      .setApprovalForAll(Lottery.address, true)
+      .send({
+        from: account
+      })
+      .on('receipt', async () => {
+        getData()
+        message.success('success')
+        setMintLoading(false)
+      })
+      .on('error', () => {
+        setMintLoading(false)
+      })
+  }
+
   const onMint = () => {
     if (!canMint() || mintLoading) {
       return
@@ -36,6 +90,12 @@ export default function Mint({listData, equipData}) {
     contract.methods.compose().send({
       from: account
     }).on('receipt', () => {
+      message.success('success')
+      setShowClaimModal(true)
+      dispatch({
+        type: DUSK_CLAIM_STATUS,
+        duskClaimStatus: Math.random()
+      })
       setMintLoading(false)
     })
     .on('error', () => {
@@ -43,13 +103,17 @@ export default function Mint({listData, equipData}) {
     })
   }
   useMemo(() => {
-    // if (canMint()){
-    //   // isApprovedForAll
-    //   const multicall = getOnlyMultiCallProvider(ChainId.BSC)
-    //   const
-    //
-    // }
-  }, [listData, equipData])
+    if (account){
+      getData()
+    }
+  }, [account])
+
+  const duskCount = listData.reduce((n, item) => {
+    if (item.tokenURI === 'QmPBhcjN3imV3cUJXj9pEXCLp4GpAHV1gPEsotYctropew'){
+      n = n + ~~item.count
+    }
+    return n
+  }, 0)
   return (
     <div className='dashboard-list_data_JustineDus'>
       <div className='dusk_upgrade'>
@@ -61,9 +125,9 @@ export default function Mint({listData, equipData}) {
         <p className='naked_duck'>
           <img src={DuskMint}/>
           {
-            listData.length > 0 ? (
+            duskCount > 0 ? (
               <span className='dusk_equipment_number'>
-                  X<i>{listData[0].count}</i>
+                  X<i>{duskCount}</i>
                 </span>
             ) : (
               <Link to='/auction' className='no_dusk_equipment'>
@@ -95,11 +159,28 @@ export default function Mint({listData, equipData}) {
             )
           })
         }
-        <ButtonM chainId={ChainId.BSC} className={cs('mint_btn', !canMint() && 'disabled')} onClick={onMint}>
-          {mintLoading && <LoadingOutlined style={{marginRight: '5px'}}/>}
-          <FormattedMessage id='dashboard14'/>
-        </ButtonM>
+        {
+          canMint_ ? (
+            <ButtonM chainId={ChainId.BSC} className={cs('mint_btn')} onClick={() => {
+              if (!isApprovedDusk || !isApprovedDuskKit){
+                onApprovedDusk()
+              } else {
+                onMint()
+              }
+            }}>
+              {mintLoading && <LoadingOutlined style={{marginRight: '5px'}}/>}
+              {
+                !isApprovedDusk ? 'Approve Dusk' : !isApprovedDuskKit ? 'Approve DuskKit' : <FormattedMessage id='dashboard14'/>
+              }
+            </ButtonM>
+          ) : (
+            <ButtonM chainId={ChainId.BSC} className={cs('mint_btn', 'disabled')}>
+              <FormattedMessage id='dashboard14'/>
+            </ButtonM>
+          )
+        }
       </div>
+      <JustineDuskNFTClaimModal setVisible={setShowClaimModal} visible={showClaimModal}/>
     </div>
   )
 }
