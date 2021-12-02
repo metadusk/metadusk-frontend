@@ -113,9 +113,10 @@ export default function Header() {
     const contract = new Contract(NFTHelper.address, NFTHelper.abi)
     multicall.all([contract.getAll(NFTDusk.address, account), contract.getAll(NFTJustineDusk.address, account)]).then(async data_ => {
       const data = processResult(data_)
-      if (data[1].length > 0) {
+      console.log(data)
+      if (data[1][0].length > 0) {
         setAvatar('justineDusk')
-      } else if (data[0].length > 0) {
+      } else if (data[0][0].length > 0) {
         setAvatar('baseDusk')
       }
     })
