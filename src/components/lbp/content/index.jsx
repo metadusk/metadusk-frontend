@@ -15,7 +15,7 @@ import DuskLbpAbi from "../../../web3/abi/LBP.json";
 import "./index.less";
 import ButtonM from "../../button-m";
 const DuskLBPList = {
-  address: "0x68aeF7CD322C729b66B8f58a00B427444aFE68aC",
+  address: "0x11Aa37C18CbB280cF45Ebb4A8e9694a055474793",
   abi: DuskLbpAbi,
 };
 
