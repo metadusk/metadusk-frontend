@@ -1,13 +1,8 @@
 import React, { useMemo, useState} from 'react'
 import cs from 'classnames'
-import { useWeb3React } from "@web3-react/core"
 import { FormattedMessage, injectIntl } from 'react-intl'
-import JustineDus from '../../../assets/image/dashboard/JustineDus@2x.png'
-import Dusk from '../../../assets/image/dashboard/Dusk@2x.png'
-import DuskMint from '../../../assets/image/dashboard/Dusk_Mint@2x.png'
 import Footer from "../../footer"
-import { Link } from 'react-router-dom'
-import { getIPFSJson, getIPFSFile } from '../../../utils/ipfs'
+import { getIPFSFile } from '../../../utils/ipfs'
 import './index.less'
 import Other from "../tabs/other";
 import Mint from "../tabs/mint";
@@ -17,7 +12,6 @@ const DashBoardListData = ({
   equipData,
   setShowNftData,
 }) => {
-  const { active, account, chainId } = useWeb3React()
   const [tabFlag, setTabFlag] = useState('dush')
   const [listData, setListData] = useState([])
   const [equipDataNum, setEquipDataNum] = useState([])

@@ -1,5 +1,4 @@
 import React, {useContext, useState, useMemo} from 'react'
-import { useWeb3React } from "@web3-react/core"
 import { injectIntl } from 'react-intl'
 import Header from "../../components/header";
 import { getOnlyMultiCallProvider, processResult } from "../../web3/multicall"
@@ -11,6 +10,7 @@ import DashBoardBanner from "../../components/dashboard/banner"
 import ListData from '../../components/dashboard/listData'
 import './index.less'
 import {exhibitsList} from "../../config/nft";
+import {useActiveWeb3React} from "../../web3";
 
 export const getTokenURI = (tokenId) => {
   const multicall = getOnlyMultiCallProvider(ChainId.BSC)
@@ -19,7 +19,7 @@ export const getTokenURI = (tokenId) => {
 }
 
 const DashBoard = () => {
-  const { active, account, chainId } = useWeb3React()
+  const { active, account, chainId } = useActiveWeb3React()
   const [listData, setListData] = useState([])
   const [equipData, setEquipData] = useState([])
   const { dispatch, state } = useContext(mainContext)
@@ -28,11 +28,9 @@ const DashBoard = () => {
   const getListData = () => {
     const multicall = getOnlyMultiCallProvider(ChainId.BSC)
     const contract = new Contract(NFTHelper.address, NFTHelper.abi)
-    multicall.all([contract.getAll(NFTDusk.address, account), contract.getAll(NFTJustineDusk.address, account)]).then(async data_ => {
+    multicall.all([contract.getAll(NFTJustineDusk.address, account), contract.getAll(NFTDusk.address, account)]).then(async data_ => {
       const data = processResult(data_)
-      console.log(data)
       const dusks = []
-
       for (let i = 0; i < data.length; i++) {
         const [ids, urls] = data[i]
         console.log(data[i], ids, urls)

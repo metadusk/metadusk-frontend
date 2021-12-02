@@ -22,6 +22,6 @@ export default function Typewriter(props) {
       }, speed)
     }
     return () => clearTimeout(ref.current)
-  }, [start, length])
+  }, [start, length, text])
   return <span>{showText}{showSubscript && <a className="subscript">_</a>}</span>
 }

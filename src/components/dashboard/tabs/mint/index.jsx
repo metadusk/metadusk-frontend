@@ -51,6 +51,7 @@ export default function Mint({listData, equipData}) {
       // contractLottery.needClaim(account),
     ]).then(data => {
       data = processResult(data)
+      console.log(data)
       setIsApprovedDusk(strToBool(data[0]))
       setIsApprovedDuskKit(strToBool(data[1]))
       // setShowClaimModal(strToBool(data[2]))
