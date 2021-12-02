@@ -170,7 +170,7 @@ export default function BlindBox() {
           </div>) :
           (<div className={cs({'lottery-btn': true, 'disabled': loadLoading || isEnd || isComing})} onClick={onOpen}>
             {openLoading && <LoadingOutlined />}
-              {isEnd ? 'End' : isComing ? 'Coming ' + countdown() : status === 'claimed' ? 'Keep opening' : 'Open'}
+              {isEnd ? 'End' : isComing ? <span style={{fontSize: '20px'}}>{'Countdown ' + countdown()}</span> : status === 'claimed' ? 'Keep opening' : 'Open'}
           </div>)
       }
       <div className="blind-box-desc">
