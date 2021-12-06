@@ -51,7 +51,7 @@ export const NFTDusk = {
 
 // 1155
 export const NFTDuskKit = {
-  address: '0xEdA0B4dB9704EF54058E2E30Fb112eB2b4bF6D7E',
+  address: '0x9f39766E4A8d2E6D55F406C71140089096687382',
   abi: ERC1155Abi
 }
 export const Lottery = {

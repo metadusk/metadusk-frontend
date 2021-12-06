@@ -81,6 +81,7 @@
 .blind-box {
   width: 100vw;
   height: 100vh;
+  overflow-y: auto;
   background: url("../../assets/image/blind-box/bg.png");
   background-size: 100% 100%;
   display: flex;
@@ -89,6 +90,18 @@
   justify-content: center;
 
   perspective: 800px;
+  .blind-box-desc{
+    transform: translateY(10px);
+    margin: 20px 0 -20px 0;
+    font-family: PingFangSC-Regular, PingFang SC;
+    color: #ffffff;
+    &>p{
+      line-height: 22px;
+      margin: 0;
+      padding: 0;
+    }
+    font-size: 14px;
+  }
   .blind-box-main{
     width: 500px;
     height: 500px;

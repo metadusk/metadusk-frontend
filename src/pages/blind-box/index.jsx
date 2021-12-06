@@ -6,9 +6,8 @@ import UnknownImg from '../../assets/image/blind-box/unknown.png'
 import cs from "classnames";
 import BlindBoxNft from "../../components/blind-box/nft";
 import {getContract, useActiveWeb3React} from "../../web3";
-import {ChainId} from "../../web3/address";
+import {ChainId, Lottery} from "../../web3/address";
 import {changeNetwork} from "../../web3/connectors";
-import LotteryAbi from '../../web3/abi/Lottery.json'
 import {getOnlyMultiCallProvider, processResult} from "../../web3/multicall";
 import {Contract} from "ethers-multicall-x";
 import {useNow} from "../../hooks";
@@ -17,11 +16,6 @@ import {LoadingOutlined} from "@ant-design/icons";
 const booleanType = {
   'true': true,
   'false': false
-}
-
-const Lottery = {
-  address: '0x692994b183B467965D81398d4dAc60fE465897f6',
-  abi: LotteryAbi
 }
 
 const multicall = getOnlyMultiCallProvider(ChainId.BSC)
@@ -44,11 +38,18 @@ export default function BlindBox() {
   const [pageData, setPageData] = useState({
     begin: 0,
     end: 4099254920,
-    betCost: '2',//price,gwei
+    betCost: '250000000000000000',//price,gwei
     needClaim: false
   })
   const isEnd = !openLoading && pageData.end < now
   const isComing = !openLoading && pageData.begin > now
+  const countdown = () => {
+    const time = pageData.begin - now
+    const hh = Math.floor(time / 3600)
+    const mm = Math.floor((time % 3600)/60)
+    const ss = Math.floor((time % 60))
+    return `${hh}h/${mm}m/${ss}s`
+  }
   const [claimId, setClaimId] = useState('')
   const [quick, setQuick] = useState(false)
 
@@ -155,7 +156,7 @@ export default function BlindBox() {
         </div>
       </div>
       {
-        chainId !== ChainId.BSC ?
+        chainId !== ChainId.BSC && chainId !== ChainId.LOCALHOST ?
           (<div className="lottery-btn" onClick={() => changeNetwork(ChainId.BSC)}>Switch to BSC</div>) :
           status === 'claiming' ? (<div className={cs({'lottery-btn': true, 'disabled': loadLoading, active: !claimLoading})} onClick={onClaim}>
               {claimLoading && <LoadingOutlined />}
@@ -163,9 +164,15 @@ export default function BlindBox() {
           </div>) :
           (<div className={cs({'lottery-btn': true, 'disabled': loadLoading || isEnd || isComing})} onClick={onOpen}>
             {openLoading && <LoadingOutlined />}
-              {isEnd ? 'End' : isComing ? 'Coming' : status === 'claimed' ? 'Keep opening' : 'Open'}
+              {isEnd ? 'End' : isComing ? <span style={{fontSize: '20px'}}>{'Countdown ' + countdown()}</span> : status === 'claimed' ? 'Keep opening' : 'Open'}
           </div>)
       }
+      <div className="blind-box-desc">
+        <p><strong>Tips:</strong></p>
+        <p>1. 0.25 BNB/BOX</p>
+        <p>2. 2 steps included: Open and Claim</p>
+        <p>3. Your equipments will be showed on Dashboard.</p>
+      </div>
     </div>
   )
 }
