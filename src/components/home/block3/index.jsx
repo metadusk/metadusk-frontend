@@ -1,6 +1,6 @@
 import React from "react";
 import './index.less'
-import JustineDusk from '../../../assets/image/home/justine_dusk.png'
+import JustineDusk from '../../../assets/image/home/xmas_punk.png'
 import cs from 'classnames'
 
 export default function Block3({active}){

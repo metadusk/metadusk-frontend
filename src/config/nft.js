@@ -1,18 +1,24 @@
-import GunBg from "../assets/image/home/exhibits/gun_bg.png";
+import BG1 from "../assets/image/home/exhibits/gun_bg.png";
 import GunEffect from "../assets/image/home/exhibits/bolid.png";
 import Gun from "../assets/image/home/exhibits/gun.png";
-import WeddingDressBG from "../assets/image/home/exhibits/wedding_dress_bg.png";
+import BG2 from "../assets/image/home/exhibits/wedding_dress_bg.png";
 import WeddingDress from "../assets/image/home/exhibits/wedding_dress.png";
-import WeddingVeilBG from "../assets/image/home/exhibits/wedding_veil_bg.png";
+import BG3 from "../assets/image/home/exhibits/wedding_veil_bg.png";
 import WeddingVeil from "../assets/image/home/exhibits/wedding_veil.png";
-import CigaretteBG from "../assets/image/home/exhibits/cigarette_bg.png";
+import BG4 from "../assets/image/home/exhibits/cigarette_bg.png";
 import Cigarette from "../assets/image/home/exhibits/cigarette.png";
+
+
+import Skateboard from "../assets/image/home/exhibits/skateboard.png";
+import Glasses from "../assets/image/home/exhibits/glasses.png";
+import Headwear from "../assets/image/home/exhibits/headwear.png";
+import Jacket from "../assets/image/home/exhibits/jacket.png";
 import {getIPFSFile} from "../utils/ipfs";
 
 export const exhibitsList = [
   {
     title: 'Gun',
-    frame: GunBg,
+    frame: BG1,
     effect: GunEffect,
     nft: Gun,
     image: 'Qmbp7sKahsAwFskP1mZ7b6pzY39r9oGuCRsiNUNxiF54Ev',
@@ -21,7 +27,7 @@ export const exhibitsList = [
   },
   {
     title: 'Wedding Dress',
-    frame: WeddingDressBG,
+    frame: BG2,
     nft: WeddingDress,
     image: 'QmdAWwTtMPfhcZHGhvpTrC8XFXAhxLheaTrVyzjboDUDCY',
     tokenURI: 'QmcdoXaLUvtFtTjvpZBePtDDz83ju2Y5LWoCqzNPHYmE5d',
@@ -29,7 +35,7 @@ export const exhibitsList = [
   },
   {
     title: 'Wedding Veil',
-    frame: WeddingVeilBG,
+    frame: BG3,
     nft: WeddingVeil,
     image: 'Qmezsirv8Qhz5BaSSScUjXkwzs6C26iQVHV1LMJrkK2A5S',
     tokenURI: 'QmcdoXaLUvtFtTjvpZBePtDDz83ju2Y5LWoCqzNPHYmE5d',
@@ -37,12 +43,35 @@ export const exhibitsList = [
   },
   {
     title: 'Cigarette',
-    frame: CigaretteBG,
+    frame: BG4,
     nft: Cigarette,
     image: 'QmWqvu5NnFjZupEh412pU8peP5XyMRNpxgEAmTBiwbDzsS',
     tokenURI: 'QmcdoXaLUvtFtTjvpZBePtDDz83ju2Y5LWoCqzNPHYmE5d',
     id: '1'
   }
+]
+
+export const homeExhibitsList = [
+  {
+    title: 'Skateboard',
+    frame: BG1,
+    nft: Skateboard
+  },
+  {
+    title: 'Glasses',
+    frame: BG2,
+    nft: Glasses
+  },
+  {
+    title: 'Headwear',
+    frame: BG3,
+    nft: Headwear
+  },
+  {
+    title: 'Jacket',
+    frame: BG4,
+    nft: Jacket
+  },
 ]
 
 // Preloading
