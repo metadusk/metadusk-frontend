@@ -7,7 +7,7 @@ export default function Block3({active}){
   return (
     <div className={cs({"justine-dusk": true, active})}>
       <div className="banner-light">
-        How to get it
+        Xmas punk
       </div>
       <img src={JustineDusk} alt=""/>
     </div>

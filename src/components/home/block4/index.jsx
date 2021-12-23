@@ -49,6 +49,9 @@ render() {
 
   return (
     <div className="exhibits-ornament">
+      <div className="banner-light">
+        Bland box
+      </div>
       <div className="exhibition-frame">
         <div className="effect-a"/>
         <div className="exhibition-frame-container">

@@ -7,9 +7,12 @@
   background-position: center;
   background-size: cover;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-
+  .banner-light{
+    margin-bottom: 40px;
+  }
   .swiper {
     width: 100%;
     padding-top: 50px;
@@ -148,6 +151,7 @@
 
 @media (min-width: 2048px) {
   .exhibits-ornament {
+    margin-bottom: 80px;
     .swiper {
       padding-top: 100px;
       padding-bottom: 100px;
@@ -218,9 +222,11 @@
 
 @media (max-width: 512px) {
   .exhibits-ornament {
+    .banner-light{
+      margin-bottom: 10px;
+    }
     .exhibition-frame {
       width: auto;
-
       .exhibition-frame-container {
         width: 260px;
       }
