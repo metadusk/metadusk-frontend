@@ -47,7 +47,6 @@ const DashBoardListData = ({
     }
     setEquipDataNum(count)
   }, [equipData])
-  console.log(equipData)
   return (
     <div className='dashboard-list'>
       <div className='dashboard-list_tab'>
