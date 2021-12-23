@@ -189,7 +189,7 @@ export default function FestivalBox() {
             {isEnd ? 'End' : isComing ?
               <span style={{fontSize: '20px'}}>{'Countdown ' + countdown()}</span>
               : <ButtonIcon
-                openLoading={openLoading}>{status === 'claimed' ? 'Keep opening' : 'Open'} {pageData.allowListGetItem > 0 ? ' (0 HELMET)' : ' (100 HELMET)'}</ButtonIcon>
+                openLoading={openLoading}>{status === 'claimed' ? 'Keep opening' : 'Open'} {pageData.allowListGetItem > 0 ? ' (0 HELMET)' : ' (300 HELMET)'}</ButtonIcon>
             }
           </ButtonM>)
       }
