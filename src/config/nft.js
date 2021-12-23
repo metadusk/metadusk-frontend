@@ -19,6 +19,7 @@ export const exhibitsList = [
   {
     title: 'Gun',
     frame: BG1,
+    bgCN: 'bg1',
     effect: GunEffect,
     nft: Gun,
     image: 'Qmbp7sKahsAwFskP1mZ7b6pzY39r9oGuCRsiNUNxiF54Ev',
@@ -28,6 +29,7 @@ export const exhibitsList = [
   {
     title: 'Wedding Dress',
     frame: BG2,
+    bgCN: 'bg2',
     nft: WeddingDress,
     image: 'QmdAWwTtMPfhcZHGhvpTrC8XFXAhxLheaTrVyzjboDUDCY',
     tokenURI: 'QmcdoXaLUvtFtTjvpZBePtDDz83ju2Y5LWoCqzNPHYmE5d',
@@ -36,6 +38,7 @@ export const exhibitsList = [
   {
     title: 'Wedding Veil',
     frame: BG3,
+    bgCN: 'bg3',
     nft: WeddingVeil,
     image: 'Qmezsirv8Qhz5BaSSScUjXkwzs6C26iQVHV1LMJrkK2A5S',
     tokenURI: 'QmcdoXaLUvtFtTjvpZBePtDDz83ju2Y5LWoCqzNPHYmE5d',
@@ -44,6 +47,7 @@ export const exhibitsList = [
   {
     title: 'Cigarette',
     frame: BG4,
+    bgCN: 'bg4',
     nft: Cigarette,
     image: 'QmWqvu5NnFjZupEh412pU8peP5XyMRNpxgEAmTBiwbDzsS',
     tokenURI: 'QmcdoXaLUvtFtTjvpZBePtDDz83ju2Y5LWoCqzNPHYmE5d',
@@ -54,6 +58,7 @@ export const exhibitsList = [
   {
     title: 'Helmet Skateboard',
     frame: BG1,
+    bgCN: 'bg1',
     nft: Skateboard,
     image: 'QmQXTcAvu8ExbrZmFePygisBYEJDzADeyfKEJXXZPFMBFZ',
     tokenURI: 'QmdvpvG5sLGbUWhx6SFmvCuqBaspRfvd3Pg8SPsRjV7sWn',
@@ -62,14 +67,16 @@ export const exhibitsList = [
   {
     title: 'Dexus vibe',
     frame: BG2,
+    bgCN: 'bg2',
     nft: Glasses,
     image: 'QmTTDDq4j7jXUaJfSSAz855U2YxVGwp66MUAPWibSVMPMW',
     tokenURI: 'QmdvpvG5sLGbUWhx6SFmvCuqBaspRfvd3Pg8SPsRjV7sWn',
     id: '7'
   },
   {
-    title: 'Santa hat',
+    title: 'Santa Hat',
     frame: BG3,
+    bgCN: 'bg3',
     nft: Headwear,
     image: 'QmQVaqG5v8tER1bWeTxesJQTyKmndeqnKrvXwSWHVMBqCs',
     tokenURI: 'QmdvpvG5sLGbUWhx6SFmvCuqBaspRfvd3Pg8SPsRjV7sWn',
@@ -78,6 +85,7 @@ export const exhibitsList = [
   {
     title: 'Punk Jacket',
     frame: BG4,
+    bgCN: 'bg4',
     nft: Jacket,
     image: 'QmZ1G8jwRMLgzGPGgw9ffhbtAHsuTkuzLQXRmuzUYyLWcF',
     tokenURI: 'QmdvpvG5sLGbUWhx6SFmvCuqBaspRfvd3Pg8SPsRjV7sWn',
@@ -88,22 +96,22 @@ export const exhibitsList = [
 
 export const homeExhibitsList = [
   {
-    title: 'Skateboard',
+    title: 'Helmet Skateboard',
     frame: BG1,
-    nft: Skateboard
+    nft: Skateboard,
   },
   {
-    title: 'Glasses',
+    title: 'Dexus vibe',
     frame: BG2,
     nft: Glasses
   },
   {
-    title: 'Headwear',
+    title: 'Santa Hat',
     frame: BG3,
     nft: Headwear
   },
   {
-    title: 'Jacket',
+    title: 'Punk Jacket',
     frame: BG4,
     nft: Jacket
   },
