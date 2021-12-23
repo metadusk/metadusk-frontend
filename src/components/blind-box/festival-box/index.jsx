@@ -16,10 +16,10 @@ import {useNow} from "../../../hooks";
 import {LoadingOutlined} from "@ant-design/icons";
 import ButtonM from "../../../components/button-m";
 
-const HELMET_ADDRESS = '0x26aBA2D1Fb6C23050f0dAA1f609f3A992369bA98'//0x948d2a81086A075b3130BAc19e4c6DEe1D2E3fE8
+const HELMET_ADDRESS = '0x948d2a81086A075b3130BAc19e4c6DEe1D2E3fE8'
 
 const ItemPool = {
-  address: '0xCD3b92C533ebE95E1DD001a1cd1378110938B40C',
+  address: '0xf93ece26fE5abFB613F1CEA2E36690A2D049C3BD',
   abi: ItemPoolAbi
 }
 
