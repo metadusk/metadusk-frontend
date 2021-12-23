@@ -90,6 +90,30 @@
   justify-content: center;
 
   perspective: 800px;
+  padding: 80px 0;
+  .tabs{
+    display: flex;
+    &>div{
+      width: 135px;
+      height: 41px;
+      background: rgba(132, 45, 249, 0.5);
+      transform: skew(-16deg);
+      margin: 0 8px;
+      font-size: 14px;
+      font-family: BlocExtCondC;
+      color: #FFFFFF;
+      line-height: 15px;
+      letter-spacing: 0px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      &.tab-active{
+        background: rgba(132, 45, 249, 1);
+        box-shadow: 0px 3px 0px 0px rgba(255,255,255,1);
+      }
+    }
+  }
   .blind-box-desc{
     transform: translateY(10px);
     margin: 20px 0 -20px 0;
@@ -270,8 +294,9 @@
   }
 
   .lottery-btn{
-    width: 262px;
+    min-width: 262px;
     height: 57px;
+    padding: 0 10px;
     background: url("../../assets/image/button_pink.png");
     background-size: 100% 100%;
     font-size: 25px;
@@ -290,6 +315,15 @@
     }
     &.disabled{
       filter: grayscale(1);
+    }
+    &.festival{
+      background: url("../../assets/image/blind-box/button_green.png");
+      color: #ffffff;
+      background-size: 100% 100%;
+    }
+    .lottery-btn-icon{
+      width: 25px;
+      height: 25px;
     }
   }
 }

@@ -10,6 +10,7 @@ import { mainContext } from '../../reducer'
 import DashBoardBanner from "../../components/dashboard/banner"
 import ListData from '../../components/dashboard/listData'
 import './index.less'
+import {exhibitsList} from "../../config/nft";
 
 export const getTokenURI = (tokenId) => {
   const multicall = getOnlyMultiCallProvider(ChainId.BSC)
@@ -50,15 +51,27 @@ const DashBoard = () => {
     const filterEquipData = []
     const multicall = getOnlyMultiCallProvider(ChainId.BSC)
     const contract = new Contract(NFTDuskKit.address, NFTDuskKit.abi)
-    multicall.all([contract.balanceOf(account, 1), contract.balanceOf(account, 2), contract.balanceOf(account, 3), contract.balanceOf(account, 4), contract.uri(1)]).then(data => {
+
+    const calls = exhibitsList.reduce((list, item)=>{
+      list.push(
+        contract.balanceOf(account, item.id),
+        contract.uri(item.id)
+      )
+      return list
+    }, [])
+    multicall.all(calls).then(data => {
       data = processResult(data)
-      const tokenURI = data[4].toString()
-      data = data.splice(0, 4)
+      // const tokenURI = data[4].toString()
+      // data = data.splice(0, 4)
+      const exhibitsPromise = []
+      for (let i = 0; i < exhibitsList.length; i++) {
+        exhibitsPromise.push(getIPFSJson(data[i*2+1] + `/${exhibitsList[i].id}.json`))
+      }
       // data = ['0', '0', '0', '0']
-      Promise.all([getIPFSJson(tokenURI + '/1.json'), getIPFSJson(tokenURI + '/2.json'), getIPFSJson(tokenURI + '/3.json'), getIPFSJson(tokenURI + '/4.json')])
+      Promise.all(exhibitsPromise)
       .then(res => {
-        for (let i = 0; i < res.length; i++) {
-          res[i].data.count = data[i]
+        for (let i = 0; i < exhibitsList.length; i++) {
+          res[i].data.count = data[i*2]
           filterEquipData.push(res[i].data)
         }
         setEquipData(filterEquipData)
