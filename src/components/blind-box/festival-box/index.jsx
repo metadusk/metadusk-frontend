@@ -195,7 +195,7 @@ export default function FestivalBox() {
       }
       <div className="blind-box-desc">
         <p><strong>Tips:</strong></p>
-        <p>1. 100 HELMET/BOX</p>
+        <p>1. 300 HELMET/BOX</p>
         <p>2. 2 steps included: Open and Claim</p>
         <p>3. Your equipments will be showed on Dashboard.</p>
       </div>
