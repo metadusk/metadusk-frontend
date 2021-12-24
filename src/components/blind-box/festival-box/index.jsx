@@ -15,6 +15,8 @@ import {Contract} from "ethers-multicall-x";
 import {useNow} from "../../../hooks";
 import {LoadingOutlined} from "@ant-design/icons";
 import ButtonM from "../../../components/button-m";
+import {fromWei} from "../../../utils/format";
+import {message} from "antd";
 
 const HELMET_ADDRESS = '0x948d2a81086A075b3130BAc19e4c6DEe1D2E3fE8'
 
@@ -53,7 +55,8 @@ export default function FestivalBox() {
   const [pageData, setPageData] = useState({
     begin: 0,
     end: 4099254920,
-    allowListGetItem: 0
+    allowListGetItem: 0,
+    helmetBalance: '0'
   })
   const isEnd = !openLoading && pageData.end < now
   const isComing = !openLoading && pageData.begin > now
@@ -77,12 +80,14 @@ export default function FestivalBox() {
       contract.end(),
       contract.allowListGetItem(account),
       helmetContract.allowance(account, ItemPool.address),
+      helmetContract.balanceOf(account)
     ]
     multicall.all(calls).then(async data => {
       data = processResult(data)
-      const [begin, end, allowListGetItem, allowance] = data
+      const [begin, end, allowListGetItem, allowance, balance] = data
+      const helmetBalance = fromWei(balance, 18).toFixed(2)
       setIsApproveHelmet(allowance > 0)
-      setPageData({begin, end, allowListGetItem})
+      setPageData({begin, end, allowListGetItem, helmetBalance})
       setLoadLoading(false)
     })
   }
@@ -114,8 +119,14 @@ export default function FestivalBox() {
       return
     }
     setStatus('static')
-    if (!isApproveHelmet && pageData.allowListGetItem <= 0) {
-      return
+    if (pageData.allowListGetItem <= 0) {
+      if (!isApproveHelmet) {
+        return
+      }
+      if (pageData.helmetBalance < 300){
+        message.error('Insufficient balance')
+        return;
+      }
     }
     setOpenLoading(true)
     const contract = getContract(library, ItemPool.abi, ItemPool.address)
@@ -175,7 +186,7 @@ export default function FestivalBox() {
       </div>
       {
         !isApproveHelmet && status === 'static' && pageData.allowListGetItem <= 0 ?
-          (<ButtonM chainId={ChainId.BSC} className={cs({'lottery-btn': true,'disabled': loadLoading, festival: true})} onClick={onApprove}>
+          (<ButtonM chainId={ChainId.BSC} className={cs({'lottery-btn': true, festival: true})} disabled={loadLoading} onClick={onApprove}>
             <ButtonIcon openLoading={approveLoading}>
               {approveLoading && <LoadingOutlined/>}
               Approve HELMET
@@ -183,8 +194,10 @@ export default function FestivalBox() {
           </ButtonM>)
           :
           (<ButtonM chainId={ChainId.BSC}
-                    className={cs({'lottery-btn': true, festival: true, 'disabled': loadLoading || isEnd || isComing})}
-                    onClick={onOpen}>
+                    className={cs({'lottery-btn': true, festival: true})}
+                    onClick={onOpen}
+                    disabled={loadLoading || isEnd || isComing}
+          >
             {openLoading && <LoadingOutlined/>}
             {isEnd ? 'End' : isComing ?
               <span style={{fontSize: '20px'}}>{'Countdown ' + countdown()}</span>
@@ -193,6 +206,7 @@ export default function FestivalBox() {
             }
           </ButtonM>)
       }
+      <p className="box-balance">Your balance: {pageData.helmetBalance} HELMET</p>
       <div className="blind-box-desc">
         <p><strong>Tips:</strong></p>
         <p>1. 300 HELMET/BOX</p>
