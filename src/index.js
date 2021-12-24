@@ -8,6 +8,7 @@ import 'moment/locale/zh-cn'
 import Intl from './locales/intl'
 import {getLibrary} from './web3/getLibrary'
 import Context from './context'
+import './config/preloading'
 
 ReactDom.render(
   <Provider store={store}>

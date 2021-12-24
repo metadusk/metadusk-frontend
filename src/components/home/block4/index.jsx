@@ -3,7 +3,7 @@ import './index.less'
 import cx from 'classnames'
 import ArrowIcon from '../../../assets/image/home/arrow_left.svg'
 import Swiper from 'swiper'
-import {homeExhibitsList} from "../../../config/nft";
+import {xmasPunkExhibits} from "../../../config/nft";
 
 
 
@@ -36,8 +36,8 @@ export default class Block4 extends React.Component{
           if (window.innerWidth > 888){
             if (this.activeIndex === 0){
               swiper.slideTo(1)
-            } else if (this.activeIndex === homeExhibitsList.length - 1) {
-              swiper.slideTo(homeExhibitsList.length - 2)
+            } else if (this.activeIndex === xmasPunkExhibits.length - 1) {
+              swiper.slideTo(xmasPunkExhibits.length - 2)
             }
           }
         },
@@ -58,7 +58,7 @@ render() {
           <div className="swiper-container">
             <div className="exhibition-frame-box swiper-wrapper">
               {
-                homeExhibitsList.map((item, index) => (
+                xmasPunkExhibits.map((item, index) => (
                   <div className={cx({
                     "exhibition-frame-item-box": true,
                     "swiper-slide": true

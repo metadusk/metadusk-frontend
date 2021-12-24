@@ -8,14 +8,12 @@ import WeddingVeil from "../assets/image/nft1155/wedding_veil.png";
 import BG4 from "../assets/image/home/exhibits/cigarette_bg.png";
 import Cigarette from "../assets/image/nft1155/cigarette.png";
 
-
 import Skateboard from "../assets/image/nft1155/skateboard.png";
 import Glasses from "../assets/image/nft1155/glasses.png";
 import Headwear from "../assets/image/nft1155/headwear.png";
 import Jacket from "../assets/image/nft1155/jacket.png";
-import {getIPFSFile} from "../utils/ipfs";
 
-export const exhibitsList = [
+export const JustineDuskExhibits = [
   {
     title: 'Gun',
     frame: BG1,
@@ -53,8 +51,8 @@ export const exhibitsList = [
     tokenURI: 'QmcdoXaLUvtFtTjvpZBePtDDz83ju2Y5LWoCqzNPHYmE5d',
     id: '1'
   },
-
-
+]
+export const xmasPunkExhibits = [
   {
     title: 'Helmet Skateboard',
     frame: BG1,
@@ -91,35 +89,10 @@ export const exhibitsList = [
     tokenURI: 'QmdvpvG5sLGbUWhx6SFmvCuqBaspRfvd3Pg8SPsRjV7sWn',
     id: '6'
   },
-
 ]
 
-export const homeExhibitsList = [
-  {
-    title: 'Helmet Skateboard',
-    frame: BG1,
-    nft: Skateboard,
-  },
-  {
-    title: 'Dexus vibe',
-    frame: BG2,
-    nft: Glasses
-  },
-  {
-    title: 'Santa Hat',
-    frame: BG3,
-    nft: Headwear
-  },
-  {
-    title: 'Punk Jacket',
-    frame: BG4,
-    nft: Jacket
-  },
+export const exhibitsList = [
+  ...JustineDuskExhibits,
+  ...xmasPunkExhibits
 ]
 
-// Preloading
-for (let i = 0; i < exhibitsList.length; i++) {
-  const Img = new Image()
-  Img.src = getIPFSFile(exhibitsList[i].image)
-  Img.onload = function (){}
-}

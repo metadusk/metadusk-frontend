@@ -13,19 +13,20 @@ import {getContract} from "../../../web3";
 import {changeNetwork} from "../../../web3/connectors";
 import {LoadingOutlined} from "@ant-design/icons";
 import ButtonM from "../../button-m";
+import {getIPFSFile} from "../../../utils/ipfs";
 
-function createDiv(n) {
+function createDiv(n, photo) {
   const list = []
   for (let i = 0; i < n; i++) {
-    list.push(<div key={i}/>)
+    list.push(<div key={i} style={{backgroundImage: `url("${getIPFSFile(photo)}")`}}/>)
   }
   return list
 }
 
-export default function JustineDuskNFTClaimModal({visible, setVisible}) {
-  const {account, library} = useWeb3React()
-  const [loading, setLoading] = useState(false)
-  const { dispatch, state } = useContext(mainContext)
+export default function MineClaim({visible, setVisible, mintNFT}) {
+  // const {account, library} = useWeb3React()
+  // const [loading, setLoading] = useState(false)
+  // const { dispatch, state } = useContext(mainContext)
 
   // const onClaim = () => {
   //   if (loading) {
@@ -64,7 +65,7 @@ export default function JustineDuskNFTClaimModal({visible, setVisible}) {
       </div>
       <div className="gift-main">
         <div className="westarter-img">
-          {createDiv(20)}
+          {createDiv(20, mintNFT.photo)}
         </div>
       </div>
       {/*<ButtonM chainId={ChainId.BSC} className={cs("gift-claim")} onClick={onClaim}>*/}
