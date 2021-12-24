@@ -118,13 +118,15 @@ export default function FestivalBox() {
     if (openLoading || isComing || isEnd) {
       return
     }
-    if (pageData.helmetBalance < 300){
-      message.error('Insufficient balance')
-      return;
-    }
     setStatus('static')
-    if (!isApproveHelmet && pageData.allowListGetItem <= 0) {
-      return
+    if (pageData.allowListGetItem <= 0) {
+      if (!isApproveHelmet) {
+        return
+      }
+      if (pageData.helmetBalance < 300){
+        message.error('Insufficient balance')
+        return;
+      }
     }
     setOpenLoading(true)
     const contract = getContract(library, ItemPool.abi, ItemPool.address)
