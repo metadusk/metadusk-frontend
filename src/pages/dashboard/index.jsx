@@ -55,24 +55,26 @@ const DashBoard = () => {
     const filterEquipData = []
     const multicall = getOnlyMultiCallProvider(ChainId.BSC)
     const contract = new Contract(NFTDuskKit.address, NFTDuskKit.abi)
-    const balanceOfCalls = []
-
-    for (let i = 0; i < exhibitsList.length; i++) {
-      balanceOfCalls.push(contract.balanceOf(account, exhibitsList[i].id))
-    }
-
-    multicall.all([contract.uri(1), ...balanceOfCalls]).then(data => {
+    const calls = exhibitsList.reduce((list, item)=>{
+      list.push(
+        contract.balanceOf(account, item.id),
+        contract.uri(item.id)
+      )
+      return list
+    }, [])
+    multicall.all(calls).then(data => {
       data = processResult(data)
-      const tokenURI = data.splice(0, 1)[0].toString()
-      const balanceList = data.splice(0, balanceOfCalls.length)
-      const ipfsRequest = exhibitsList.reduce((l, i) => {
-        l.push(getIPFSJson(`${tokenURI}/${i.id}.json`))
-        return l
-      }, [])
-      Promise.all(ipfsRequest)
+      // const tokenURI = data[4].toString()
+      // data = data.splice(0, 4)
+      const exhibitsPromise = []
+      for (let i = 0; i < exhibitsList.length; i++) {
+        exhibitsPromise.push(getIPFSJson(data[i*2+1] + `/${exhibitsList[i].id}.json`))
+      }
+      // data = ['0', '0', '0', '0']
+      Promise.all(exhibitsPromise)
       .then(res => {
-        for (let i = 0; i < res.length; i++) {
-          res[i].data.count = balanceList[i]
+        for (let i = 0; i < exhibitsList.length; i++) {
+          res[i].data.count = data[i*2]
           filterEquipData.push(res[i].data)
         }
         setEquipData(filterEquipData)

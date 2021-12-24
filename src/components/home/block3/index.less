@@ -12,10 +12,10 @@
   justify-content: flex-end;
 
   img {
-    width: 80vh;
-    height: 80vh;
-    max-width: 80vh;
-    max-height: 80vh;
+    width: 85vh;
+    height: 85vh;
+    max-width: 85vh;
+    max-height: 85vh;
     transition: 500ms 500ms ease-in;
     transform: translateY(100%);
   }
@@ -28,7 +28,7 @@
       transform: translateY(0);
     }
     .banner-light{
-      transform: translateX(0);
+      transform: translateX(0) translateY(50px);
     }
   }
 }
@@ -69,15 +69,13 @@
 @media (max-width: 512px) {
   .justine-dusk {
     .banner-light {
-      width: 90vw;
-      height: calc(90vw * 0.16);
-      font-size: calc(90vw * 0.1);
+      margin-bottom: 30px;
     }
-    img {
-      width: 90vw;
-      height: 90vw;
-      max-width: 90vw;
-      max-height: 90vw;
+    img{
+      width: 120vw;
+      height: 120vw;
+      max-width: 120vw;
+      max-height: 120vw;
     }
   }
 }

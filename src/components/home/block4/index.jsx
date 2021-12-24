@@ -3,7 +3,7 @@ import './index.less'
 import cx from 'classnames'
 import ArrowIcon from '../../../assets/image/home/arrow_left.svg'
 import Swiper from 'swiper'
-import {exhibitsList} from "../../../config/nft";
+import {homeExhibitsList} from "../../../config/nft";
 
 
 
@@ -15,7 +15,11 @@ export default class Block4 extends React.Component{
     const swiper = new Swiper(".swiper-container", {
       effect: "coverflow",
       grabCursor: true,
-      // loop: true,
+      loop: true,
+      autoplay: true,
+      delay: 2000,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true,
       centeredSlides: true,
       slidesPerView: "auto",
       initialSlide: 1,
@@ -32,8 +36,8 @@ export default class Block4 extends React.Component{
           if (window.innerWidth > 888){
             if (this.activeIndex === 0){
               swiper.slideTo(1)
-            } else if (this.activeIndex === exhibitsList.length - 1) {
-              swiper.slideTo(exhibitsList.length - 2)
+            } else if (this.activeIndex === homeExhibitsList.length - 1) {
+              swiper.slideTo(homeExhibitsList.length - 2)
             }
           }
         },
@@ -45,13 +49,16 @@ render() {
 
   return (
     <div className="exhibits-ornament">
+      <div className="banner-light">
+        Bland box
+      </div>
       <div className="exhibition-frame">
         <div className="effect-a"/>
         <div className="exhibition-frame-container">
           <div className="swiper-container">
             <div className="exhibition-frame-box swiper-wrapper">
               {
-                exhibitsList.map((item, index) => (
+                homeExhibitsList.map((item, index) => (
                   <div className={cx({
                     "exhibition-frame-item-box": true,
                     "swiper-slide": true

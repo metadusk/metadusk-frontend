@@ -5,8 +5,14 @@ import Footer from "../../footer"
 import { getIPFSFile } from '../../../utils/ipfs'
 import './index.less'
 import Other from "../tabs/other";
+
 import Mint from "../tabs/mint";
 
+import {exhibitsList} from "../../../config/nft";
+const bgMap = exhibitsList.reduce((map, item) => {
+  map[item.title] = item.bgCN
+  return map
+}, {})
 const DashBoardListData = ({
   listData: _listData,
   equipData,
@@ -127,7 +133,7 @@ const DashBoardListData = ({
                 const card_list = []
                 for(let i = 0; i < item.count; i++){
                   card_list.push((
-                    <div className={cs(item.name.replace(' ', '_'), 'dush')} key={index + '' + i}>
+                    <div className={cs(bgMap[item.name], 'dush')} key={index + '' + i}>
                       <img
                         src={getIPFSFile(item.photo)}
                       />

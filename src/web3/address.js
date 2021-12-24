@@ -2,6 +2,8 @@ import NFTHelperAbi from './abi/NFTHelper.json'
 import ERC721Abi from "./abi/ERC721.json";
 import ERC1155Abi from "./abi/ERC1155.json";
 import LotteryAbi from "./abi/Lottery.json";
+import ERC20 from './abi/ERC20.json'
+
 export const ChainId = {
   ETH: 1,
   BSC: 56,
@@ -54,11 +56,20 @@ export const NFTDuskKit = {
   address: '0x9f39766E4A8d2E6D55F406C71140089096687382',
   abi: ERC1155Abi
 }
+
 export const Lottery = {
-  address: '0x692994b183B467965D81398d4dAc60fE465897f6',
+  address: '0xd732fD147A559fD427123A2055A1941359BB97be',
   abi: LotteryAbi
 }
+
 export const NFTJustineDusk = {
   address: '0x86EFF87137C2453Ccc1A6c961eFbfcf467134780',
   abi: ERC721Abi
 }
+
+export const ADDRESS_0 = '0x0000000000000000000000000000000000000000'
+export const ADDRESS_INFINITY = '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'
+export const ERC20Abi = ERC20.abi
+
+
+
