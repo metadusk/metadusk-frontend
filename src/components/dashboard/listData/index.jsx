@@ -16,7 +16,6 @@ const bgMap = exhibitsList.reduce((map, item) => {
 const DashBoardListData = ({
   listData: _listData,
   equipData,
-  setShowNftData,
 }) => {
   const [tabFlag, setTabFlag] = useState('dush')
   const [listData, setListData] = useState([])
@@ -104,7 +103,6 @@ const DashBoardListData = ({
                     <div
                       className='dashboard-list_data_my_dush_content'
                       key={index}
-                      onClick={() => setShowNftData(item)}
                     >
                       <img src={getIPFSFile(item.content.photo)} />
                       <p>{item.content.name}</p>

@@ -23,7 +23,6 @@ const DashBoard = () => {
   const [listData, setListData] = useState([])
   const [equipData, setEquipData] = useState([])
   const { dispatch, state } = useContext(mainContext)
-  const [showNftData, setShowNftData] = useState(null)
 
   const getListData = () => {
     const multicall = getOnlyMultiCallProvider(ChainId.BSC)
@@ -47,7 +46,6 @@ const DashBoard = () => {
       }
       console.log(dusks)
       setListData(dusks)
-      setShowNftData(dusks[0])
     })
   }
 
@@ -92,11 +90,10 @@ const DashBoard = () => {
   return (
     <div className='dashboard-page'>
       <Header/>
-      <DashBoardBanner listData={showNftData} refreshNftData={getListData} />
+      <DashBoardBanner listData={listData} refreshNftData={getListData} />
       <ListData
         listData={listData}
         equipData={equipData}
-        setShowNftData={setShowNftData}
       />
     </div>
   )

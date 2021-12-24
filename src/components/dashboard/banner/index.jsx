@@ -1,31 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { FormattedMessage, injectIntl } from "react-intl";
 import Typewriter from "../../typewriter";
-import { useWeb3React } from "@web3-react/core";
 import { getIPFSFile } from "../../../utils/ipfs";
 import { Link } from "react-router-dom";
 import NFTClaimModal from "../../claim-modal/DuskClaim/index";
 import DefaultPng from "../../../assets/image/dashboard/no_Dusk_pc@2x.png";
 import "./index.less";
+import { Carousel } from 'antd';
 
 const DashBoardBanner = (props) => {
-  const [banner_data, setBanner_Data] = useState(props.listData);
-  const { active, account, chainId } = useWeb3React();
+  const {listData} = props
   const [claimNftModal, setClaimNftModal] = useState(false);
-
-  useEffect(() => {
-    setBanner_Data(props.listData);
-  }, [props.listData, banner_data, active, account]);
+  const [showIndex, setShowIndex] = useState(0)
+  const bannerData = listData[showIndex]
+  console.log('listData', props.listData)
   return (
     <div className="dashboard-banner">
       <div className="dashboard-banner_content">
         <div className="dashboard-banner_content_left">
-          {banner_data && banner_data.content && (
-            <img src={getIPFSFile(banner_data.content.photo)} />
-          )}
-          {!(banner_data && banner_data.content) && <img src={DefaultPng} />}
+        <Carousel afterChange={setShowIndex} style={{width: '200px', height: '305px'}}>
+          {
+            listData.map((item, index) => (
+                <img src={getIPFSFile(item.content.photo)} key={index}/>
+            ))
+          }
+          {listData.length === 0 && <img src={DefaultPng} />}
+        </Carousel>
         </div>
-        {banner_data && banner_data.content && (
+        {bannerData && bannerData.content && (
           <div className="dashboard-banner_content_right">
             <div className="justine_dusk">
               <p className="token_address">
@@ -35,21 +37,21 @@ const DashBoardBanner = (props) => {
                 <span>0xedfbf15775a2e42e03d059fb98da6e92284de7be</span>
               </p>
               <p className="justine_dusk_title">
-                <span>{banner_data.content.name}</span>
-                <span>ID：{banner_data.tokenId}</span>
+                <span>{bannerData.content.name}</span>
+                <span>ID：{bannerData.tokenId}</span>
               </p>
               <p className="describe">
                 <Typewriter
                   speed={15}
                   showSubscript
                   start={true}
-                  text={banner_data.content.introduction || banner_data.content.story}
+                  text={bannerData.content.introduction || bannerData.content.story}
                 />
               </p>
             </div>
           </div>
         )}
-        {!(banner_data && banner_data.content) && (
+        {!(bannerData && bannerData.content) && (
           <div className="dashboard-banner_content_right">
             <h3>
               <FormattedMessage id="dashboard" />

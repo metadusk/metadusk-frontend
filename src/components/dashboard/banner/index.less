@@ -13,19 +13,20 @@
     width: 1080px;
   }
   &_content_left {
-    position: relative;
     margin-right: 48px;
     width: 452px;
     height: 520px;
     background: url('../../../assets/image/dashboard/zhanshitong_pc@2x.png') no-repeat;
     background-size: 100% 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     img {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
       width: 198px;
       height: 285px;
+    }
+    .slick-dots-bottom{
+    
     }
   }
   &_content_right {
@@ -213,17 +214,15 @@
       width: 100%;
     }
      &_content_left {
-      position: relative;
       margin-right: 0;
       width: 266px;
       height: 305px;
       background: url('../../../assets/image/dashboard/zhanshitong_pc@2x.png') no-repeat;
       background-size: 100% 100%;
+       display: flex;
+       align-items: center;
+       justify-content: center;
       img {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
         width: 116px;
         height: 166px;
       }

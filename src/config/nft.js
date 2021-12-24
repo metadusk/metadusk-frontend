@@ -56,7 +56,7 @@ export const xmasPunkExhibits = [
   {
     title: 'Helmet Skateboard',
     frame: BG1,
-    bgCN: 'bg1',
+    bgCN: 'bg2',
     nft: Skateboard,
     image: 'QmQXTcAvu8ExbrZmFePygisBYEJDzADeyfKEJXXZPFMBFZ',
     tokenURI: 'QmdvpvG5sLGbUWhx6SFmvCuqBaspRfvd3Pg8SPsRjV7sWn',
@@ -65,7 +65,7 @@ export const xmasPunkExhibits = [
   {
     title: 'Dexus vibe',
     frame: BG2,
-    bgCN: 'bg2',
+    bgCN: 'bg3',
     nft: Glasses,
     image: 'QmTTDDq4j7jXUaJfSSAz855U2YxVGwp66MUAPWibSVMPMW',
     tokenURI: 'QmdvpvG5sLGbUWhx6SFmvCuqBaspRfvd3Pg8SPsRjV7sWn',
@@ -74,7 +74,7 @@ export const xmasPunkExhibits = [
   {
     title: 'Santa Hat',
     frame: BG3,
-    bgCN: 'bg3',
+    bgCN: 'bg1',
     nft: Headwear,
     image: 'QmQVaqG5v8tER1bWeTxesJQTyKmndeqnKrvXwSWHVMBqCs',
     tokenURI: 'QmdvpvG5sLGbUWhx6SFmvCuqBaspRfvd3Pg8SPsRjV7sWn',
