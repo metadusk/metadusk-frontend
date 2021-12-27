@@ -26,7 +26,27 @@
       height: 285px;
     }
     .slick-dots-bottom{
-    
+      overflow-y: visible;
+      bottom: -10px!important;
+      .slick-active{
+        width: auto!important;
+        &>button{
+          background: #FFFFFF!important;
+        }
+      }
+      &>li{
+        width: auto!important;
+        background: transparent;
+        border: 1px;
+        &>button{
+          width: 10px!important;
+          height: 10px!important;
+          border-radius: 50% !important;
+          background: transparent!important;
+          border: 2px solid #FFFFFF!important;
+          opacity: 1!important;
+        }
+      }
     }
   }
   &_content_right {
