@@ -15,6 +15,7 @@ import Jacket from "../assets/image/nft1155/jacket.png";
 
 export const JustineDuskExhibits = [
   {
+
     title: 'Gun',
     frame: BG1,
     bgCN: 'bg1',
