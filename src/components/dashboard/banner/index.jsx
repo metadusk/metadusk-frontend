@@ -21,7 +21,7 @@ const DashBoardBanner = (props) => {
         <Carousel afterChange={setShowIndex}  dots={{dotsClass: 'dashboard-banner_content-dots'}} style={{width: '200px', height: '305px'}}>
           {
             listData.map((item, index) => (
-                <img src={getIPFSFile(item.content.photo)} key={index}/>
+                <img src={getIPFSFile(item.content.photo)} key={item.tokenId}/>
             ))
           }
           {listData.length === 0 && <img src={DefaultPng} />}

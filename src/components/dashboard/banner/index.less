@@ -4,6 +4,7 @@
   min-width: 1140px;
   background: url("../../../assets/image/dashboard/bg_pc@2x.png") no-repeat;
   background-size: 100% 100%;
+
   &_content {
     display: flex;
     justify-content: center;
@@ -12,6 +13,7 @@
     margin: 0 auto;
     width: 1080px;
   }
+
   &_content_left {
     margin-right: 48px;
     width: 452px;
@@ -21,34 +23,44 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    .slick-slider {
+      width: 198px !important;
+      height: 285px !important;
+    }
+
     img {
       width: 198px;
       height: 285px;
     }
-    .slick-dots-bottom{
-      overflow-y: visible;
-      bottom: -10px!important;
-      .slick-active{
-        width: auto!important;
-        &>button{
-          background: #FFFFFF!important;
+
+    .slick-dots-bottom {
+      bottom: -25px !important;
+      .slick-active {
+        width: auto !important;
+
+        & > button {
+          background: #FFFFFF !important;
         }
       }
-      &>li{
-        width: auto!important;
+
+      & > li {
+        width: auto !important;
         background: transparent;
         border: 1px;
-        &>button{
-          width: 10px!important;
-          height: 10px!important;
+
+        & > button {
+          width: 10px !important;
+          height: 10px !important;
           border-radius: 50% !important;
-          background: transparent!important;
-          border: 2px solid #FFFFFF!important;
-          opacity: 1!important;
+          background: transparent !important;
+          border: 2px solid #FFFFFF !important;
+          opacity: 1 !important;
         }
       }
     }
   }
+
   &_content_right {
     h3 {
       margin-bottom: 0;
@@ -58,16 +70,19 @@
       line-height: 24px;
       text-align: center;
     }
+
     .line {
       margin-bottom: 24px;
       width: 100%;
       height: 26px;
     }
+
     .get_nft_one {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 34px;
+
       p {
         position: relative;
         padding: 7px 36px 7px 82px;
@@ -80,6 +95,7 @@
         line-height: 25px;
         background: rgba(158, 23, 233, 0.5);
         clip-path: polygon(98% 0, 100% 27%, 97% 100%, 0 99%, 1% 0);
+
         span {
           position: absolute;
           left: -8px;
@@ -95,6 +111,7 @@
           background-size: 100% 100%;
         }
       }
+
       a {
         position: relative;
         display: flex;
@@ -114,8 +131,10 @@
         background-size: 100% 100%;
       }
     }
+
     .justine_dusk {
       position: relative;
+
       &:after {
         content: '';
         position: absolute;
@@ -129,6 +148,7 @@
         transform: rotate(-2deg);
       }
     }
+
     .token_address {
       position: absolute;
       left: -6px;
@@ -139,8 +159,10 @@
       width: 348px;
       height: 54px;
       background: #FF83FA;
+
       span {
         position: relative;
+
         &:nth-child(1) {
           font-size: 20px;
           font-family: FutureMillennium;
@@ -148,6 +170,7 @@
           line-height: 22px;
           letter-spacing: 1px;
         }
+
         &:nth-child(2) {
           margin-top: 4px;
           font-size: 12px;
@@ -156,6 +179,7 @@
           line-height: 14px;
         }
       }
+
       &::before {
         content: '';
         position: absolute;
@@ -166,6 +190,7 @@
         background: #842DF9;
       }
     }
+
     .justine_dusk_title {
       position: absolute;
       display: flex;
@@ -177,10 +202,12 @@
       height: 126px;
       background: #FF0000;
       transform: rotate(11deg);
+
       span {
         display: inline-block;
         width: 100%;
         text-align: center;
+
         &:nth-child(1) {
           height: 60px;
           line-height: 60px;
@@ -189,6 +216,7 @@
           color: #FFF;
           letter-spacing: 1px;
         }
+
         &:nth-child(2) {
           height: 46px;
           line-height: 46px;
@@ -200,12 +228,14 @@
         }
       }
     }
+
     .describe {
       padding: 30px 20px 36px 12px;
       margin-top: 212px;
       width: 426px;
       min-height: 168px;
       background: #1C0946;
+
       span {
         display: inline-block;
         font-size: 14px;
@@ -218,6 +248,7 @@
     }
   }
 }
+
 @media (max-width: 747px) {
   .dashboard-banner {
     width: 100%;
@@ -225,6 +256,7 @@
     height: 700px;
     background: url("../../../assets/image/dashboard/bg_h5@2x.png") no-repeat;
     background-size: 100% 100%;
+
     &_content {
       display: flex;
       justify-content: center;
@@ -233,21 +265,29 @@
       margin: 0 auto;
       width: 100%;
     }
-     &_content_left {
+
+    &_content_left {
       margin-right: 0;
       width: 266px;
       height: 305px;
       background: url('../../../assets/image/dashboard/zhanshitong_pc@2x.png') no-repeat;
       background-size: 100% 100%;
-       display: flex;
-       align-items: center;
-       justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .slick-slider {
+        width: 116px !important;
+        height: 166px !important;
+      }
+
       img {
-        width: 116px;
-        height: 166px;
+        width: 116px !important;
+        height: 166px !important;
       }
     }
-     &_content_right {
+
+    &_content_right {
       h3 {
         margin: 20px auto 0;
         font-size: 16px;
@@ -256,16 +296,19 @@
         line-height: 20px;
         text-align: center;
       }
+
       .line {
         margin-bottom: 24px;
         width: 100%;
         height: 26px;
       }
+
       .get_nft_one {
         display: flex;
         justify-content: center;
         align-items: center;
         margin-bottom: 18px;
+
         p {
           position: relative;
           padding: 7px 14px 7px 68px;
@@ -278,6 +321,7 @@
           line-height: 22px;
           background: rgba(158, 23, 233, 0.5);
           clip-path: polygon(98% 0, 100% 27%, 97% 100%, 0 99%, 1% 0);
+
           span {
             position: absolute;
             left: -8px;
@@ -293,6 +337,7 @@
             background-size: 100% 100%;
           }
         }
+
         a {
           position: relative;
           display: flex;
@@ -312,8 +357,10 @@
           background-size: 100% 100%;
         }
       }
+
       .justine_dusk {
         position: relative;
+
         &:after {
           content: '';
           position: absolute;
@@ -327,6 +374,7 @@
           transform: rotate(-2deg);
         }
       }
+
       .token_address {
         position: absolute;
         left: -6px;
@@ -337,8 +385,10 @@
         width: 278px;
         height: 40px;
         background: #FF83FA;
+
         span {
           position: relative;
+
           &:nth-child(1) {
             font-size: 16px;
             font-family: FutureMillennium;
@@ -346,6 +396,7 @@
             line-height: 20px;
             letter-spacing: 1px;
           }
+
           &:nth-child(2) {
             font-size: 12px;
             font-family: FutureMillennium;
@@ -355,6 +406,7 @@
             transform-origin: left;
           }
         }
+
         &::before {
           content: '';
           position: absolute;
@@ -365,6 +417,7 @@
           background: #842DF9;
         }
       }
+
       .justine_dusk_title {
         position: absolute;
         display: flex;
@@ -376,10 +429,12 @@
         height: 86px;
         background: #FF0000;
         transform: rotate(12deg);
+
         span {
           display: inline-block;
           width: 100%;
           text-align: center;
+
           &:nth-child(1) {
             height: 40px;
             line-height: 40px;
@@ -388,6 +443,7 @@
             color: #FFF;
             letter-spacing: 1px;
           }
+
           &:nth-child(2) {
             height: 32px;
             line-height: 32px;
@@ -399,12 +455,14 @@
           }
         }
       }
+
       .describe {
         padding: 26px 16px 24px 12px;
         margin-top: 126px;
         width: 340px;
         min-height: 128px;
         background: #1C0946;
+
         span {
           display: inline-block;
           font-size: 12px;
@@ -418,4 +476,6 @@
     }
   }
 }
-@media (max-width: 359px) {}
+
+@media (max-width: 359px) {
+}
