@@ -17,45 +17,6 @@ import {getIPFSFile} from "../utils/ipfs";
 
 export const exhibitsList = [
   {
-    title: 'Gun',
-    frame: BG1,
-    bgCN: 'bg1',
-    effect: GunEffect,
-    nft: Gun,
-    image: 'Qmbp7sKahsAwFskP1mZ7b6pzY39r9oGuCRsiNUNxiF54Ev',
-    tokenURI: 'QmcdoXaLUvtFtTjvpZBePtDDz83ju2Y5LWoCqzNPHYmE5d',
-    id: '2'
-  },
-  {
-    title: 'Wedding Dress',
-    frame: BG2,
-    bgCN: 'bg2',
-    nft: WeddingDress,
-    image: 'QmdAWwTtMPfhcZHGhvpTrC8XFXAhxLheaTrVyzjboDUDCY',
-    tokenURI: 'QmcdoXaLUvtFtTjvpZBePtDDz83ju2Y5LWoCqzNPHYmE5d',
-    id: '3'
-  },
-  {
-    title: 'Wedding Veil',
-    frame: BG3,
-    bgCN: 'bg3',
-    nft: WeddingVeil,
-    image: 'Qmezsirv8Qhz5BaSSScUjXkwzs6C26iQVHV1LMJrkK2A5S',
-    tokenURI: 'QmcdoXaLUvtFtTjvpZBePtDDz83ju2Y5LWoCqzNPHYmE5d',
-    id: '4'
-  },
-  {
-    title: 'Cigarette',
-    frame: BG4,
-    bgCN: 'bg4',
-    nft: Cigarette,
-    image: 'QmWqvu5NnFjZupEh412pU8peP5XyMRNpxgEAmTBiwbDzsS',
-    tokenURI: 'QmcdoXaLUvtFtTjvpZBePtDDz83ju2Y5LWoCqzNPHYmE5d',
-    id: '1'
-  },
-
-
-  {
     title: 'Helmet Skateboard',
     frame: BG1,
     bgCN: 'bg1',
@@ -92,28 +53,42 @@ export const exhibitsList = [
     id: '6'
   },
 
-]
-
-export const homeExhibitsList = [
   {
-    title: 'Helmet Skateboard',
+    title: 'Gun',
     frame: BG1,
-    nft: Skateboard,
+    bgCN: 'bg1',
+    effect: GunEffect,
+    nft: Gun,
+    image: 'Qmbp7sKahsAwFskP1mZ7b6pzY39r9oGuCRsiNUNxiF54Ev',
+    tokenURI: 'QmcdoXaLUvtFtTjvpZBePtDDz83ju2Y5LWoCqzNPHYmE5d',
+    id: '2'
   },
   {
-    title: 'Dexus vibe',
+    title: 'Wedding Dress',
     frame: BG2,
-    nft: Glasses
+    bgCN: 'bg2',
+    nft: WeddingDress,
+    image: 'QmdAWwTtMPfhcZHGhvpTrC8XFXAhxLheaTrVyzjboDUDCY',
+    tokenURI: 'QmcdoXaLUvtFtTjvpZBePtDDz83ju2Y5LWoCqzNPHYmE5d',
+    id: '3'
   },
   {
-    title: 'Santa Hat',
+    title: 'Wedding Veil',
     frame: BG3,
-    nft: Headwear
+    bgCN: 'bg3',
+    nft: WeddingVeil,
+    image: 'Qmezsirv8Qhz5BaSSScUjXkwzs6C26iQVHV1LMJrkK2A5S',
+    tokenURI: 'QmcdoXaLUvtFtTjvpZBePtDDz83ju2Y5LWoCqzNPHYmE5d',
+    id: '4'
   },
   {
-    title: 'Punk Jacket',
+    title: 'Cigarette',
     frame: BG4,
-    nft: Jacket
+    bgCN: 'bg4',
+    nft: Cigarette,
+    image: 'QmWqvu5NnFjZupEh412pU8peP5XyMRNpxgEAmTBiwbDzsS',
+    tokenURI: 'QmcdoXaLUvtFtTjvpZBePtDDz83ju2Y5LWoCqzNPHYmE5d',
+    id: '1'
   },
 ]
 
