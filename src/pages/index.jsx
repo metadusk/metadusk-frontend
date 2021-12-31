@@ -6,7 +6,6 @@ import BlindBox from "./blind-box";
 import Dashboard from "./dashboard";
 
 import LBP from "./lbp";
-import Show from "./show";
 import AboutUs from "./about-us";
 
 function PageNotFont() {
@@ -28,9 +27,6 @@ export default function App() {
         </Route>
         <Route path="/auction" exact>
           <LBP />
-        </Route>
-        <Route path="/show" exact>
-          <Show />
         </Route>
         <Route path="/aboutUs" exact>
           <AboutUs />
