@@ -15,14 +15,19 @@ const DuskList = [
   {
     symbol: "Dusk",
     logo: Dusk,
-    address: "0x5850d89f84552ef0a789ee61a93667904201e1b9",
-    info: "元宇宙公元 1024 年, 在特斯拉星云中的一个富饶的行星上孵化出一个神奇物种, 该物种是一种能够直立行走的扁嘴动物, 这种动物基因不够稳定, 变异极其频繁, 不出时年就衍生出来数十万种奇异种族, 有的智慧超群, 有的性格暴力,有的酷爱时尚,有的……",
+    address: "0xedfbf15775a2e42e03d059fb98da6e92284de7be",
+    info: "In the year 1024, a fancy specie on a fertile wonderland in the Tesla Nebula. The species is flat-billed and walk upright. Their genes were unstable and upgradable,such within a few years, tons of species popped out, some of which were extremely intelligent, some are furiously violent, some are deep into fashion, etc......",
+    button: "Auction",
+    href: "/auction",
+    mints: [],
   },
   {
     symbol: "Justine Dusk",
     logo: JustineDusk,
-    address: "0x5850d89f84552ef0a789ee61a93667904201e1b9",
-    info: "元宇宙公元 1024 年, 在特斯拉星云中的一个富饶的行星上孵化出一个神奇物种, 该物种是一种能够直立行走的扁嘴动物, 这种动物基因不够稳定, 变异极其频繁, 不出时年就衍生出来数十万种奇异种族, 有的智慧超群, 有的性格暴力,有的酷爱时尚,有的……",
+    address: "0x17DFb8867184aFa9116Db927B87C27CC27A92F89",
+    info: "Justine is a Guardian, extremely competitive in combat, with a short temper, and proficient in various weapons. But if he get the cigarette, something awful would be in the corner.",
+    button: "Mint",
+    href: "/dashboard",
     mints: [
       { symbol: "Wedding Dress", logo: WeddingDress },
       { symbol: "Wedding veil", logo: Weddingveil },
@@ -33,8 +38,10 @@ const DuskList = [
   {
     symbol: "Xmas Punk",
     logo: XmasPunk,
-    address: "0x5850d89f84552ef0a789ee61a93667904201e1b9",
-    info: "元宇宙公元 1024 年, 在特斯拉星云中的一个富饶的行星上孵化出一个神奇物种, 该物种是一种能够直立行走的扁嘴动物, 这种动物基因不够稳定, 变异极其频繁, 不出时年就衍生出来数十万种奇异种族, 有的智慧超群, 有的性格暴力,有的酷爱时尚,有的……",
+    address: "coming soon",
+    info: "Xmas Dusk is wrapped in New Year and Dexus vide, with skateboard and festival hat. The sunglasses and golden teeth leak the info of his mysterious background.",
+    button: "Mint",
+    href: "/dashboard",
     mints: [
       { symbol: "Helmet Skateboard", logo: HelmetSkateboard },
       { symbol: "Texas Vibe", logo: TexasVibe },
@@ -47,7 +54,7 @@ const ShowContent = () => {
   return (
     <div className="show-content">
       {DuskList.map((item) => (
-        <div className="show-content-dusk">
+        <div className="show-content-dusk" key={item.symbol}>
           <div className="show-content-dusk-item">
             <div className="dusk-logo">
               <img src={item.logo} alt="" />
@@ -59,18 +66,21 @@ const ShowContent = () => {
                 <span className="dusk-info-address-b">{item.address}</span>
               </div>
               <div className="dusk-info-text">{item.info}</div>
+              <div className="dusk-info-button">
+                <a href={item.href}>{item.button}</a>
+              </div>
             </div>
           </div>
           {item.mints ? (
             <div className="show-content-dusk-mint">
               <div className="show-content-dusk-mint-item">
                 {item.mints.map((itemMint) => (
-                  <div className="mint-wrap">
+                  <div className="mint-wrap" key={itemMint.symbol}>
                     <div className="mint-logo">
                       <img src={itemMint.logo} alt="" />
                     </div>
                     <div className="mint-button">
-                      <a href="">Open Bland Box</a>
+                      <a href="/blindBox">Open Bland Box</a>
                     </div>
                   </div>
                 ))}

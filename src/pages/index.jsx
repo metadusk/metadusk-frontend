@@ -4,6 +4,7 @@ import Home from "./home";
 import BlindBox from "./blind-box";
 
 import Dashboard from "./dashboard";
+import Show from "./show";
 
 import LBP from "./lbp";
 import AboutUs from "./about-us";
@@ -27,6 +28,9 @@ export default function App() {
         </Route>
         <Route path="/auction" exact>
           <LBP />
+        </Route>
+        <Route path="/show" exact>
+          <Show />
         </Route>
         <Route path="/aboutUs" exact>
           <AboutUs />

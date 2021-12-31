@@ -1,14 +1,7 @@
 .show-content {
   width: 100%;
-  background-image: url("../../../assets/image/show/light1.png"),
-    url("../../../assets/image/show/light2.png"),
-    url("../../../assets/image/show/light3.png");
-  background-repeat: no-repeat, no-repeat, no-repeat;
-  background-position: top right, center left, bottom right;
-  padding-top: 150px;
 }
 .show-content-dusk {
-  width: 1280px;
   height: 100%;
   margin: 0 auto;
   display: flex;
@@ -18,7 +11,6 @@
 .show-content-dusk-item {
   display: flex;
   align-items: center;
-  margin-top: 100px;
 }
 .dusk-logo {
   width: 200px;
@@ -29,7 +21,7 @@
   }
 }
 .dusk-info {
-  margin-left: 40px;
+  position: relative;
   &-title {
     width: 220px;
     height: 60px;
@@ -74,8 +66,6 @@
   &-text {
     position: sticky;
     z-index: 1;
-    width: 427px;
-    height: 168px;
     background: #1c0946;
     font-size: 14px;
     font-family: PingFangSC-Regular, PingFang SC;
@@ -83,6 +73,28 @@
     line-height: 20px;
     padding: 31.5px 21.5px 36.5px 12.5px;
     margin-left: 6.5px;
+  }
+}
+.dusk-info-button {
+  position: absolute;
+  right: -40px;
+  bottom: -20px;
+  z-index: 9;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 120px;
+  height: 40px;
+  background-image: url("../../../assets//image/show/button_bg.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  a {
+    font-size: 16px;
+    font-family: BlocExtCondC;
+    color: #96008b;
+    line-height: 18px;
   }
 }
 .show-content-dusk-mint-item {
@@ -112,10 +124,78 @@
   background-image: url("../../../assets//image/show/button_bg.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  font-size: 16px;
-  font-family: BlocExtCondC;
-  color: #96008b;
-  line-height: 18px;
-  text-align: center;
-  line-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  a {
+    font-size: 16px;
+    font-family: BlocExtCondC;
+    color: #96008b;
+    line-height: 18px;
+  }
+}
+@media screen and (min-width: 750px) {
+  .show-content {
+    width: 100%;
+    background-image: url("../../../assets/image/show/light1.png"),
+      url("../../../assets/image/show/light2.png"),
+      url("../../../assets/image/show/light3.png");
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: top right, center left, bottom right;
+    background-size: 525px 679.5px, 703px 783px, 643px, 829px;
+    padding-top: 150px;
+  }
+  .show-content-dusk {
+    width: 1280px;
+  }
+  .show-content-dusk-item {
+    margin-top: 100px;
+  }
+  .dusk-info {
+    margin-left: 40px;
+    &-address {
+    }
+    &-text {
+      width: 427px;
+      height: 168px;
+    }
+  }
+  .dusk-info-button {
+    right: -40px;
+    bottom: -20px;
+  }
+}
+@media screen and (max-width: 750px) {
+  .show-content {
+    width: 100%;
+    background-image: url("../../../assets/image/show/light1.png"),
+      url("../../../assets/image/show/light2.png"),
+      url("../../../assets/image/show/light3.png");
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: top right, center left, bottom right;
+    background-size: 525px 679.5px, 703px 783px, 643px, 829px;
+  }
+  .show-content-dusk {
+    width: 100%;
+  }
+  .show-content-dusk-item {
+    margin-top: 50px;
+    flex-direction: column;
+  }
+  .dusk-info {
+    margin-top: 20px;
+    width: 95%;
+    &-address {
+    }
+    &-text {
+    }
+  }
+  .dusk-info-button {
+    right: 0;
+    bottom: -20px;
+  }
+  .show-content-dusk-mint {
+    width: 100%;
+    overflow-y: scroll;
+  }
 }
