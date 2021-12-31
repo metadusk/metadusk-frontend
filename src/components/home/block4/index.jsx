@@ -15,7 +15,11 @@ export default class Block4 extends React.Component{
     const swiper = new Swiper(".swiper-container", {
       effect: "coverflow",
       grabCursor: true,
-      // loop: true,
+      loop: true,
+      autoplay: true,
+      delay: 2000,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true,
       centeredSlides: true,
       slidesPerView: "auto",
       initialSlide: 1,
@@ -45,6 +49,9 @@ render() {
 
   return (
     <div className="exhibits-ornament">
+      <div className="banner-light">
+        Bland box
+      </div>
       <div className="exhibition-frame">
         <div className="effect-a"/>
         <div className="exhibition-frame-container">

@@ -10,7 +10,11 @@ import { Link } from 'react-router-dom'
 import { getIPFSJson, getIPFSFile } from '../../../utils/ipfs'
 import './index.less'
 import Other from "../tabs/other";
-
+import {exhibitsList} from "../../../config/nft";
+const bgMap = exhibitsList.reduce((map, item) => {
+  map[item.title] = item.bgCN
+  return map
+}, {})
 const DashBoardListData = ({
   listData: _listData,
   equipData,
@@ -132,7 +136,7 @@ const DashBoardListData = ({
                 const card_list = []
                 for(let i = 0; i < item.count; i++){
                   card_list.push((
-                    <div className={cs(item.name.replace(' ', '_'), 'dush')} key={index + '' + i}>
+                    <div className={cs(bgMap[item.name], 'dush')} key={index + '' + i}>
                       <img
                         src={getIPFSFile(item.photo)}
                       />
@@ -157,8 +161,8 @@ const DashBoardListData = ({
         ) : (
           tabFlag === 'equip' && (
             <p className='no_data'>
-              Coming Soon
-              {/* <FormattedMessage id='dashboard13' /> */}
+              {/*Coming Soon*/}
+               <FormattedMessage id='dashboard13' />
             </p>
           )
         )}

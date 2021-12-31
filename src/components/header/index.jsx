@@ -8,7 +8,7 @@ import {Link, NavLink, useHistory} from "react-router-dom";
 import cx from 'classnames'
 import DropDownSvg from '../../assets/image/svg/drop_down.svg'
 import cs from "classnames";
-import { ChainId } from "../../web3/address";
+import {ChainId, NFTDusk, NFTHelper} from "../../web3/address";
 import DefaultAvatar from "../../assets/image/avatar/default_dusk.png";
 import BaseAvatar from "../../assets/image/avatar/base_dusk.png";
 import JustineAvatar from "../../assets/image/avatar/justine_dusk.png";
@@ -16,10 +16,10 @@ import { changeNetwork } from "../../web3/connectors";
 import WestarterNFTModal from "../claim-modal/westarter";
 import HelmetNFTModal from "../claim-modal/helmet";
 import MoreSvg from '../../assets/image/svg/more.svg'
-import axios from "axios";
-import {getIPFSJson} from "../../utils/ipfs";
-import {getTokenURI} from "../../pages/dashboard";
 import {mainContext} from "../../reducer";
+import {getOnlyMultiCallProvider, processResult} from "../../web3/multicall";
+import {Contract} from "ethers-multicall-x";
+
 
 export const navList = [
   {
@@ -29,6 +29,10 @@ export const navList = [
   {
     name: 'Dashboard',
     route: '/dashboard',
+  },
+  {
+    name: 'Blind Box',
+    route: '/blindBox',
   },
   {
     name: 'About us',
@@ -111,40 +115,22 @@ export default function Header() {
   const [avatar, setAvatar] = useState('')
 
   const getNFTData = () => {
-    axios({
-      method: 'post',
-      url:
-        'https://graph.metadusk.io/bsc/subgraphs/name/metadusk/dusk',
-      data: {
-        query: `{
-          dusks(first: 1000, skip:0, where:{holder: "${account}"}) {
-            id
-            holder
-            tokenId
-          }
-        }`,
-      },
-    })
-      .then(async (res) => {
-        if (res.data.data.dusks) {
-          const dusks = res.data.data.dusks
-          for (let i = 0; i < dusks.length; i++) {
-            const tokenURI = await getTokenURI(dusks[i].tokenId)
-            if (tokenURI[0] === avatarMap.justineDusk.ipfs){
-              setAvatar('justineDusk')
-              return
-            }
-            if (tokenURI[0] === avatarMap.baseDusk.ipfs){
-              setAvatar('baseDusk')
-              return
-            }
-          }
+    const multicall = getOnlyMultiCallProvider(ChainId.BSC)
+    const contract = new Contract(NFTHelper.address, NFTHelper.abi)
+    multicall.all([contract.getAll(NFTDusk.address, account)]).then(async data_ => {
+      const [[ids, urls]] = processResult(data_)
+      for (let i = 0; i < ids.length; i++) {
+        if (urls[i] === avatarMap.justineDusk.ipfs){
+          setAvatar('justineDusk')
+          return
         }
-      })
-      .catch((e) => {
-        console.log(e)
-      })
+        if (urls[i] === avatarMap.baseDusk.ipfs){
+          setAvatar('baseDusk')
+        }
+      }
+    })
   }
+
   useMemo(() => {
     if (account){
       getNFTData()

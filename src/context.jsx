@@ -33,7 +33,6 @@ function Context(props) {
   useMemo(() => {
     document.addEventListener('visibilitychange', () => {
       const isActive_ = document.visibilityState === 'visible'
-      console.log('isActive', isActive_)
       if (isActive_) {
         getBlockHeight()
         timeoutGetBlockHeight()

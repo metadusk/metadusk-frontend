@@ -13,6 +13,7 @@ import { getContract } from "../../../web3/index";
 import { fromWei, toWei, numToWei } from "../../../utils/format";
 import DuskLbpAbi from "../../../web3/abi/LBP.json";
 import "./index.less";
+import ButtonM from "../../button-m";
 const DuskLBPList = {
   address: "0x11Aa37C18CbB280cF45Ebb4A8e9694a055474793",
   abi: DuskLbpAbi,
@@ -98,9 +99,9 @@ const LBPContent = () => {
               <span className="volume">{maxPrice}&nbsp;BNB</span>
             </div>
           </div>
-          <div className="lbp-content-info-rt-button" onClick={() => confirm()}>
+          <ButtonM chainId={ChainId.BSC} className="lbp-content-info-rt-button" onClick={() => confirm()}>
             BUY
-          </div>
+          </ButtonM>
           <div className="lbp-content-info-rt-tips tips-first">
             <FormattedMessage id="lbp1" />
           </div>

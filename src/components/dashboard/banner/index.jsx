@@ -36,7 +36,7 @@ const DashBoardBanner = (props) => {
               </p>
               <p className="justine_dusk_title">
                 <span>{banner_data.content.name}</span>
-                <span>ID：{banner_data.id}</span>
+                <span>ID：{banner_data.tokenId}</span>
               </p>
               <p className="describe">
                 <Typewriter
@@ -86,7 +86,7 @@ const DashBoardBanner = (props) => {
               <div className="get_nft_one">
                 <p>
                   <span>3</span>
-                  <div>0xedfbf15775a2e42e03d 059fb98da6e92284de7be</div>
+                  0xedfbf15775a2e42e03d{'\n'}059fb98da6e92284de7be
                 </p>
                 {/* <a>
                   <FormattedMessage id="dashboard2" />
