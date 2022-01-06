@@ -20,39 +20,41 @@ import {mainContext} from "../../../../reducer";
 
 
 export default function MintItem({duskCount, mineData}) {
-  const {exhibits, mintNFT, mintContract} = mineData
+  const {exhibits, mintNFT, mintContract, mintMethod, composeEnable} = mineData
   const {account, library} = useActiveWeb3React()
   const [mintLoading, setMintLoading] = useState(false)
   const [isApprovedDusk, setIsApprovedDusk] = useState(false)
   const [isApprovedDuskKit, setIsApprovedDuskKit] = useState(false)
   const { dispatch, state } = useContext(mainContext)
   const [showClaimModal, setShowClaimModal] = useState(false)
-  const canMint = () => {
-    if (duskCount <= 0) {
-      return false
-    }
-    for (let i = 0; i < exhibits.length; i++) {
-      if (exhibits[i].count <= 0) {
-        return false
-      }
-    }
-    return true
-  }
-  const canMint_ = canMint()
+  const [canMint, setCanMint] = useState(false)
+  // const canMint = () => {
+  //   if (duskCount <= 0) {
+  //     return false
+  //   }
+  //   for (let i = 0; i < exhibits.length; i++) {
+  //     if (exhibits[i].count <= 0) {
+  //       return false
+  //     }
+  //   }
+  //   return true
+  // }
+  // const canMint_ = canMint()
 
   const getData = () => {
     const contractDuskKit = new ClientContract(NFTDuskKit.abi, NFTDuskKit.address, ChainId.BSC)
     const contractDusk = new ClientContract(NFTDusk.abi, NFTDusk.address, ChainId.BSC)
-    // const contractLottery = new ClientContract(Lottery.abi, Lottery.address, ChainId.BSC)
+    const mintContract_ = new ClientContract(mintContract.abi, mintContract.address, ChainId.BSC)
     multicallClient([
       contractDusk.isApprovedForAll(account, mintContract.address),
       contractDuskKit.isApprovedForAll(account, mintContract.address),
-      // contractLottery.needClaim(account),
+      mintContract_[composeEnable](mintNFT.address)
     ]).then(data => {
       console.log(data)
       setIsApprovedDusk(strToBool(data[0]))
       setIsApprovedDuskKit(strToBool(data[1]))
       // setShowClaimModal(strToBool(data[2]))
+      setCanMint(data[2])
     })
   }
   const onApprovedDusk = () => {
@@ -81,12 +83,12 @@ export default function MintItem({duskCount, mineData}) {
   }
 
   const onMint = () => {
-    if (!canMint() || mintLoading) {
+    if (!canMint || mintLoading) {
       return
     }
     setMintLoading(true)
     const contract = getContract(library, mintContract.abi, mintContract.address)
-    contract.methods.compose().send({
+    contract.methods[mintMethod]().send({
       from: account
     }).on('receipt', () => {
       message.success('success')
@@ -139,7 +141,7 @@ export default function MintItem({duskCount, mineData}) {
             }
             <div className="mine-btn-box">
               {
-                canMint_ ? (
+                canMint ? (
                   <ButtonM chainId={ChainId.BSC} className={cs('mint_btn')} onClick={() => {
                     if (!isApprovedDusk || !isApprovedDuskKit){
                       onApprovedDusk()

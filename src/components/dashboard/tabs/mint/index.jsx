@@ -3,15 +3,24 @@ import DuskMint from "../../../../assets/image/dashboard/Dusk_Mint@2x.png";
 import {Link} from "react-router-dom";
 import {FormattedMessage} from "react-intl";
 import './index.less'
-import {JustineDuskExhibits} from "../../../../config/nft";
-import {Lottery, NFTJustineDusk} from "../../../../web3/address";
+import {JustineDuskExhibits, xmasPunkExhibits} from "../../../../config/nft";
+import {Lottery, NFTJustineDusk, NFTSantaPunkDusk,} from "../../../../web3/address";
 import MintItem from "../mint-item";
 
 const mintListData = [
   {
     mintNFT: NFTJustineDusk,
+    exhibits: JustineDuskExhibits,
     mintContract: Lottery,
-    exhibits: JustineDuskExhibits
+    mintMethod: 'compose',
+    composeEnable: 'composeEnable'
+  },
+  {
+    mintNFT: NFTSantaPunkDusk,
+    exhibits: xmasPunkExhibits,
+    mintContract: Lottery,
+    mintMethod: 'santaCompose',
+    composeEnable: 'santaComposeEnable'
   }
 ]
 

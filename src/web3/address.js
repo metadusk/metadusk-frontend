@@ -68,6 +68,11 @@ export const NFTJustineDusk = {
   photo: 'QmVtvcn7HACq7QGQ9zSsQyftWwVBomHnWuCjvfp51TERNf',
   abi: ERC721Abi
 }
+export const NFTSantaPunkDusk = {
+  address: '0x0FADf54ABD2bB0D6128ae7040fBc2b611d42b223',//0xF73396d2BD425413e4957bB0FB6C0fd945F31739
+  photo: 'QmVzzCC2YbLzvdP9Vx4RGLDEdEF4698TJTeEnJdQdbb24E',
+  abi: ERC721Abi
+}
 
 export const ADDRESS_0 = '0x0000000000000000000000000000000000000000'
 export const ADDRESS_INFINITY = '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'
