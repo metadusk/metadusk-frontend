@@ -5,22 +5,23 @@ import {connect} from 'react-redux'
 import {useWeb3React} from '@web3-react/core'
 import {injected} from './web3/connectors'
 import {useBalance} from "./hooks";
+import {multicallClient} from "./web3/multicall";
 
 export const VarContext = createContext()
 let timer = null
 
 function Context(props) {
-  const {chainId, library} = useWeb3React()
+  const {chainId} = useWeb3React()
   // 块高度
   const [blockHeight, setBlockHeight] = useState(0)
   // 当前账户余额 GUARD
   const balance = 0//useBalance(blockHeight, SHOW_ADDRESS)
-  const web3 = injected.supportedChainIds.includes(chainId) ? getWeb3(library) : getHttpWeb3(ChainId.MATIC)
   const getBlockHeight = callback => {
-    web3.eth.getBlockNumber().then(height => {
-      setBlockHeight(height)
+
+    multicallClient.getBlockInfo().then(info => {
+      setBlockHeight(info.number)
       callback && callback()
-      return height
+      return info.number
     })
   }
 
