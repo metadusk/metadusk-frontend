@@ -45,11 +45,13 @@ export default function MintItem({duskCount, mineData}) {
     const contractDuskKit = new ClientContract(NFTDuskKit.abi, NFTDuskKit.address, ChainId.BSC)
     const contractDusk = new ClientContract(NFTDusk.abi, NFTDusk.address, ChainId.BSC)
     const mintContract_ = new ClientContract(mintContract.abi, mintContract.address, ChainId.BSC)
-    multicallClient([
+    const calls = [
       contractDusk.isApprovedForAll(account, mintContract.address),
       contractDuskKit.isApprovedForAll(account, mintContract.address),
-      mintContract_[composeEnable](mintNFT.address)
-    ]).then(data => {
+      mintContract_[composeEnable](account)
+    ]
+    console.log(calls)
+    multicallClient(calls).then(data => {
       console.log(data)
       setIsApprovedDusk(strToBool(data[0]))
       setIsApprovedDuskKit(strToBool(data[1]))
@@ -93,6 +95,7 @@ export default function MintItem({duskCount, mineData}) {
     }).on('receipt', () => {
       message.success('success')
       setShowClaimModal(true)
+      getData()
       dispatch({
         type: DUSK_CLAIM_STATUS,
         duskClaimStatus: Math.random()

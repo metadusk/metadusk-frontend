@@ -89,12 +89,18 @@ if (isTestEnv) {
   NFTSantaPunkDusk.address = '0x0FADf54ABD2bB0D6128ae7040fBc2b611d42b223'
 }
 
+const ALL_DUSK = [
+  NFTDusk,
+  NFTJustineDusk,
+  NFTSantaPunkDusk
+]
 export {
   NFTDusk,
   NFTDuskKit,
   Lottery,
   NFTJustineDusk,
-  NFTSantaPunkDusk
+  NFTSantaPunkDusk,
+  ALL_DUSK
 }
 
 

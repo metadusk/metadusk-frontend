@@ -3,7 +3,7 @@ import { injectIntl } from 'react-intl'
 import Header from "../../components/header";
 import { multicallClient, ClientContract } from "../../web3/multicall"
 import { getIPFSJson } from '../../utils/ipfs'
-import {ChainId, Lottery, NFTDusk, NFTDuskKit, NFTHelper, NFTJustineDusk} from "../../web3/address"
+import {ALL_DUSK, ChainId, Lottery, NFTDusk, NFTDuskKit, NFTHelper, NFTJustineDusk} from "../../web3/address"
 import { mainContext } from '../../reducer'
 import DashBoardBanner from "../../components/dashboard/banner"
 import ListData from '../../components/dashboard/listData'
@@ -24,11 +24,16 @@ const DashBoard = () => {
 
   const getListData = () => {
     const contract = new ClientContract(NFTHelper.abi, NFTHelper.address, ChainId.BSC)
-    multicallClient([contract.getAll(NFTJustineDusk.address, account), contract.getAll(NFTDusk.address, account)]).then(async data => {
+
+    const calls = []
+    for (let i = 0; i < ALL_DUSK.length; i++) {
+      calls.push(contract.getAll(ALL_DUSK[i].address, account))
+    }
+
+    multicallClient(calls).then(async data => {
       const dusks = []
       for (let i = 0; i < data.length; i++) {
         const [ids, urls] = data[i]
-        console.log(data[i], ids, urls)
         for (let i = 0; i < ids.length; i++) {
           const duskItem = {
             tokenURI: urls[i],
@@ -40,7 +45,6 @@ const DashBoard = () => {
           })
         }
       }
-      console.log(dusks)
       setListData(dusks)
     })
   }

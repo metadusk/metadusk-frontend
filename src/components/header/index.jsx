@@ -9,12 +9,13 @@ import cx from "classnames";
 import DropDownSvg from "../../assets/image/svg/drop_down.svg";
 import cs from "classnames";
 
-import {ChainId, NFTDusk, NFTHelper} from "../../web3/address";
+import {ALL_DUSK, ChainId, NFTDusk, NFTHelper} from "../../web3/address";
 
 
 import DefaultAvatar from "../../assets/image/avatar/default_dusk.png";
 import BaseAvatar from "../../assets/image/avatar/base_dusk.png";
 import JustineAvatar from "../../assets/image/avatar/justine_dusk.png";
+import PunkAvatar from "../../assets/image/avatar/punk_dusk.png";
 import { changeNetwork } from "../../web3/connectors";
 import WestarterNFTModal from "../claim-modal/westarter";
 
@@ -57,10 +58,17 @@ const avatarMap = {
   baseDusk: {
     ipfs: "QmPBhcjN3imV3cUJXj9pEXCLp4GpAHV1gPEsotYctropew",
     avatar: BaseAvatar,
+    iconName: 'baseDusk'
   },
   justineDusk: {
     ipfs: "QmNSxp98HNksN4KyV1xxh94MZrhicEv57Zwt7hHYsDykHH",
     avatar: JustineAvatar,
+    iconMame: 'justineDusk'
+  },
+  santaDusk: {
+    ipfs: "QmWjyvXgCLEWgAtj6wCix36F1s8dRgiDkF8Dg1ZAKHS88y",
+    avatar: PunkAvatar,
+    iconName: 'punkDusk'
   },
 };
 
@@ -143,18 +151,31 @@ export default function Header() {
 
   const getNFTData = () => {
     const contract = new ClientContract(NFTHelper.abi, NFTHelper.address, ChainId.BSC);
-    multicallClient([contract.getAll(NFTDusk.address, account)])
+    const calls = []
+    for (let i = 0; i < ALL_DUSK.length; i++) {
+      calls.push(contract.getAll(ALL_DUSK[i].address, account))
+    }
+    multicallClient(calls)
       .then(async (data_) => {
-        const [[ids, urls]] = data_;
-        for (let i = 0; i < ids.length; i++) {
-          if (urls[i] === avatarMap.justineDusk.ipfs) {
-            setAvatar("justineDusk");
-            return;
+        let avatar_ = ''
+        for (let i = 0; i < data_.length; i++) {
+          const [ids, urls] = data_[i];
+          if (urls.length === 0) {
+            continue
           }
-          if (urls[i] === avatarMap.baseDusk.ipfs) {
-            setAvatar("baseDusk");
+          if (urls[0] === avatarMap.santaDusk.ipfs) {
+            avatar_ ="santaDusk"
+            break
+          }
+          if (urls[0] === avatarMap.justineDusk.ipfs) {
+            avatar_ = "justineDusk"
+            continue
+          }
+          if (urls[0] === avatarMap.baseDusk.ipfs && avatar_ !== "justineDusk") {
+            avatar_ = "baseDusk"
           }
         }
+        setAvatar(avatar_)
       });
   };
 
@@ -164,7 +185,7 @@ export default function Header() {
       getNFTData();
     }
   }, [account, state.duskClaimStatus]);
-
+  console.log(avatar)
   const getAvatar = () => {
     return avatarMap[avatar] ? avatarMap[avatar].avatar : DefaultAvatar;
   };
