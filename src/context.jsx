@@ -14,7 +14,7 @@ function Context(props) {
   // 块高度
   const [blockHeight, setBlockHeight] = useState(0)
   // 当前账户余额 GUARD
-  const balance = useBalance(blockHeight, SHOW_ADDRESS)
+  const balance = 0//useBalance(blockHeight, SHOW_ADDRESS)
   const web3 = injected.supportedChainIds.includes(chainId) ? getWeb3(library) : getHttpWeb3(ChainId.MATIC)
   const getBlockHeight = callback => {
     web3.eth.getBlockNumber().then(height => {

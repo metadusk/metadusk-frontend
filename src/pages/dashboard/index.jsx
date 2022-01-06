@@ -1,10 +1,9 @@
 import React, {useContext, useState, useMemo} from 'react'
 import { injectIntl } from 'react-intl'
 import Header from "../../components/header";
-import { getOnlyMultiCallProvider, processResult } from "../../web3/multicall"
+import { multicallClient, ClientContract } from "../../web3/multicall"
 import { getIPFSJson } from '../../utils/ipfs'
 import {ChainId, Lottery, NFTDusk, NFTDuskKit, NFTHelper, NFTJustineDusk} from "../../web3/address"
-import { Contract } from "ethers-multicall-x"
 import { mainContext } from '../../reducer'
 import DashBoardBanner from "../../components/dashboard/banner"
 import ListData from '../../components/dashboard/listData'
@@ -13,9 +12,8 @@ import {exhibitsList} from "../../config/nft";
 import {useActiveWeb3React} from "../../web3";
 
 export const getTokenURI = (tokenId) => {
-  const multicall = getOnlyMultiCallProvider(ChainId.BSC)
-  const contract = new Contract(NFTDusk.address, NFTDusk.abi)
-  return multicall.all([contract.tokenURI(tokenId)]).then(data => processResult(data))
+  const contract = new ClientContract(NFTDusk.abi, NFTDusk.address, ChainId.BSC)
+  return multicallClient([contract.tokenURI(tokenId)])
 }
 
 const DashBoard = () => {
@@ -25,10 +23,8 @@ const DashBoard = () => {
   const { dispatch, state } = useContext(mainContext)
 
   const getListData = () => {
-    const multicall = getOnlyMultiCallProvider(ChainId.BSC)
-    const contract = new Contract(NFTHelper.address, NFTHelper.abi)
-    multicall.all([contract.getAll(NFTJustineDusk.address, account), contract.getAll(NFTDusk.address, account)]).then(async data_ => {
-      const data = processResult(data_)
+    const contract = new ClientContract(NFTHelper.abi, NFTHelper.address, ChainId.BSC)
+    multicallClient([contract.getAll(NFTJustineDusk.address, account), contract.getAll(NFTDusk.address, account)]).then(async data => {
       const dusks = []
       for (let i = 0; i < data.length; i++) {
         const [ids, urls] = data[i]
@@ -51,8 +47,7 @@ const DashBoard = () => {
 
   const getEquipData = () => {
     const filterEquipData = []
-    const multicall = getOnlyMultiCallProvider(ChainId.BSC)
-    const contract = new Contract(NFTDuskKit.address, NFTDuskKit.abi)
+    const contract = new ClientContract(NFTDuskKit.abi, NFTDuskKit.address, ChainId.BSC)
     const calls = exhibitsList.reduce((list, item)=>{
       list.push(
         contract.balanceOf(account, item.id),
@@ -60,8 +55,7 @@ const DashBoard = () => {
       )
       return list
     }, [])
-    multicall.all(calls).then(data => {
-      data = processResult(data)
+    multicallClient(calls).then(data => {
       // const tokenURI = data[4].toString()
       // data = data.splice(0, 4)
       const exhibitsPromise = []

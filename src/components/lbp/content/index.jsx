@@ -4,11 +4,9 @@ import { message, Modal } from "antd";
 import { FormattedMessage, injectIntl } from "react-intl";
 import { VarContext } from "../../../context";
 import {
-  getOnlyMultiCallProvider,
-  processResult,
+  multicallClient, ClientContract
 } from "../../../web3/multicall";
 import { ChainId } from "../../../web3/address";
-import { Contract } from "ethers-multicall-x";
 import { getContract } from "../../../web3/index";
 import { fromWei, toWei, numToWei } from "../../../utils/format";
 import DuskLbpAbi from "../../../web3/abi/LBP.json";
@@ -29,16 +27,14 @@ const LBPContent = () => {
   const [maxPrice, setMaxPrice] = useState(0);
   const { blockHeight } = useContext(VarContext);
   const getDuskInfo = () => {
-    const multicall = getOnlyMultiCallProvider(ChainId.BSC);
-    const lbpInfoContract = new Contract(DuskLBPList.address, DuskLBPList.abi);
+    const lbpInfoContract = new ClientContract(DuskLBPList.abi, DuskLBPList.address, ChainId.BSC);
     const multicallList = [
       lbpInfoContract.currentPrice(),
       lbpInfoContract.paused(),
       lbpInfoContract.priceCut(),
       lbpInfoContract.priceIncrement(),
     ];
-    multicall.all(multicallList).then((data) => {
-      data = processResult(data);
+    multicallClient(multicallList).then((data) => {
       const [currentPrice, paused, priceCut, priceIncrement] = data;
       setCurrentPrice(fromWei(currentPrice).toString());
       setPaused(paused);

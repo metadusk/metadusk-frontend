@@ -20,8 +20,7 @@ import WestarterNFTModal from "../claim-modal/westarter";
 
 import MoreSvg from "../../assets/image/svg/more.svg";
 import { mainContext } from "../../reducer";
-import { getOnlyMultiCallProvider, processResult } from "../../web3/multicall";
-import { Contract } from "ethers-multicall-x";
+import { multicallClient, ClientContract } from "../../web3/multicall";
 
 
 export const navList = [
@@ -143,12 +142,10 @@ export default function Header() {
   const [avatar, setAvatar] = useState("");
 
   const getNFTData = () => {
-    const multicall = getOnlyMultiCallProvider(ChainId.BSC);
-    const contract = new Contract(NFTHelper.address, NFTHelper.abi);
-    multicall
-      .all([contract.getAll(NFTDusk.address, account)])
+    const contract = new ClientContract(NFTHelper.abi, NFTHelper.address, ChainId.BSC);
+    multicallClient([contract.getAll(NFTDusk.address, account)])
       .then(async (data_) => {
-        const [[ids, urls]] = processResult(data_);
+        const [[ids, urls]] = data_;
         for (let i = 0; i < ids.length; i++) {
           if (urls[i] === avatarMap.justineDusk.ipfs) {
             setAvatar("justineDusk");

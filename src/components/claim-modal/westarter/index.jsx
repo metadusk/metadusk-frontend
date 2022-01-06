@@ -1,9 +1,8 @@
 import React, {useMemo, useState} from "react";
 import './index.less'
 import {message, Modal} from "antd";
-import {getOnlyMultiCallProvider, processResult} from "../../../web3/multicall";
+import {multicallClient, ClientContract } from "../../../web3/multicall";
 import {ChainId} from "../../../web3/address";
-import {Contract} from "ethers-multicall-x";
 import AirAllowListNFTAbi from "../../../web3/abi/AirAllowListNFT.json";
 import WARBadgeAbi from "../../../web3/abi/WARBadge.json";
 import {useWeb3React} from "@web3-react/core";
@@ -40,11 +39,9 @@ export default function WestarterNFTModal({visible, setVisible}) {
   const [loading, setLoading] = useState(false)
   const [tokenId, setTokenId] = useState(null)
   const getAuthority = () => {
-    const multicall = getOnlyMultiCallProvider(ChainId.HECO)
-    const warBadgeContract = new Contract(AirAllowListNFT.address, AirAllowListNFT.abi)
-    multicall.all([warBadgeContract.allowList(account), warBadgeContract.withdrawList(account)])
+    const warBadgeContract = new ClientContract(AirAllowListNFT.abi, AirAllowListNFT.address, ChainId.HECO)
+    multicallClient([warBadgeContract.allowList(account), warBadgeContract.withdrawList(account)])
       .then(data => {
-        data = processResult(data)
         const b = {
           'true': true,
           'false': false
@@ -55,13 +52,10 @@ export default function WestarterNFTModal({visible, setVisible}) {
       })
   }
   const getNft = () => {
-    const multicall = getOnlyMultiCallProvider(ChainId.HECO)
-    const contract = new Contract(WARBadge.address, WARBadge.abi)
-    multicall.all([contract.balanceOf(account)]).then(data => {
-      data = processResult(data)
+    const contract = new ClientContract(WARBadge.abi, WARBadge.address, ChainId.HECO)
+    multicallClient([contract.balanceOf(account)]).then(data => {
       if (data[0] > 0) {
-        multicall.all([contract.tokenOfOwnerByIndex(account, data[0] - 1)]).then(data2 => {
-          data2 = processResult(data2)
+        multicallClient([contract.tokenOfOwnerByIndex(account, data[0] - 1)]).then(data2 => {
           setTokenId(data2[0])
         })
       }

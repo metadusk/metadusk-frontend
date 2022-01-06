@@ -1,9 +1,8 @@
 import React, { useMemo, useState, useContext} from "react";
 import './index.less'
 import {message, Modal} from "antd";
-import {getOnlyMultiCallProvider, processResult} from "../../../web3/multicall";
+import { multicallClient, ClientContract} from "../../../web3/multicall";
 import {ChainId} from "../../../web3/address";
-import {Contract} from "ethers-multicall-x";
 import DuskNFTAbi from "../../../web3/abi/DuskNFT.json";
 import {useWeb3React} from "@web3-react/core";
 import cs from "classnames";
@@ -37,11 +36,9 @@ export default function NFTClaimModal({visible, setVisible}) {
   const [now, setNow] = useState(parseInt(Date.now() / 1000))
 
   const getAuthority = () => {
-    const multicall = getOnlyMultiCallProvider(ChainId.BSC)
-    const warBadgeContract = new Contract(DuskAllowListNFT.address, DuskAllowListNFT.abi)
-    multicall.all([warBadgeContract.allowList(account), warBadgeContract.withdrawList(account), warBadgeContract.begin()])
+    const warBadgeContract = new ClientContract(DuskAllowListNFT.abi, DuskAllowListNFT.address, ChainId.BSC)
+    multicallClient([warBadgeContract.allowList(account), warBadgeContract.withdrawList(account), warBadgeContract.begin()])
       .then(data => {
-        data = processResult(data)
         const b = {
           'true': true,
           'false': false
@@ -55,19 +52,6 @@ export default function NFTClaimModal({visible, setVisible}) {
         setLoading(false)
       })
   }
-  // const getNft = () => {
-  //   const multicall = getOnlyMultiCallProvider(ChainId.BSC)
-  //   const contract = new Contract(WARBadge.address, WARBadge.abi)
-  //   multicall.all([contract.balanceOf(account)]).then(data => {
-  //     data = processResult(data)
-  //     if (data[0] > 0) {
-  //       multicall.all([contract.tokenOfOwnerByIndex(account, data[0] - 1)]).then(data2 => {
-  //         data2 = processResult(data2)
-  //         setTokenId(data2[0])
-  //       })
-  //     }
-  //   })
-  // }
   const onClaim = () => {
     if (!available || loading) {
       return

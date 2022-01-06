@@ -7,8 +7,7 @@ import BlindBoxNft from "../../../components/blind-box/nft";
 import {getContract, useActiveWeb3React} from "../../../web3";
 import {ChainId, Lottery} from "../../../web3/address";
 import LotteryAbi from '../../../web3/abi/Lottery.json'
-import {getOnlyMultiCallProvider, processResult} from "../../../web3/multicall";
-import {Contract} from "ethers-multicall-x";
+import {multicallClient, ClientContract} from "../../../web3/multicall";
 import {useNow} from "../../../hooks";
 import {LoadingOutlined} from "@ant-design/icons";
 import ButtonM from "../../button-m";
@@ -17,9 +16,6 @@ const booleanType = {
   'true': true,
   'false': false
 }
-
-
-const multicall = getOnlyMultiCallProvider(ChainId.BSC)
 
 const statusClassMap = {
   'static': 'static',
@@ -56,16 +52,14 @@ export default function CommonBox() {
 
   const getData = () => {
     setLoadLoading(true)
-    const multicall = getOnlyMultiCallProvider(ChainId.BSC)
-    const contract = new Contract(Lottery.address, Lottery.abi)
+    const contract = new ClientContract(Lottery.abi, Lottery.address, ChainId.BSC)
     const calls = [
       contract.begin(),
       contract.end(),
       contract.betCost(),
       contract.needClaim(account)
     ]
-    multicall.all(calls).then(async data => {
-      data = processResult(data)
+    multicallClient(calls).then(async data => {
       const [begin, end, betCost, needClaim] = data
       setPageData({begin, end, betCost, needClaim})
       if (booleanType[needClaim]) {
@@ -82,9 +76,8 @@ export default function CommonBox() {
   }, [account])
 
   const getClaimData = () => {
-    const contract = new Contract(Lottery.address, Lottery.abi)
-    multicall.all([contract.lastClaimIds(account)]).then(data => {
-      data = processResult(data)
+    const contract = new ClientContract(Lottery.abi, Lottery.address, ChainId.BSC)
+    multicallClient([contract.lastClaimIds(account)]).then(data => {
       if (Number(data) > 0) {
         setClaimId(data[0])
         setClaimLoading(false)

@@ -11,8 +11,7 @@ import {getContract, useActiveWeb3React} from "../../../../web3";
 import ButtonM from "../../../button-m";
 import {ChainId, NFTDusk, NFTDuskKit} from "../../../../web3/address";
 import {LoadingOutlined} from "@ant-design/icons";
-import {getOnlyMultiCallProvider, processResult} from "../../../../web3/multicall";
-import {Contract} from "ethers-multicall-x";
+import {multicallClient, ClientContract} from "../../../../web3/multicall";
 import {strToBool} from "../../../../utils";
 import {message} from "antd";
 import MineClaimModal from "../../../claim-modal/MineClaim";
@@ -42,16 +41,14 @@ export default function MintItem({duskCount, mineData}) {
   const canMint_ = canMint()
 
   const getData = () => {
-    const multicall = getOnlyMultiCallProvider(ChainId.BSC)
-    const contractDuskKit = new Contract(NFTDuskKit.address, NFTDuskKit.abi)
-    const contractDusk = new Contract(NFTDusk.address, NFTDusk.abi)
-    // const contractLottery = new Contract(Lottery.address, Lottery.abi)
-    multicall.all([
+    const contractDuskKit = new ClientContract(NFTDuskKit.abi, NFTDuskKit.address, ChainId.BSC)
+    const contractDusk = new ClientContract(NFTDusk.abi, NFTDusk.address, ChainId.BSC)
+    // const contractLottery = new ClientContract(Lottery.abi, Lottery.address, ChainId.BSC)
+    multicallClient([
       contractDusk.isApprovedForAll(account, mintContract.address),
       contractDuskKit.isApprovedForAll(account, mintContract.address),
       // contractLottery.needClaim(account),
     ]).then(data => {
-      data = processResult(data)
       console.log(data)
       setIsApprovedDusk(strToBool(data[0]))
       setIsApprovedDuskKit(strToBool(data[1]))

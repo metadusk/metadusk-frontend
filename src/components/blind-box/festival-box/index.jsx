@@ -10,8 +10,7 @@ import {getContract, useActiveWeb3React} from "../../../web3";
 import {ADDRESS_INFINITY, ChainId, ERC20Abi} from "../../../web3/address";
 
 import ItemPoolAbi from '../../../web3/abi/ItemPool.json'
-import {getOnlyMultiCallProvider, processResult} from "../../../web3/multicall";
-import {Contract} from "ethers-multicall-x";
+import {multicallClient, ClientContract} from "../../../web3/multicall";
 import {useNow} from "../../../hooks";
 import {LoadingOutlined} from "@ant-design/icons";
 import ButtonM from "../../../components/button-m";
@@ -24,8 +23,6 @@ const ItemPool = {
   address: '0xf93ece26fE5abFB613F1CEA2E36690A2D049C3BD',
   abi: ItemPoolAbi
 }
-
-const multicall = getOnlyMultiCallProvider(ChainId.BSC)
 
 const statusClassMap = {
   'static': 'static',
@@ -72,9 +69,8 @@ export default function FestivalBox() {
 
   const getData = () => {
     setLoadLoading(true)
-    const multicall = getOnlyMultiCallProvider(ChainId.BSC)
-    const contract = new Contract(ItemPool.address, ItemPool.abi)
-    const helmetContract = new Contract(HELMET_ADDRESS, ERC20Abi)
+    const contract = new ClientContract(ItemPool.abi, ItemPool.address, ChainId.BSC)
+    const helmetContract = new ClientContract(ERC20Abi, HELMET_ADDRESS, ChainId.BSC)
     const calls = [
       contract.begin(),
       contract.end(),
@@ -82,8 +78,7 @@ export default function FestivalBox() {
       helmetContract.allowance(account, ItemPool.address),
       helmetContract.balanceOf(account)
     ]
-    multicall.all(calls).then(async data => {
-      data = processResult(data)
+    multicallClient(calls).then(async data => {
       const [begin, end, allowListGetItem, allowance, balance] = data
       const helmetBalance = fromWei(balance, 18).toFixed(2)
       setIsApproveHelmet(allowance > 0)
@@ -99,9 +94,8 @@ export default function FestivalBox() {
   }, [account])
 
   const getClaimData = () => {
-    const contract = new Contract(ItemPool.address, ItemPool.abi)
-    multicall.all([contract.lastClaimIds(account)]).then(data => {
-      data = processResult(data)
+    const contract = new ClientContract(ItemPool.abi, ItemPool.address, ChainId.BSC)
+    multicallClient([contract.lastClaimIds(account)]).then(data => {
       if (Number(data) > 0) {
         setClaimId(data[0])
         setTimeout(() => {

@@ -1,8 +1,8 @@
 import React, {useMemo, useState} from "react";
 import {FormattedMessage} from "react-intl";
 import {useActiveWeb3React} from "../../../../web3";
-import {getOnlyMultiCallProvider, processResult} from "../../../../web3/multicall";
-import {Contract} from "ethers-multicall-x";
+import {multicallClient, ClientContract} from "../../../../web3/multicall";
+
 import {WARBadge} from "../../../claim-modal/westarter";
 import {getIPFSFile} from "../../../../utils/ipfs";
 import './index.less'
@@ -16,16 +16,14 @@ export default function Other() {
   const [list, setList] = useState([])
 
   const getList = (nftConfig) => {
-    const multicall = getOnlyMultiCallProvider(nftConfig.networkId)
-    const contract = new Contract(nftConfig.address, nftConfig.abi)
+    const contract = new ClientContract(nftConfig.abi, nftConfig.address, nftConfig.networkId)
     return new Promise((resolve, reject) => {
-      multicall.all([contract.balanceOf(account)]).then(async data => {
-        data = processResult(data)
+      multicallClient([contract.balanceOf(account)]).then(async data => {
         const count = data[0]
         if (data[0] > 0) {
           const resultList = []
           for (let i = 0; i < data[0]; i++) {
-            const tokenId = await multicall.all([contract.tokenOfOwnerByIndex(account, 0)]).then(data2 => processResult(data2)[0])
+            const tokenId = await multicallClient([contract.tokenOfOwnerByIndex(account, 0)]).then(data2 => data2[0])
             const img = await getIPFSFile(nftConfig.tokenURI)
             resultList.push({
               ...nftConfig,
