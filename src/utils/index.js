@@ -10,3 +10,13 @@ export const strToBool = (str) =>{
     'false': false
   }[str]
 }
+export const checkIsTestEnv = () => {
+  try {
+    const env = sessionStorage.getItem('metadusk_test_env')
+    const local = window.location.host.indexOf('localhost') !== -1
+    const test = window.location.host.indexOf('test') !== -1
+    return env && (local || test)
+  } catch (e){
+    return false
+  }
+}

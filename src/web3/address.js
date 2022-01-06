@@ -3,6 +3,8 @@ import ERC721Abi from "./abi/ERC721.json";
 import ERC1155Abi from "./abi/ERC1155.json";
 import LotteryAbi from "./abi/Lottery.json";
 import ERC20 from './abi/ERC20.json'
+import {checkIsTestEnv} from "../utils";
+const isTestEnv = checkIsTestEnv()
 
 export const ChainId = {
   ETH: 1,
@@ -46,30 +48,30 @@ export const NFTHelper = {
 }
 
 // 721
-export const NFTDusk = {
-  address: '0x3eB30B5323EB3d421047a49625D89495B42E8115',//'0xeDfbf15775a2E42E03d059Fb98DA6e92284de7be',
+const NFTDusk = {
+  address: '0xeDfbf15775a2E42E03d059Fb98DA6e92284de7be',
   photo: 'QmVjCtwKixfJBxFcMjnVD66vyvFc3EtyXh4zmsYLu6qwZP',
   abi: ERC721Abi
 }
 
 // 1155
-export const NFTDuskKit = {
-  address: '0xEdA0B4dB9704EF54058E2E30Fb112eB2b4bF6D7E',//0x9f39766E4A8d2E6D55F406C71140089096687382
+const NFTDuskKit = {
+  address: '0x9f39766E4A8d2E6D55F406C71140089096687382',
   abi: ERC1155Abi
 }
 
-export const Lottery = {
-  address: '0x692994b183B467965D81398d4dAc60fE465897f6',//0xd732fD147A559fD427123A2055A1941359BB97be
+const Lottery = {
+  address: '0xd732fD147A559fD427123A2055A1941359BB97be',
   abi: LotteryAbi
 }
 
-export const NFTJustineDusk = {
-  address: '0x86EFF87137C2453Ccc1A6c961eFbfcf467134780',//0x17DFb8867184aFa9116Db927B87C27CC27A92F89
+const NFTJustineDusk = {
+  address: '0x17DFb8867184aFa9116Db927B87C27CC27A92F89',
   photo: 'QmVtvcn7HACq7QGQ9zSsQyftWwVBomHnWuCjvfp51TERNf',
   abi: ERC721Abi
 }
-export const NFTSantaPunkDusk = {
-  address: '0x0FADf54ABD2bB0D6128ae7040fBc2b611d42b223',//0xF73396d2BD425413e4957bB0FB6C0fd945F31739
+const NFTSantaPunkDusk = {
+  address: '0xF73396d2BD425413e4957bB0FB6C0fd945F31739',
   photo: 'QmVzzCC2YbLzvdP9Vx4RGLDEdEF4698TJTeEnJdQdbb24E',
   abi: ERC721Abi
 }
@@ -78,5 +80,21 @@ export const ADDRESS_0 = '0x0000000000000000000000000000000000000000'
 export const ADDRESS_INFINITY = '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'
 export const ERC20Abi = ERC20.abi
 
+if (isTestEnv) {
+  console.log('---------test env---------')
+  NFTDusk.address = '0x3eB30B5323EB3d421047a49625D89495B42E8115'
+  NFTDuskKit.address = '0xEdA0B4dB9704EF54058E2E30Fb112eB2b4bF6D7E'
+  Lottery.address = '0x692994b183B467965D81398d4dAc60fE465897f6'
+  NFTJustineDusk.address = '0x86EFF87137C2453Ccc1A6c961eFbfcf467134780'
+  NFTSantaPunkDusk.address = '0x0FADf54ABD2bB0D6128ae7040fBc2b611d42b223'
+}
+
+export {
+  NFTDusk,
+  NFTDuskKit,
+  Lottery,
+  NFTJustineDusk,
+  NFTSantaPunkDusk
+}
 
 
