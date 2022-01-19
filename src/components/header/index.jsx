@@ -56,17 +56,20 @@ const superNetworks = [ChainId.BSC, ChainId.HECO];
 
 const avatarMap = {
   baseDusk: {
-    ipfs: "QmPBhcjN3imV3cUJXj9pEXCLp4GpAHV1gPEsotYctropew",
+    ipfs: "QmYeiAviefcjEeBAT9dM1RmHxKGdAmLwJszWBKxq4q3fQy",
+    ipfs_: "QmPBhcjN3imV3cUJXj9pEXCLp4GpAHV1gPEsotYctropew",//old
     avatar: BaseAvatar,
     iconName: 'baseDusk'
   },
   justineDusk: {
-    ipfs: "QmNSxp98HNksN4KyV1xxh94MZrhicEv57Zwt7hHYsDykHH",
+    ipfs: "QmZ7QBWMPE3mCHJEeEzQMAdznkAwNUQm9LYt8cjW3rXR5e",
+    ipfs_: "QmNSxp98HNksN4KyV1xxh94MZrhicEv57Zwt7hHYsDykHH",//old
     avatar: JustineAvatar,
     iconMame: 'justineDusk'
   },
   santaDusk: {
-    ipfs: "QmWjyvXgCLEWgAtj6wCix36F1s8dRgiDkF8Dg1ZAKHS88y",
+    ipfs: "QmbNTMEHdFoiUJkx8A5DvEzi1rwXtArNcQEqtbKATXVViA",
+    ipfs_: "QmWjyvXgCLEWgAtj6wCix36F1s8dRgiDkF8Dg1ZAKHS88y",//old
     avatar: PunkAvatar,
     iconName: 'punkDusk'
   },
@@ -158,22 +161,13 @@ export default function Header() {
     multicallClient(calls)
       .then(async (data_) => {
         let avatar_ = ''
-        for (let i = 0; i < data_.length; i++) {
-          const [ids, urls] = data_[i];
-          if (urls.length === 0) {
-            continue
-          }
-          if (urls[0] === avatarMap.santaDusk.ipfs) {
-            avatar_ ="santaDusk"
-            break
-          }
-          if (urls[0] === avatarMap.justineDusk.ipfs) {
-            avatar_ = "justineDusk"
-            continue
-          }
-          if (urls[0] === avatarMap.baseDusk.ipfs && avatar_ !== "justineDusk") {
-            avatar_ = "baseDusk"
-          }
+        const [[duskIds], [justineIds], [punkIds]] = data_
+        if (punkIds.length > 0) {
+          avatar_ ="santaDusk"
+        } else if (justineIds.length > 0) {
+          avatar_ ="justineDusk"
+        } else if (duskIds.length > 0) {
+          avatar_ = "baseDusk"
         }
         setAvatar(avatar_)
       });
@@ -185,7 +179,6 @@ export default function Header() {
       getNFTData();
     }
   }, [account, state.duskClaimStatus]);
-  console.log(avatar)
   const getAvatar = () => {
     return avatarMap[avatar] ? avatarMap[avatar].avatar : DefaultAvatar;
   };

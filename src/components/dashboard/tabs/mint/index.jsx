@@ -29,7 +29,7 @@ export default function Mint({listData, equipData}) {
   const [mintList, setMintList] = useState(mintListData)
   useMemo(() => {
     const duskCount_ = listData.reduce((n, item) => {
-      if (item.tokenURI === 'QmPBhcjN3imV3cUJXj9pEXCLp4GpAHV1gPEsotYctropew'){
+      if (item.tokenURI === 'QmYeiAviefcjEeBAT9dM1RmHxKGdAmLwJszWBKxq4q3fQy'){
         n = n + ~~item.count
       }
       return n

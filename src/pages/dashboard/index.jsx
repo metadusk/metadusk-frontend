@@ -11,11 +11,6 @@ import './index.less'
 import {exhibitsList} from "../../config/nft";
 import {useActiveWeb3React} from "../../web3";
 
-export const getTokenURI = (tokenId) => {
-  const contract = new ClientContract(NFTDusk.abi, NFTDusk.address, ChainId.BSC)
-  return multicallClient([contract.tokenURI(tokenId)])
-}
-
 const DashBoard = () => {
   const { active, account, chainId } = useActiveWeb3React()
   const [listData, setListData] = useState([])
@@ -36,10 +31,11 @@ const DashBoard = () => {
         const [ids, urls] = data[i]
         for (let i = 0; i < ids.length; i++) {
           const duskItem = {
-            tokenURI: urls[i],
+            tokenURI: urls[i].split('/').pop(),
             tokenId: ids[i],
           }
           await getIPFSJson(duskItem.tokenURI).then(res => {
+            console.log('res', res)
             duskItem.content = res.data
             dusks.push(duskItem)
           })
@@ -60,11 +56,14 @@ const DashBoard = () => {
       return list
     }, [])
     multicallClient(calls).then(data => {
-      // const tokenURI = data[4].toString()
-      // data = data.splice(0, 4)
       const exhibitsPromise = []
       for (let i = 0; i < exhibitsList.length; i++) {
-        exhibitsPromise.push(getIPFSJson(data[i*2+1] + `/${exhibitsList[i].id}.json`))
+        let url = data[i*2+1]
+        if (url.indexOf('https') === 0){
+          const url_ = url.split('/')
+          url = url_[url_.length - 2]
+        }
+        exhibitsPromise.push(getIPFSJson(url + `/${exhibitsList[i].id}.json`))
       }
       // data = ['0', '0', '0', '0']
       Promise.all(exhibitsPromise)
