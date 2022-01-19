@@ -38,7 +38,7 @@ const DuskList = [
   {
     symbol: "Xmas Punk",
     logo: XmasPunk,
-    address: "coming soon",
+    address: "0xF73396d2BD425413e4957bB0FB6C0fd945F31739",
     info: "Xmas Dusk is wrapped in New Year and Dexus vide, with skateboard and festival hat. The sunglasses and golden teeth leak the info of his mysterious background.",
     button: "Mint",
     href: "/dashboard",
