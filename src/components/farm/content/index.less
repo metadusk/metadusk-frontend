@@ -1,0 +1,145 @@
+.farm-content {
+  width: 100%;
+}
+.swap-token {
+  text-align: center;
+  width: 180px;
+  height: 50px;
+  background: #842df9;
+  box-shadow: inset 0px -4px 0px 0px #ffffff;
+  transform: skew(-15deg);
+  margin-left: 5px;
+  p {
+    transform: skew(15deg);
+  }
+  span {
+    color: #ffffff;
+    line-height: 50px;
+    letter-spacing: 1px;
+    font-size: 16px;
+  }
+  span:nth-of-type(1) {
+    font-family: PingFangSC-Regular;
+  }
+  span:nth-of-type(2) {
+    font-family: BlocExtCondC;
+  }
+}
+.token-balance {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  > div {
+    font-size: 16px;
+    font-family: BlocExtCondC;
+    font-weight: 400;
+    color: #adadad;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    span {
+      color: #fff;
+    }
+  }
+  &-mine {
+    margin-right: 30px;
+  }
+}
+.nft-balance {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 200px;
+}
+.nft-dusk {
+  width: 200px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 45px 10px 0;
+}
+.nft-dusk-card {
+  width: 200px;
+  height: 289px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+.nft-swap-btn {
+  margin-top: 20px;
+  width: 130px;
+  height: 40px;
+  background-image: url("../../../assets/image/farm/btn_bg.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: BlocExtCondC;
+  color: #96008b;
+}
+.equip-balance {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 200px;
+  .content{
+    padding: 0 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+.equip-dusk {
+  width: 213.5px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 45px 10px 0;
+}
+.equip-dusk-card {
+  width: 213.5px;
+  height: 208.5px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+.equip-swap-btn {
+  margin-top: 20px;
+  width: 90px;
+  height: 28px;
+  background-image: url("../../../assets/image/farm/btn_bg.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: BlocExtCondC;
+  color: #96008b;
+}
+@media screen and(min-width:750px) {
+  .farm-content {
+    width: 100%;
+    background-image: url("../../../assets/image/show/light1.png"),
+      url("../../../assets/image/show/light2.png"),
+      url("../../../assets/image/show/light3.png");
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: top right, center left, bottom right;
+    background-size: 525px 679.5px, 703px 783px, 643px, 829px;
+    padding-top: 150px;
+    flex: 1;
+  }
+  .farm-content-wrap {
+    width: 1280px;
+    margin: 0 auto;
+  }
+}
+@media screen and(max-width:750px) {
+}

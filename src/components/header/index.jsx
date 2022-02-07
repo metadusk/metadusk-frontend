@@ -9,8 +9,7 @@ import cx from "classnames";
 import DropDownSvg from "../../assets/image/svg/drop_down.svg";
 import cs from "classnames";
 
-import {ALL_DUSK, ChainId, NFTDusk, NFTHelper} from "../../web3/address";
-
+import { ALL_DUSK, ChainId, NFTDusk, NFTHelper } from "../../web3/address";
 
 import DefaultAvatar from "../../assets/image/avatar/default_dusk.png";
 import BaseAvatar from "../../assets/image/avatar/base_dusk.png";
@@ -22,7 +21,6 @@ import WestarterNFTModal from "../claim-modal/westarter";
 import MoreSvg from "../../assets/image/svg/more.svg";
 import { mainContext } from "../../reducer";
 import { multicallClient, ClientContract } from "../../web3/multicall";
-
 
 export const navList = [
   {
@@ -42,6 +40,10 @@ export const navList = [
     route: "/show",
   },
   {
+    name: "Farm",
+    route: "/farm",
+  },
+  {
     name: "About us",
     route: "/aboutUs",
   },
@@ -57,21 +59,21 @@ const superNetworks = [ChainId.BSC, ChainId.HECO];
 const avatarMap = {
   baseDusk: {
     ipfs: "QmYeiAviefcjEeBAT9dM1RmHxKGdAmLwJszWBKxq4q3fQy",
-    ipfs_: "QmPBhcjN3imV3cUJXj9pEXCLp4GpAHV1gPEsotYctropew",//old
+    ipfs_: "QmPBhcjN3imV3cUJXj9pEXCLp4GpAHV1gPEsotYctropew", //old
     avatar: BaseAvatar,
-    iconName: 'baseDusk'
+    iconName: "baseDusk",
   },
   justineDusk: {
     ipfs: "QmZ7QBWMPE3mCHJEeEzQMAdznkAwNUQm9LYt8cjW3rXR5e",
-    ipfs_: "QmNSxp98HNksN4KyV1xxh94MZrhicEv57Zwt7hHYsDykHH",//old
+    ipfs_: "QmNSxp98HNksN4KyV1xxh94MZrhicEv57Zwt7hHYsDykHH", //old
     avatar: JustineAvatar,
-    iconMame: 'justineDusk'
+    iconMame: "justineDusk",
   },
   santaDusk: {
     ipfs: "QmbNTMEHdFoiUJkx8A5DvEzi1rwXtArNcQEqtbKATXVViA",
-    ipfs_: "QmWjyvXgCLEWgAtj6wCix36F1s8dRgiDkF8Dg1ZAKHS88y",//old
+    ipfs_: "QmWjyvXgCLEWgAtj6wCix36F1s8dRgiDkF8Dg1ZAKHS88y", //old
     avatar: PunkAvatar,
-    iconName: 'punkDusk'
+    iconName: "punkDusk",
   },
 };
 
@@ -153,26 +155,28 @@ export default function Header() {
   const [avatar, setAvatar] = useState("");
 
   const getNFTData = () => {
-    const contract = new ClientContract(NFTHelper.abi, NFTHelper.address, ChainId.BSC);
-    const calls = []
+    const contract = new ClientContract(
+      NFTHelper.abi,
+      NFTHelper.address,
+      ChainId.BSC
+    );
+    const calls = [];
     for (let i = 0; i < ALL_DUSK.length; i++) {
-      calls.push(contract.getAll(ALL_DUSK[i].address, account))
+      calls.push(contract.getAll(ALL_DUSK[i].address, account));
     }
-    multicallClient(calls)
-      .then(async (data_) => {
-        let avatar_ = ''
-        const [[duskIds], [justineIds], [punkIds]] = data_
-        if (punkIds.length > 0) {
-          avatar_ ="santaDusk"
-        } else if (justineIds.length > 0) {
-          avatar_ ="justineDusk"
-        } else if (duskIds.length > 0) {
-          avatar_ = "baseDusk"
-        }
-        setAvatar(avatar_)
-      });
+    multicallClient(calls).then(async (data_) => {
+      let avatar_ = "";
+      const [[duskIds], [justineIds], [punkIds]] = data_;
+      if (punkIds.length > 0) {
+        avatar_ = "santaDusk";
+      } else if (justineIds.length > 0) {
+        avatar_ = "justineDusk";
+      } else if (duskIds.length > 0) {
+        avatar_ = "baseDusk";
+      }
+      setAvatar(avatar_);
+    });
   };
-
 
   useMemo(() => {
     if (account) {
@@ -182,7 +186,6 @@ export default function Header() {
   const getAvatar = () => {
     return avatarMap[avatar] ? avatarMap[avatar].avatar : DefaultAvatar;
   };
-
 
   return (
     <div className="header">
