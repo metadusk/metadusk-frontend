@@ -214,10 +214,18 @@ const FarmContent = () => {
           for (let i = 0; i < exhibitsList.length; i++) {
             res[i].data.count = data[i * 2];
             res[i].data.id = exhibitsList[i].id;
-            let volIndex = allStake1155[0].findIndex(
-              (item) => item === res[i].data.id
-            );
-            res[i].data.stake = volIndex === -1 ? 0 : allStake1155[1][volIndex];
+            let volIndexs = [],
+              stake = 0;
+            allStake1155[0].some((item, index) => {
+              if (item === res[i].data.id) {
+                volIndexs.push(index);
+              }
+            });
+
+            volIndexs.forEach((item) => {
+              stake += allStake1155[1][item] * 1;
+            });
+            res[i].data.stake = stake;
             filterEquipData.push(res[i].data);
           }
           setEquipData(filterEquipData);

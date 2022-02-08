@@ -166,7 +166,7 @@ export default function WestarterNFTModal({
     if (visible && account) {
       getApproveStatus();
       if (actionType === 1) {
-        setEquipVolume("");
+        setEquipVolume(currentData.count);
       }
       if (actionType === 2) {
         setEquipVolume(currentData.stake);
@@ -194,6 +194,9 @@ export default function WestarterNFTModal({
         </p>
         <p className="equip-token-id">
           ID: <span>{currentData.id}</span>
+        </p>
+        <p className="equip-token-id">
+          Card: <span>10</span>
         </p>
       </div>
       <div className="equip-token-volume">
