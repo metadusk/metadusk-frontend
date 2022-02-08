@@ -1,33 +1,16 @@
 import React, { useMemo, useState } from "react";
 import "./index.less";
 import { message, Modal } from "antd";
-import { multicallClient, ClientContract } from "../../../web3/multicall";
 import { ChainId } from "../../../web3/address";
-import AirAllowListNFTAbi from "../../../web3/abi/AirAllowListNFT.json";
-import WARBadgeAbi from "../../../web3/abi/WARBadge.json";
 import { useWeb3React } from "@web3-react/core";
-import cs from "classnames";
 import { getContract } from "../../../web3";
-import { changeNetwork } from "../../../web3/connectors";
 import { LoadingOutlined } from "@ant-design/icons";
-import { exhibitsList } from "../../../config/nft";
 import {
   NFTDuskKit,
   NFTStake,
   NFTStakeToken,
   ADDRESS_INFINITY,
 } from "../../../web3/address";
-export const AirAllowListNFT = {
-  address: "0x1dFaC1cCF1655F5812b8Aaba81Afb3A5D10272b9",
-  abi: AirAllowListNFTAbi,
-};
-export const WARBadge = {
-  address: "0xcc7dbBe86356f570aD0ba5937D764e64E9931593",
-  abi: WARBadgeAbi,
-  name: "WAR Badge",
-  networkId: ChainId.HECO,
-  tokenURI: "QmeysNksZt918bNbATm7RbYGq5RET8jp1iVTeYKtr4MpBv",
-};
 
 export function createDiv(n) {
   const list = [];
@@ -47,10 +30,7 @@ export default function WestarterNFTModal({
   const { account, chainId, library } = useWeb3React();
   const [approveStatus, setApproveStatus] = useState(false);
   const [equipVolume, setEquipVolume] = useState("");
-
-  const [received, setReceived] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [tokenId, setTokenId] = useState(null);
 
   const getApproveStatus = () => {
     if (actionType === 1) {
@@ -87,6 +67,7 @@ export default function WestarterNFTModal({
     }
   };
   const handleClickApprove = () => {
+    setLoading(true);
     if (actionType === 1) {
       const ApproveContracts = getContract(
         library,
@@ -99,6 +80,7 @@ export default function WestarterNFTModal({
         .on("receipt", async (_, receipt) => {
           message.success("success");
           setApproveStatus(true);
+          setLoading(false);
         })
         .on("error", (err, receipt) => {
           setApproveStatus(false);
@@ -116,6 +98,7 @@ export default function WestarterNFTModal({
         .on("receipt", async (_, receipt) => {
           message.success("success");
           setApproveStatus(true);
+          setLoading(false);
         })
         .on("error", (err, receipt) => {
           setApproveStatus(false);
@@ -123,6 +106,10 @@ export default function WestarterNFTModal({
     }
   };
   const handleClickAction = () => {
+    if (!(equipVolume * 1)) {
+      return;
+    }
+    setLoading(true);
     if (actionType === 1) {
       const StakeContracts = getContract(
         library,
@@ -135,11 +122,13 @@ export default function WestarterNFTModal({
         .on("receipt", async (_, receipt) => {
           message.success("success");
           setVisible(false);
+          setLoading(false);
           reloadData();
         })
         .on("error", (err, receipt) => {
           message.success("error");
           setVisible(false);
+          setLoading(false);
           reloadData();
         });
     }
@@ -164,9 +153,24 @@ export default function WestarterNFTModal({
         });
     }
   };
+  const handleClickSetVolume = () => {
+    if (actionType === 1) {
+      console.log(currentData);
+      setEquipVolume(currentData.count);
+    }
+    if (actionType === 2) {
+      setEquipVolume(currentData.stake);
+    }
+  };
   useMemo(() => {
     if (visible && account) {
       getApproveStatus();
+      if (actionType === 1) {
+        setEquipVolume("");
+      }
+      if (actionType === 2) {
+        setEquipVolume(currentData.stake);
+      }
     }
   }, [visible, account]);
   return (
@@ -195,18 +199,22 @@ export default function WestarterNFTModal({
       <div className="equip-token-volume">
         <input
           type="text"
+          value={equipVolume}
+          disabled={actionType === 2}
           onChange={(e) => {
             setEquipVolume(e.target.value);
           }}
         />
-        <span>Max</span>
+        <span onClick={() => handleClickSetVolume()}>Max</span>
       </div>
       {approveStatus ? (
         <div className="equip-claim" onClick={() => handleClickAction()}>
+          {loading && <LoadingOutlined style={{ marginRight: "5px" }} />}
           {actionType === 1 ? "Stake" : "Withdraw"}
         </div>
       ) : (
         <div className="equip-claim" onClick={() => handleClickApprove()}>
+          {loading && <LoadingOutlined style={{ marginRight: "5px" }} />}
           Approve
         </div>
       )}

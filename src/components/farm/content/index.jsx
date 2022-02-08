@@ -27,16 +27,15 @@ const FarmContent = () => {
   const [listData, setListData] = useState([]);
   const [stakeListData, setStakeListData] = useState([]);
   const [equipData, setEquipData] = useState([]);
-  const [allStake1155, setAllStake1155] = useState([]);
   const [currentData, setCurrentDataData] = useState({});
   const [actionType, setActionType] = useState("");
   const [stakeTokenStatus, setStakeTokenStatus] = useState(false);
-  const [equipStatus, setequipStatus] = useState(false);
   const [showEquipModal, setShowEquipModal] = useState(false);
   const [tokenBalance, setTokenBalance] = useState(0);
   const [kitsTokenBalance, setKitsTokenBalance] = useState(0);
   const [duskTokenBalance, setDuskTokenBalance] = useState(0);
   const getDashBord = () => {
+    console.log("Info My Data Refresh Success ~~~~~~~~~~~~");
     const StakeTokenContract = new ClientContract(
       NFTStakeToken.abi,
       NFTStakeToken.address,
@@ -97,6 +96,7 @@ const FarmContent = () => {
   };
   // My 721 NFT
   const getListData = () => {
+    console.log("Info My Dusk NFT Refresh Success ~~~~~~~~~~~~");
     const contract = new ClientContract(
       NFTHelper.abi,
       NFTHelper.address,
@@ -127,17 +127,20 @@ const FarmContent = () => {
             status: data[i * 1 + calls.length * 1],
             index: i,
           };
+          console.log(duskItem);
           await getIPFSJson(duskItem.tokenURI).then((res) => {
             duskItem.content = res.data;
             dusks.push(duskItem);
           });
         }
       }
+      console.log(dusks);
       setListData(dusks);
     });
   };
   // My Stake 721 NFT
   const getStakeListData = () => {
+    console.log("Info My Stake Dusk NFT Refresh Success ~~~~~~~~~~~~");
     const StakeContract721 = new ClientContract(
       NFTStake.abi,
       NFTStake.address,
@@ -222,21 +225,6 @@ const FarmContent = () => {
       }
     );
   };
-  // 1155 NFT Approve Status
-  const getEquipStatus = () => {
-    // 1155
-    const ApproveContract1155 = getContract(
-      library,
-      NFTDuskKit.abi,
-      NFTDuskKit.address
-    );
-    ApproveContract1155.methods
-      .isApprovedForAll(account, NFTStake.address)
-      .call()
-      .then((res) => {
-        setequipStatus(res);
-      });
-  };
   // StakeToken Apporve Status
   const getStakeTokenStatus = () => {
     // 1155
@@ -282,6 +270,8 @@ const FarmContent = () => {
         .on("receipt", async (_, receipt) => {
           message.success("success");
           getListData();
+          getStakeListData();
+          getDashBord();
         })
         .on("error", (err, receipt) => {
           message.success("error");
@@ -296,9 +286,9 @@ const FarmContent = () => {
         .setApprovalForAll(NFTStake.address, true)
         .send({ from: account })
         .on("receipt", async (_, receipt) => {
-          message.success("success");
           getListData();
           getStakeListData();
+          message.success("success");
         })
         .on("error", (err, receipt) => {});
     }
@@ -316,9 +306,10 @@ const FarmContent = () => {
         .nftUnStake(data.index, data.tokenId)
         .send({ from: account })
         .on("receipt", async (_, receipt) => {
-          message.success("success");
           getListData();
           getStakeListData();
+          message.success("success");
+          getDashBord();
         })
         .on("error", (err, receipt) => {
           message.success("error");
@@ -342,15 +333,11 @@ const FarmContent = () => {
   };
   const reloadData = () => {
     getEquipData();
+    getDashBord();
     console.log("Refresh Success ~~~~~~~~~~~~~~~~~~");
   };
   useEffect(() => {
-    if (account && equipData) {
-      getEquipStatus();
-    }
-  }, [equipData]);
-  useEffect(() => {
-    if (account) {
+    if (account && library) {
       getDashBord();
       getListData();
       getStakeListData();
@@ -386,7 +373,14 @@ const FarmContent = () => {
                   className="nft-swap-btn"
                   onClick={() => handleClickStakeNFT(item)}
                 >
-                  {item.status ? `Stake for 100 card` : "Approve"}
+                  {item.status
+                    ? `Stake for ${
+                        item.address.toLowerCase() ===
+                        NFTDusk.address.toLowerCase()
+                          ? 10
+                          : 100
+                      } card`
+                    : "Approve"}
                 </button>
               </div>
             ))}
@@ -419,13 +413,13 @@ const FarmContent = () => {
                   className="equip-swap-btn"
                   onClick={() => handleClickStakeEquip(item)}
                 >
-                  {equipStatus ? `Stake(${item.count})` : "Approve"}
+                  Stake({item.count})
                 </button>
                 <button
                   className="equip-swap-btn"
                   onClick={() => handleClickUnStakeEquip(item)}
                 >
-                  {stakeTokenStatus ? `Withdraw(${item.stake})` : "Approve"}
+                  Withdraw({item.stake})
                 </button>
               </div>
             </div>
