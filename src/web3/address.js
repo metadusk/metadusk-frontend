@@ -96,7 +96,7 @@ if (isTestEnv) {
   Lottery.address = '0x692994b183B467965D81398d4dAc60fE465897f6'
   NFTJustineDusk.address = '0x86EFF87137C2453Ccc1A6c961eFbfcf467134780'
   NFTSantaPunkDusk.address = '0x0FADf54ABD2bB0D6128ae7040fBc2b611d42b223'
-  NFTStake.address = '0x6C4a15dF23de8ae48E0ebF0F9CE44bD484D3C876'
+  NFTStake.address = '0x0Fdc2A9DeF90774724c89d914aE4d1deED28cc07'
   NFTStakeToken.address = '0xc25af98fec8a308043d9ef998fa163a37c8e2214'
 }
 
