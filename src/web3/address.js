@@ -77,11 +77,11 @@ const NFTSantaPunkDusk = {
   abi: ERC721Abi
 }
 const NFTStake = {
-  address: '',
+  address: '0xB726087904dc3baEe6bdf6Ba7c132528C78C2Da4',
   abi: NFTStakeAbi
 }
 const NFTStakeToken = {
-  address: '',
+  address: '0x46682E5C8c5d470602da964311bA1CCC80835a23',
   abi: ERC20.abi
 }
 
