@@ -11,6 +11,7 @@ import {
   NFTStakeToken,
   ADDRESS_INFINITY,
 } from "../../../web3/address";
+import { FormattedMessage, injectIntl } from "react-intl";
 
 export function createDiv(n) {
   const list = [];
@@ -208,17 +209,23 @@ export default function WestarterNFTModal({
             setEquipVolume(e.target.value);
           }}
         />
-        <span onClick={() => handleClickSetVolume()}>Max</span>
+        <span onClick={() => handleClickSetVolume()}>
+          <FormattedMessage id="farm11" />
+        </span>
       </div>
       {approveStatus ? (
         <div className="equip-claim" onClick={() => handleClickAction()}>
           {loading && <LoadingOutlined style={{ marginRight: "5px" }} />}
-          {actionType === 1 ? "Stake" : "Withdraw"}
+          {actionType === 1 ? (
+            <FormattedMessage id="farm9" />
+          ) : (
+            <FormattedMessage id="farm10" />
+          )}
         </div>
       ) : (
         <div className="equip-claim" onClick={() => handleClickApprove()}>
           {loading && <LoadingOutlined style={{ marginRight: "5px" }} />}
-          Approve
+          <FormattedMessage id="farm5" />
         </div>
       )}
     </Modal>

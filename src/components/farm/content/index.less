@@ -3,32 +3,28 @@
 }
 .swap-token {
   text-align: center;
-  width: 180px;
   height: 50px;
-  background: #842df9;
-  box-shadow: inset 0px -4px 0px 0px #ffffff;
-  transform: skew(-15deg);
-  margin-left: 5px;
-  p {
-    transform: skew(15deg);
-  }
+  margin: 0 auto;
   span {
-    color: #ffffff;
-    line-height: 50px;
-    letter-spacing: 1px;
-    font-size: 16px;
-  }
-  span:nth-of-type(1) {
-    font-family: PingFangSC-Regular;
-  }
-  span:nth-of-type(2) {
+    width: 206px;
+    height: 44px;
+    font-size: 31px;
     font-family: BlocExtCondC;
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 38px;
+    letter-spacing: 2px;
   }
 }
 .token-balance {
-  margin-top: 40px;
+  width: 355px;
+  height: 30px;
+  background: #380035;
+  border-radius: 15px;
+  margin: 40px auto 0;
   display: flex;
   align-items: center;
+  justify-content: center;
   > div {
     font-size: 16px;
     font-family: BlocExtCondC;
@@ -43,6 +39,35 @@
   }
   &-mine {
     margin-right: 30px;
+  }
+}
+.swap-title {
+  display: flex;
+  > div {
+    text-align: center;
+    padding: 0 10px;
+    height: 50px;
+    background: #842df9;
+    box-shadow: inset 0px -4px 0px 0px #ffffff;
+    transform: skew(-15deg);
+    margin-left: 5px;
+    margin-top: 50px;
+    p {
+      transform: skew(15deg);
+      color: #ffffff;
+      line-height: 50px;
+      letter-spacing: 1px;
+      font-size: 16px;
+    }
+  }
+  > p {
+    flex: 1;
+    height: 4px;
+    background: rgba(132, 45, 249, 0.5);
+    display: flex;
+    align-self: flex-end;
+    margin: 0;
+    transform: translate(-5px);
   }
 }
 .nft-balance {
@@ -85,7 +110,7 @@
   align-items: center;
   flex-wrap: wrap;
   min-height: 200px;
-  .content{
+  .content {
     padding: 0 10px;
     width: 100%;
     display: flex;
@@ -141,4 +166,10 @@
   }
 }
 @media screen and(max-width:750px) {
+  .nft-balance {
+    justify-content: center;
+  }
+  .equip-balance {
+    justify-content: center;
+  }
 }

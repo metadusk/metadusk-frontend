@@ -3,6 +3,7 @@ import { useActiveWeb3React } from "../../../web3";
 import { getIPFSJson } from "../../../utils/ipfs";
 import { message, Modal } from "antd";
 import EquipModal from "../../farm-modal/equip-modal";
+import { FormattedMessage, injectIntl } from "react-intl";
 import {
   ALL_DUSK,
   ChainId,
@@ -358,17 +359,28 @@ const FarmContent = () => {
       <div className="farm-content-wrap">
         <div className="swap-token">
           <p>
-            <span>兑换</span> <span>Farm Token</span>
+            <span>
+              {" "}
+              <FormattedMessage id="farm1" />
+            </span>
           </p>
         </div>
         <div className="token-balance">
           <div className="token-balance-mine">
-            我的 Farm Token：<span>{tokenBalance}</span>
+            <FormattedMessage id="farm2" />：<span>{tokenBalance}</span>
           </div>
           <div className="token-balance-swap">
-            可兑换 Farm Token：
+            <FormattedMessage id="farm3" />：
             <span>{kitsTokenBalance + duskTokenBalance}</span>
           </div>
+        </div>
+        <div className="swap-title">
+          <div>
+            <p>
+              <FormattedMessage id="farm4" />
+            </p>
+          </div>
+          <p></p>
         </div>
         <div className="nft-balance">
           {listData &&
@@ -381,14 +393,20 @@ const FarmContent = () => {
                   className="nft-swap-btn"
                   onClick={() => handleClickStakeNFT(item)}
                 >
-                  {item.status
-                    ? `Stake for ${
-                        item.address.toLowerCase() ===
-                        NFTDusk.address.toLowerCase()
-                          ? 10
-                          : 100
-                      } card`
-                    : "Approve"}
+                  {item.status ? (
+                    <FormattedMessage
+                      id="farm6"
+                      values={{
+                        num:
+                          item.address.toLowerCase() ===
+                          NFTDusk.address.toLowerCase()
+                            ? 10
+                            : 100,
+                      }}
+                    />
+                  ) : (
+                    <FormattedMessage id="farm5" />
+                  )}
                 </button>
               </div>
             ))}
@@ -410,6 +428,14 @@ const FarmContent = () => {
               </div>
             ))}
         </div>
+        <div className="swap-title">
+          <div>
+            <p>
+              <FormattedMessage id="farm7" />
+            </p>
+          </div>
+          <p></p>
+        </div>
         <div className="equip-balance">
           {equipData.map((item, index) => (
             <div className="equip-dusk" key={index}>
@@ -421,13 +447,13 @@ const FarmContent = () => {
                   className="equip-swap-btn"
                   onClick={() => handleClickStakeEquip(item)}
                 >
-                  Stake({item.count})
+                  <FormattedMessage id="farm9" />({item.count})
                 </button>
                 <button
                   className="equip-swap-btn"
                   onClick={() => handleClickUnStakeEquip(item)}
                 >
-                  Withdraw({item.stake})
+                  <FormattedMessage id="farm10" />({item.stake})
                 </button>
               </div>
             </div>
