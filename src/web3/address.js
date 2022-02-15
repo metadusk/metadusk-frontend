@@ -75,6 +75,11 @@ const NFTSantaPunkDusk = {
   photo: 'QmVzzCC2YbLzvdP9Vx4RGLDEdEF4698TJTeEnJdQdbb24E',
   abi: ERC721Abi
 }
+const NFTTitanADusk = {
+  address: '',
+  photo: 'QmbhBKAeZAhmivxQYenbHUwMDuZ5YHF8GZtBEa9nmexPy7',
+  abi: ERC721Abi
+}
 
 export const ADDRESS_0 = '0x0000000000000000000000000000000000000000'
 export const ADDRESS_INFINITY = '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'
@@ -100,7 +105,8 @@ export {
   Lottery,
   NFTJustineDusk,
   NFTSantaPunkDusk,
-  ALL_DUSK
+  NFTTitanADusk,
+  ALL_DUSK,
 }
 
 

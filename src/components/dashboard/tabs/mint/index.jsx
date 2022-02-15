@@ -3,8 +3,8 @@ import DuskMint from "../../../../assets/image/dashboard/Dusk_Mint@2x.png";
 import {Link} from "react-router-dom";
 import {FormattedMessage} from "react-intl";
 import './index.less'
-import {JustineDuskExhibits, xmasPunkExhibits} from "../../../../config/nft";
-import {Lottery, NFTJustineDusk, NFTSantaPunkDusk,} from "../../../../web3/address";
+import {JustineDuskExhibits, titanAExhibits, xmasPunkExhibits} from "../../../../config/nft";
+import {Lottery, NFTJustineDusk, NFTSantaPunkDusk, NFTTitanADusk} from "../../../../web3/address";
 import MintItem from "../mint-item";
 
 const mintListData = [
@@ -21,6 +21,13 @@ const mintListData = [
     mintContract: Lottery,
     mintMethod: 'santaCompose',
     composeEnable: 'santaComposeEnable'
+  },
+  {
+    mintNFT: NFTTitanADusk,
+    exhibits: titanAExhibits,
+    mintContract: Lottery,
+    mintMethod: 'titanACompose',
+    composeEnable: 'titanAComposeEnable'
   }
 ]
 
