@@ -4,6 +4,7 @@ import { getIPFSJson } from "../../../utils/ipfs";
 import { message, Modal } from "antd";
 import EquipModal from "../../farm-modal/equip-modal";
 import { FormattedMessage, injectIntl } from "react-intl";
+import { LoadingOutlined } from "@ant-design/icons";
 import {
   ALL_DUSK,
   ChainId,
@@ -35,6 +36,7 @@ const FarmContent = () => {
   const [tokenBalance, setTokenBalance] = useState(0);
   const [kitsTokenBalance, setKitsTokenBalance] = useState(0);
   const [duskTokenBalance, setDuskTokenBalance] = useState(0);
+  const [loading, setLoading] = useState(false);
   const getDashBord = () => {
     console.log("Info My Data Refresh Success ~~~~~~~~~~~~");
     const StakeTokenContract = new ClientContract(
@@ -267,6 +269,7 @@ const FarmContent = () => {
   };
   // Stake 721 NFT
   const handleClickStakeNFT = (data) => {
+    setLoading(true);
     if (data.status) {
       const StakeContracts = getContract(
         library,
@@ -281,6 +284,7 @@ const FarmContent = () => {
           getListData();
           getStakeListData();
           getDashBord();
+          setLoading(false);
         })
         .on("error", (err, receipt) => {
           message.success("error");
@@ -298,6 +302,7 @@ const FarmContent = () => {
           getListData();
           getStakeListData();
           message.success("success");
+          setLoading(false);
         })
         .on("error", (err, receipt) => {});
     }
@@ -305,6 +310,7 @@ const FarmContent = () => {
 
   // UnStake 721 NFT
   const handleClickUnStakeNFT = (data) => {
+    setLoading(true);
     if (stakeTokenStatus) {
       const StakeContracts = getContract(
         library,
@@ -319,6 +325,7 @@ const FarmContent = () => {
           getStakeListData();
           message.success("success");
           getDashBord();
+          setLoading(false);
         })
         .on("error", (err, receipt) => {
           message.success("error");
@@ -336,6 +343,7 @@ const FarmContent = () => {
           message.success("success");
           getStakeListData();
           setStakeTokenStatus(true);
+          setLoading(false);
         })
         .on("error", (err, receipt) => {});
     }
@@ -360,7 +368,6 @@ const FarmContent = () => {
         <div className="swap-token">
           <p>
             <span>
-              {" "}
               <FormattedMessage id="farm1" />
             </span>
           </p>
@@ -393,6 +400,9 @@ const FarmContent = () => {
                   className="nft-swap-btn"
                   onClick={() => handleClickStakeNFT(item)}
                 >
+                  {loading && (
+                    <LoadingOutlined style={{ marginRight: "5px" }} />
+                  )}
                   {item.status ? (
                     <FormattedMessage
                       id="farm6"
@@ -405,7 +415,7 @@ const FarmContent = () => {
                       }}
                     />
                   ) : (
-                    <FormattedMessage id="farm5" />
+                    "Approve NFT"
                   )}
                 </button>
               </div>
@@ -423,7 +433,10 @@ const FarmContent = () => {
                   className="nft-swap-btn"
                   onClick={() => handleClickUnStakeNFT(item)}
                 >
-                  {stakeTokenStatus ? `Withdraw` : "Approve"}
+                  {loading && (
+                    <LoadingOutlined style={{ marginRight: "5px" }} />
+                  )}
+                  {stakeTokenStatus ? `Withdraw` : "Approve Card"}
                 </button>
               </div>
             ))}
