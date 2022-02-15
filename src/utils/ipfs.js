@@ -8,11 +8,23 @@ const config = {
 }
 
 // export const IPFS_ADDRESS = 'https://gateway.pinata.cloud/ipfs/'
-export const IPFS_ADDRESS = 'https://cloudflare-ipfs.com/ipfs/'
+let ipfsAddressIndex = 0
+export const IPFS_ADDRESS = [
+  'https://ipfscdn.mypinata.cloud/ipfs/'
+  // 'https://cloudflare-ipfs.com/ipfs/',
+  // 'https://ipfs.io/ipfs/',
+  // 'https://cloudflare-ipfs.com/ipfs/',
+  // 'https://dweb.link/ipfs/',
+  // 'https://ipfs.infura.io/ipfs/'
+]
+export const gteIpfsAddress = () => {
+  ipfsAddressIndex++
+  return IPFS_ADDRESS[ipfsAddressIndex % IPFS_ADDRESS.length]
+}
 
-export const getIPFSFile = (hash) => IPFS_ADDRESS + hash
+export const getIPFSFile = (hash) => gteIpfsAddress() + hash
 
-export const getIPFSJson = (hash) => axios.get(IPFS_ADDRESS + hash)
+export const getIPFSJson = (hash) => axios.get(gteIpfsAddress() + hash)
 
 export const uploadIPFSJson = (data) => {
   return axios
