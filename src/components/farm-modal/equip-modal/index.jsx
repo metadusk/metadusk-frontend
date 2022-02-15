@@ -85,6 +85,7 @@ export default function WestarterNFTModal({
         })
         .on("error", (err, receipt) => {
           setApproveStatus(false);
+          setLoading(false);
         });
     }
     if (actionType === 2) {
@@ -103,6 +104,7 @@ export default function WestarterNFTModal({
         })
         .on("error", (err, receipt) => {
           setApproveStatus(false);
+          setLoading(false);
         });
     }
   };
@@ -145,11 +147,13 @@ export default function WestarterNFTModal({
         .on("receipt", async (_, receipt) => {
           message.success("success");
           setVisible(false);
+          setLoading(false);
           reloadData();
         })
         .on("error", (err, receipt) => {
           message.success("error");
           setVisible(false);
+          setLoading(false);
           reloadData();
         });
     }

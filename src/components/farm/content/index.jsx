@@ -288,6 +288,7 @@ const FarmContent = () => {
         })
         .on("error", (err, receipt) => {
           message.success("error");
+          setLoading(false);
         });
     } else {
       const ApproveContracts = getContract(
@@ -304,7 +305,9 @@ const FarmContent = () => {
           message.success("success");
           setLoading(false);
         })
-        .on("error", (err, receipt) => {});
+        .on("error", (err, receipt) => {
+          setLoading(false);
+        });
     }
   };
 
@@ -329,6 +332,7 @@ const FarmContent = () => {
         })
         .on("error", (err, receipt) => {
           message.success("error");
+          setLoading(false);
         });
     } else {
       const ApproveContracts = getContract(
@@ -345,7 +349,9 @@ const FarmContent = () => {
           setStakeTokenStatus(true);
           setLoading(false);
         })
-        .on("error", (err, receipt) => {});
+        .on("error", (err, receipt) => {
+          setLoading(false);
+        });
     }
   };
   const reloadData = () => {
