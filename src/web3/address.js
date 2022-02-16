@@ -3,7 +3,8 @@ import ERC721Abi from "./abi/ERC721.json";
 import ERC1155Abi from "./abi/ERC1155.json";
 import LotteryAbi from "./abi/Lottery.json";
 import ERC20 from './abi/ERC20.json'
-import {checkIsTestEnv} from "../utils";
+import NFTStakeAbi from "./abi/NFTStake.json";
+import { checkIsTestEnv } from "../utils";
 const isTestEnv = checkIsTestEnv()
 
 export const ChainId = {
@@ -75,10 +76,20 @@ const NFTSantaPunkDusk = {
   photo: 'QmVzzCC2YbLzvdP9Vx4RGLDEdEF4698TJTeEnJdQdbb24E',
   abi: ERC721Abi
 }
+
 const NFTTitanADusk = {
   address: '',
   photo: 'QmbhBKAeZAhmivxQYenbHUwMDuZ5YHF8GZtBEa9nmexPy7',
   abi: ERC721Abi
+}
+const NFTStake = {
+  address: '0xB726087904dc3baEe6bdf6Ba7c132528C78C2Da4',
+  abi: NFTStakeAbi
+}
+const NFTStakeToken = {
+  address: '0x46682E5C8c5d470602da964311bA1CCC80835a23',
+  abi: ERC20.abi
+
 }
 
 export const ADDRESS_0 = '0x0000000000000000000000000000000000000000'
@@ -92,6 +103,8 @@ if (isTestEnv) {
   Lottery.address = '0x692994b183B467965D81398d4dAc60fE465897f6'
   NFTJustineDusk.address = '0x86EFF87137C2453Ccc1A6c961eFbfcf467134780'
   NFTSantaPunkDusk.address = '0x0FADf54ABD2bB0D6128ae7040fBc2b611d42b223'
+  NFTStake.address = '0x0Fdc2A9DeF90774724c89d914aE4d1deED28cc07'
+  NFTStakeToken.address = '0xc25af98fec8a308043d9ef998fa163a37c8e2214'
 }
 
 const ALL_DUSK = [
@@ -107,6 +120,8 @@ export {
   NFTSantaPunkDusk,
   NFTTitanADusk,
   ALL_DUSK,
+  NFTStake,
+  NFTStakeToken
 }
 
 

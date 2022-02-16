@@ -16,9 +16,20 @@ const ZH = {
   dashboard14: '铸造新的DUSH',
   dashboard15: '',
   dashboard16: '其他',
-  lbp:'当前售价',
-  lbp1:'每个地址每次只能购入一枚 NFT',
-  lbp2:'LBP的拍卖会根据市场需求自动调价，如果最终成交价低于你投入的BNB数量，剩余的BNB会自动返还',
+  lbp: '当前售价',
+  lbp1: '每个地址每次只能购入一枚 NFT',
+  lbp2: 'LBP的拍卖会根据市场需求自动调价，如果最终成交价低于你投入的BNB数量，剩余的BNB会自动返还',
+  farm1: "Swap Farm Token",
+  farm2: "My Farm Token",
+  farm3: "Available Farm Token",
+  farm4: "DUSK Swap Zone",
+  farm5: "Approve",
+  farm6: "Stake for 100 card",
+  farm7: "Equipment Swap Zone",
+  farm8: "Stake for 10 card",
+  farm9: "Stake",
+  farm10: "Withdraw",
+  farm11: "Max",
 
 }
 export default ZH

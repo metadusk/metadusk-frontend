@@ -14,8 +14,8 @@ export default function BlindBox() {
       <Header/>
       <div className="blind-box">
         <div className="tabs">
-          <div className={cs(tab === 'festival' && 'tab-active')} onClick={() => setTab('festival')}>Festival Box</div>
-          <div className={cs(tab === 'common' && 'tab-active')} onClick={() => setTab('common')}>Common Box</div>
+          <div className={cs(tab === 'festival' && 'tab-active')} onClick={() => setTab('festival')}>Xmas Punk Box</div>
+          <div className={cs(tab === 'common' && 'tab-active')} onClick={() => setTab('common')}>Justine Dusk Box</div>
         </div>
         {tab === 'common' && <CommonBox/>}
         {tab === 'festival' && <FestivalBox/>}

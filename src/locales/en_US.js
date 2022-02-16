@@ -20,5 +20,16 @@ const EN = {
   lbp1: "You could only buy 1 Dusk at a time. If you want to get more Dusk, you could repeat the auction.",
   lbp2:
     "The auction price will be automatically adjusted according to market demand. If the final price is less than the amount of BNB you invested, the remaining BNB will be automatically returned to your wallet.",
+  farm1: "Swap Farm Token",
+  farm2: "My Farm Token",
+  farm3: "Available Farm Token",
+  farm4: "DUSK Swap Zone",
+  farm5: "Approve",
+  farm6: "Stake for {num} card",
+  farm7: "Equipment Swap Zone",
+  farm8: "Stake for 10 card",
+  farm9: "Stake",
+  farm10: "Withdraw",
+  farm11: "Max",
 };
 export default EN

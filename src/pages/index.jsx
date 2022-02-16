@@ -7,6 +7,7 @@ import Dashboard from "./dashboard";
 import Show from "./show";
 
 import LBP from "./lbp";
+import Farm from "./farm";
 import AboutUs from "./about-us";
 
 function PageNotFont() {
@@ -31,6 +32,9 @@ export default function App() {
         </Route>
         <Route path="/show" exact>
           <Show />
+        </Route>
+        <Route path="/farm" exact>
+          <Farm />
         </Route>
         <Route path="/aboutUs" exact>
           <AboutUs />
