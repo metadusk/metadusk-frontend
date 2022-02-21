@@ -22,13 +22,13 @@ const mintListData = [
     mintMethod: 'santaCompose',
     composeEnable: 'santaComposeEnable'
   },
-  {
-    mintNFT: NFTTitanADusk,
-    exhibits: titanAExhibits,
-    mintContract: Lottery,
-    mintMethod: 'titanACompose',
-    composeEnable: 'titanAComposeEnable'
-  }
+  // {
+  //   mintNFT: NFTTitanADusk,
+  //   exhibits: titanAExhibits,
+  //   mintContract: Lottery,
+  //   mintMethod: 'titanACompose',
+  //   composeEnable: 'titanAComposeEnable'
+  // }
 ]
 
 export default function Mint({listData, equipData}) {

@@ -105,6 +105,7 @@ if (isTestEnv) {
   NFTSantaPunkDusk.address = '0x0FADf54ABD2bB0D6128ae7040fBc2b611d42b223'
   NFTStake.address = '0x0Fdc2A9DeF90774724c89d914aE4d1deED28cc07'
   NFTStakeToken.address = '0xc25af98fec8a308043d9ef998fa163a37c8e2214'
+  NFTTitanADusk.address = '0x21768AEAC2238df6b2d17C6Ab745dF073BA5dCDF'
 }
 
 const ALL_DUSK = [
