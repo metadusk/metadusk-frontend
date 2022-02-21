@@ -7,10 +7,16 @@ import Weddingveil from "../../../assets/image/show/weddingveil.png";
 import Gun from "../../../assets/image/show/gun.png";
 import Cigarette from "../../../assets/image/show/cigarette.png";
 import XmasPunk from "../../../assets/image/show/xmaspunk.png";
+import TitanA from "../../../assets/image/show/titan_a.png";
 import HelmetSkateboard from "../../../assets/image/show/helmetskateboard.png";
 import TexasVibe from "../../../assets/image/show/texasvibe.png";
 import XmasHat from "../../../assets/image/show/xmashat.png";
 import PunkHacket from "../../../assets/image/show/punkhacket.png";
+import MagicBuff from "../../../assets/image/show/magic_buff.png";
+import SacredArmor from "../../../assets/image/show/sacred_armor.png";
+import SexyBody from "../../../assets/image/show/sexy_body.png";
+import TitanHaircut from "../../../assets/image/show/titan_haircut.png";
+import {NFTTitanADusk} from "../../../web3/address";
 const DuskList = [
   {
     symbol: "Dusk",
@@ -47,6 +53,20 @@ const DuskList = [
       { symbol: "Texas Vibe", logo: TexasVibe },
       { symbol: "Xmas Hat", logo: XmasHat },
       { symbol: "Punk Hacket", logo: PunkHacket },
+    ],
+  },
+  {
+    symbol: "Titan A",
+    logo: TitanA,
+    address: NFTTitanADusk.address,
+    info: "He is swallowed by a bearded Titan during his first mission. However, he soon reappears as a 15-meter (49 ft) Titan who fights other Titans on equal ground. But, his ability as a Titan makes him the target of multiple parties that include those who see him as a tool to eradicate the Titans, other Dusks who can become Titans, and those who perceive him as a rebellion-inducing threat to the status quo.",
+    button: "Mint",
+    href: "/dashboard",
+    mints: [
+      { symbol: "Magic Buff", logo: MagicBuff },
+      { symbol: "Sacred Armor", logo: SacredArmor },
+      { symbol: "Sexy Body", logo: SexyBody },
+      { symbol: "Titan Haircut", logo: TitanHaircut },
     ],
   },
 ];
