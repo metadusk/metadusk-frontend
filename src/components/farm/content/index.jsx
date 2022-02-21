@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useActiveWeb3React } from "../../../web3";
-import { getIPFSJson } from "../../../utils/ipfs";
+import {getIPFSFile, getIPFSJson} from "../../../utils/ipfs";
 import { message, Modal } from "antd";
 import EquipModal from "../../farm-modal/equip-modal";
 import { FormattedMessage, injectIntl } from "react-intl";
@@ -459,7 +459,7 @@ const FarmContent = () => {
           {equipData.map((item, index) => (
             <div className="equip-dusk" key={index}>
               <div className="equip-dusk-card">
-                <img src={item.image} alt="" />
+                <img src={getIPFSFile(item.photo)} alt="" />
               </div>
               <div className="content">
                 <button
