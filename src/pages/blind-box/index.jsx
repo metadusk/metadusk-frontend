@@ -1,15 +1,15 @@
 import React, {useState} from "react";
 import './index.less'
 import Header from "../../components/header";
-import cs from "classnames";
-import CommonBox from '../../components/blind-box/common-box'
-import FestivalBox from '../../components/blind-box/festival-box'
+// import cs from "classnames";
+// import CommonBox from '../../components/blind-box/common-box'
+// import FestivalBox from '../../components/blind-box/festival-box'
 import BitBox from '../../components/blind-box/bit-box'
 
 
 export default function BlindBox() {
 
-  const [tab, setTab] = useState('festival')
+  // const [tab, setTab] = useState('festival')
   return (
     <>
       <Header/>

@@ -78,7 +78,7 @@ const NFTSantaPunkDusk = {
 }
 
 const NFTTitanADusk = {
-  address: '',
+  address: '0x62CDbC213A581CC228a99148F2a8Dc08c486e8ee',
   photo: 'QmbhBKAeZAhmivxQYenbHUwMDuZ5YHF8GZtBEa9nmexPy7',
   abi: ERC721Abi
 }
