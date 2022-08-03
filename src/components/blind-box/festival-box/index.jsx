@@ -158,6 +158,7 @@ export default function FestivalBox() {
     }
     setApproveLoading(true)
     const contract = getContract(library, ERC20Abi, HELMET_ADDRESS)
+    // 发起授权 参数1是授权的地址(比如usdc地址)，参数2是授权的数量
     contract.methods.approve(ItemPool.address, ADDRESS_INFINITY)
       .send({
         from: account
@@ -169,6 +170,8 @@ export default function FestivalBox() {
       .on('error', (err, receipt) => {
         setApproveLoading(false)
       })
+    // 查询授权 参数1是你的钱包地址，参数2是参数1是授权的地址(比如usdc地址)
+    contract.methods.allowance(account, ItemPool.address).then(console.log)
   }
   return (
     <>

@@ -21,7 +21,7 @@ export const getRpcUrl = chainId => {
   const RPC_URLS = {
     [ChainId.LOCALHOST]: 'http://localhost:8545',
     [ChainId.ETH]: 'https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161',
-    [ChainId.HECO]: 'https://http-mainnet-node.huobichain.com',
+    [ChainId.HECO]: 'https://http-mainnet.hecochain.com/',
     [ChainId.BSC]: 'https://bsc-dataseed.binance.org/',
     [ChainId.MATIC]: 'https://rpc-mainnet.maticvigil.com'
   }

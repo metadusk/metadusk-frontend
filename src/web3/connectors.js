@@ -31,7 +31,7 @@ const networkConf = {
       decimals: 18,
     },
     rpcUrls: [
-      'https://http-mainnet-node.huobichain.com',
+      'https://http-mainnet.hecochain.com/',
     ],
     blockExplorerUrls: [SCAN_ADDRESS[ChainId.HECO]],
   },
@@ -99,7 +99,7 @@ const bscWalletConnector = new WalletConnectConnector({
 })
 
 const hecoWalletConnector = new WalletConnectConnector({
-  rpc: {128: 'https://http-mainnet-node.huobichain.com'},
+  rpc: {128: 'https://http-mainnet.hecochain.com/'},
   bridge: 'https://bridge.walletconnect.org',
   qrcode: true,
   pollingInterval: POLLING_INTERVAL,
